@@ -15,7 +15,7 @@ Coming soon..
 
 ### Feature #1
 
-Coming soon..
+Coming sooon..
 
 ## 📚 Libraries Used
 
