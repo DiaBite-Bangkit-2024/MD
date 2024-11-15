@@ -28,7 +28,7 @@ class SettingsFragment : Fragment() {
         val root: View = binding.root
 
         val personalInfoTextView: ImageView = binding.root.findViewById(R.id.iv_personal)
-        personalInfoTextView.setOnClickListener {
+        binding.personalLayout.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
         }

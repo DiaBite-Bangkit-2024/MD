@@ -12,10 +12,11 @@
         android:background="#F5F5F5"
         android:padding="16dp">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:contentDescription="@string/back"
             android:src="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,26 +35,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/back_button" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+        <RelativeLayout
+            android:id="@+id/avaLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/user"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
 
-        <ImageView
-            android:id="@+id/edit_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="104dp"
-            android:contentDescription="Edit Profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/user"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/edit_icon"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignEnd="@id/profile_image"
+                android:layout_alignBottom="@id/profile_image"
+                android:contentDescription="Edit Profile"
+                android:src="@drawable/edit" />
+
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/name_label"
@@ -63,14 +73,15 @@
             android:text="Name"
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+            app:layout_constraintTop_toBottomOf="@id/avaLayout" />
 
         <EditText
             android:id="@+id/et_name"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name_label" />
@@ -88,9 +99,10 @@
         <EditText
             android:id="@+id/et_email"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_edittext"
+            android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email_label" />
@@ -108,10 +120,11 @@
         <EditText
             android:id="@+id/et_password"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_edittext"
             android:inputType="textPassword"
+            android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_label" />
@@ -146,8 +159,9 @@
                 <EditText
                     android:id="@+id/et_age"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edittext" />
+                    android:layout_height="50dp"
+                    android:background="@drawable/bg_edittext"
+                    android:paddingHorizontal="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -169,7 +183,8 @@
                     android:id="@+id/spinner_gender"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:background="@drawable/bg_edittext" />
+                    android:background="@drawable/dropdown_bg"
+                    android:paddingHorizontal="10dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -208,17 +223,18 @@
                     <EditText
                         android:id="@+id/et_height"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_edittext"/>
+                        android:background="@drawable/bg_edittext"
+                        android:paddingHorizontal="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="cm"
                         android:layout_marginStart="6dp"
+                        android:text="cm"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/et_height"/>
+                        app:layout_constraintStart_toStartOf="@id/et_height" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -246,17 +262,18 @@
                     <EditText
                         android:id="@+id/et_weight"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_edittext" />
+                        android:background="@drawable/bg_edittext"
+                        android:paddingHorizontal="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="kg"
                         android:layout_marginStart="6dp"
+                        android:text="kg"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/et_weight"/>
+                        app:layout_constraintStart_toStartOf="@id/et_weight" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -276,53 +293,54 @@
             android:id="@+id/blood_pres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/blood_label">
 
             <EditText
                 android:id="@+id/et_systolic"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:hint="systolic" />
+                android:hint="systolic"
+                android:paddingHorizontal="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:gravity="center_vertical"
                 android:text="/"
-                android:textStyle="bold"
-                android:gravity="center_vertical"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_diastolic"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:hint="diastolic" />
+                android:hint="diastolic"
+                android:paddingHorizontal="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="mmHg"
-                android:textStyle="bold"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:text="mmHg" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_save_changes"
+            style="@style/customButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/accent"
             android:text="Save changes"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/blood_pres" />

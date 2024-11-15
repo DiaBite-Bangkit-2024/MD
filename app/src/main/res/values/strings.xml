@@ -25,6 +25,10 @@
     <string name="settings">Settings</string>
     <string name="back">Back</string>
     <string name="personal_information">Personal Information</string>
+    <string name="history">History</string>
+    <string name="legend1"><![CDATA[<40%: Non diabetic]]></string>
+    <string name="legend2">40% - 70% : Pre diabetic</string>
+    <string name="legend3"><![CDATA[>70% : Diabetic]]></string>
 
     <string-array name="gender_options">
         <item>Select Gender</item>

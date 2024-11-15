@@ -72,11 +72,12 @@
                         </LinearLayout>
 
                         <ImageButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/logoutBtn"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:backgroundTint="@android:color/transparent"
+                            style="@style/Widget.AppCompat.Button.Borderless"
                             android:src="@drawable/round_logout_24" />
 
                     </RelativeLayout>
@@ -194,7 +195,7 @@
                 android:layout_margin="12dp"
                 android:backgroundTint="@color/card55"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="8dp"
+                app:cardElevation="4dp"
                 app:contentPadding="14dp">
 
                 <LinearLayout
@@ -203,6 +204,7 @@
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAnalyze"
                         style="@style/Widget.AppCompat.ActionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -210,9 +212,10 @@
                         android:drawableTop="@drawable/magicwand_40"
                         android:text="Analyze"
                         android:textAllCaps="false"
-                        android:textColor="@color/text"/>
+                        android:textColor="@color/text" />
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnRec"
                         style="@style/Widget.AppCompat.ActionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -220,9 +223,10 @@
                         android:drawableTop="@drawable/food"
                         android:text="Food Recom"
                         android:textAllCaps="false"
-                        android:textColor="@color/text"/>
+                        android:textColor="@color/text" />
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnHistory"
                         style="@style/Widget.AppCompat.ActionButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -230,13 +234,127 @@
                         android:drawableTop="@drawable/refresh"
                         android:text="History"
                         android:textAllCaps="false"
-                        android:textColor="@color/text"/>
+                        android:textColor="@color/text" />
 
                 </LinearLayout>
-                
 
-                
+
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:backgroundTint="@color/card55"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:contentPadding="14dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/prob_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="Diabetes Probabilty"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!--                    <ProgressBar-->
+                    <!--                        android:id="@+id/progressBar"-->
+                    <!--                        style="@android:style/Widget.ProgressBar.Horizontal"-->
+                    <!--                        android:layout_width="150dp"-->
+                    <!--                        android:layout_height="150dp"-->
+                    <!--                        android:indeterminate="false"-->
+                    <!--                        android:progressDrawable="@drawable/analysis_percentage"-->
+                    <!--                        android:max="100"-->
+                    <!--                        android:progress="99" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/prob_title"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/percentage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <com.capstone.diabite.view.CircularProgressView
+                                android:id="@+id/circularProgressView"
+                                android:layout_width="160dp"
+                                android:layout_height="160dp" />
+
+                            <TextView
+                                android:id="@+id/progressText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="33%"
+                                android:textColor="#69AAF1"
+                                android:textSize="44sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/legend1"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="13sp"
+                                android:text="@string/legend2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="13sp"
+                                android:text="@string/legend3" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:text="Related Articles"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_semibold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="12dp"
+                tools:listitem="@layout/item_articles" />
+
         </LinearLayout>
 
     </ScrollView>
