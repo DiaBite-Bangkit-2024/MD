@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginFragment">
+
+    <ImageView
+        android:id="@+id/header_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hero"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="DiaBite"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/login_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="?attr/cardBackgroundColor"
+        app:cardElevation="6dp"
+        app:contentPaddingLeft="10dp"
+        app:contentPaddingRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal2"
+        app:shapeAppearanceOverlay="@style/card_rounded"
+        app:strokeWidth="0dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <LinearLayout
+                    android:id="@+id/menu_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:background="@drawable/tab_layout"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/tvLogin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/selected_tab_background"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Login"
+                        android:textColor="@color/text" />
+
+                    <TextView
+                        android:id="@+id/tvRegister"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Register"
+                        android:textColor="@color/text" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_below="@id/menu_layout"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/edittext"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="18dp"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordEditTextLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/emailEditText"
+                    android:hint="Password"
+                    android:textColorHint="?attr/android:textColorHint"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext"
+                        android:ems="10"
+                        android:inputType="textPassword"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/remindMe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/passwordEditTextLayout"
+                    android:layout_alignParentEnd="true" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/remindMe"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/loginButton"
+                        android:layout_width="match_parent"
+                        style="@style/customButton"
+                        android:layout_height="56dp"
+                        android:shadowColor="@color/text"
+                        android:text="@string/login" />
+
+                    <LinearLayout
+                        android:id="@+id/orDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/loginButton"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/black" />
+
+                        <TextView
+                            android:id="@+id/or"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="or" />
+
+                        <View
+                            android:id="@+id/divider2"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginBottom="14dp"
+                            android:layout_weight="1"
+                            android:background="@color/black" />
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/googleLoginButton"
+                        style="@style/customButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_below="@id/orDivider"
+                        android:backgroundTint="#f3f3f3"
+                        android:shadowColor="@color/text"
+                        android:text="@string/login_google"
+                        app:icon="@drawable/google_svg"
+                        app:iconGravity="textStart"
+                        app:iconTint="@null" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
