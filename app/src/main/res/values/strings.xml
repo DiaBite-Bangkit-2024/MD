@@ -4,4 +4,21 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="image">image</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="message_welcome_page" translatable="false">Mau belajar Android, iOS, Machine Learning, Cloud, Front-End, Back-End, dan bidang IT lainnya? Di Dicoding aja!</string>
+    <string name="title_welcome_page" translatable="false">Hello, Welcome to Dicoding Story App!</string>
+    <string name="title_signup_page">Create an account</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Enter your information</string>
+    <string name="title_login_page">Log in to your account</string>
+    <string name="name">Name</string>
+    <string name="logout">Log out</string>
+    <string name="login_google">Login with Google</string>
+    <string name="signup_google">Sign up with Google</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

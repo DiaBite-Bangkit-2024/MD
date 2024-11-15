@@ -22,4 +22,14 @@
         android:name="com.capstone.diabite.ui.settings.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.capstone.diabite.ui.login.LoginFragment"
+        android:label="Login" />
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.capstone.diabite.ui.register.RegisterFragment"
+        android:label="Register" />
 </navigation>
