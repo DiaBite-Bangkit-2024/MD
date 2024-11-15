@@ -1,40 +1,41 @@
 package com.capstone.diabite.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.capstone.diabite.databinding.FragmentNotificationsBinding
+import com.capstone.diabite.R
+import com.capstone.diabite.databinding.FragmentSettingsBinding
 
-class NotificationsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-private var _binding: FragmentNotificationsBinding? = null
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-  private val binding get() = _binding!!
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val SettingsViewModel =
+            ViewModelProvider(this)[SettingsViewModel::class.java]
 
-    _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-    val root: View = binding.root
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
-    val textView: TextView = binding.textNotifications
-    notificationsViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
+        val personalInfoTextView: ImageView = binding.root.findViewById(R.id.iv_personal)
+        personalInfoTextView.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
+            startActivity(intent)
+        }
+        return root
     }
-    return root
-  }
 
-override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
