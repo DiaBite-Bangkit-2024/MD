@@ -13,6 +13,12 @@
         android:theme="@style/Theme.DiaBite"
         tools:targetApi="31">
         <activity
+            android:name=".view.InitInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.auth.OtpActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.HistoryActivity"
             android:exported="false" />
         <activity
@@ -26,8 +32,10 @@
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:exported="false" />
+        <activity
+            android:name=".view.auth.AuthActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

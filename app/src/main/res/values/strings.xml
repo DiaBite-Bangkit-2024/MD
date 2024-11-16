@@ -4,10 +4,35 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="image">image</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="message_welcome_page" translatable="false">Mau belajar Android, iOS, Machine Learning, Cloud, Front-End, Back-End, dan bidang IT lainnya? Di Dicoding aja!</string>
+    <string name="title_welcome_page" translatable="false">Hello, Welcome to Dicoding Story App!</string>
+    <string name="title_signup_page">Create an account</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Enter your information</string>
+    <string name="title_login_page">Log in to your account</string>
+    <string name="name">Name</string>
+    <string name="logout">Log out</string>
+    <string name="login_google">Login with Google</string>
+    <string name="signup_google">Sign up with Google</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="articles">Articles</string>
     <string name="settings">Settings</string>
     <string name="back">Back</string>
     <string name="personal_information">Personal Information</string>
+    <string name="history">History</string>
+    <string name="legend1"><![CDATA[<40%: Non diabetic]]></string>
+    <string name="legend2">40% - 70% : Pre diabetic</string>
+    <string name="legend3"><![CDATA[>70% : Diabetic]]></string>
+    <string name="resend">&lt;u>Resend Code&lt;/u></string>
+    <string name="verify">Verify</string>
+    <string name="enter_information">Enter Your Information</string>
+    <string name="foodrec">Food Recommendation</string>
 
     <string-array name="gender_options">
         <item>Select Gender</item>

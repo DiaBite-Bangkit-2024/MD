@@ -1,6 +1,7 @@
 package com.capstone.diabite.ui.settings
 
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -18,6 +19,28 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.editIcon.setOnClickListener{
+
+        }
+
+//        binding.backButton.setOnTouchListener { v, event ->
+//            when (event.action) {
+//                MotionEvent.ACTION_DOWN -> {
+//                    v.scaleX = 0.9f
+//                    v.scaleY = 0.9f
+//                }
+//                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+//                    v.scaleX = 1f
+//                    v.scaleY = 1f
+//                }
+//            }
+//            false
+//        }
 
         val genderSpinner: Spinner = findViewById(R.id.spinner_gender)
         val genderAdapter = ArrayAdapter.createFromResource(

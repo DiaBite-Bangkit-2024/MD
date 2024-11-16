@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="2dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="5dp"
+    card_view:cardCornerRadius="20dp"
+    card_view:cardElevation="4dp"
+    style="@style/CardView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="8dp">
+
+        <RelativeLayout
+            android:id="@+id/percentage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <!-- Custom Circular Progress View -->
+            <com.capstone.diabite.view.CircularProgressView
+                android:id="@+id/circularProgressView"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_margin="3dp"/>
+
+            <!-- Text for percentage -->
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="33%"
+                android:textColor="#69AAF1"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/percentage"
+            android:justificationMode="inter_word"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="Title"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/percentage"
+            card_view:layout_constraintTop_toTopOf="@+id/percentage" />
+
+        <TextView
+            android:id="@+id/tv_item_description"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:ellipsize="end"
+            android:justificationMode="inter_word"
+            android:maxLines="3"
+            android:textSize="14sp"
+            android:text="Description"
+            card_view:layout_constraintBottom_toBottomOf="@+id/percentage"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_item_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
+            card_view:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
