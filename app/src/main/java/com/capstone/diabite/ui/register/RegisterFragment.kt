@@ -1,5 +1,6 @@
 package com.capstone.diabite.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.capstone.diabite.databinding.FragmentRegisterBinding
 import com.capstone.diabite.ui.login.LoginFragment
+import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
+import com.capstone.diabite.view.auth.OtpActivity
 
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
@@ -32,6 +35,11 @@ class RegisterFragment : Fragment() {
             }
 
             tvRegister.setOnClickListener {
+            }
+
+            loginButton.setOnClickListener {
+                val intent = Intent(context, OtpActivity::class.java)
+                startActivity(intent)
             }
 
 //            loginToggle.isChecked = false

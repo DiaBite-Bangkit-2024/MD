@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
 
     implementation (libs.androidx.viewpager2)
+    implementation(libs.lottie)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -11,6 +11,7 @@ import com.capstone.diabite.databinding.FragmentDashboardBinding
 import com.capstone.diabite.view.AnalyzeActivity
 import com.capstone.diabite.view.HistoryActivity
 import com.capstone.diabite.view.MainActivity
+import com.capstone.diabite.view.RecomActivity
 
 class DashboardFragment : Fragment() {
 
@@ -45,7 +46,7 @@ class DashboardFragment : Fragment() {
                 startActivity(intent)
             }
             btnRec.setOnClickListener {
-                val intent = Intent(context, MainActivity::class.java)
+                val intent = Intent(context, RecomActivity::class.java)
                 startActivity(intent)
             }
             btnHistory.setOnClickListener {
