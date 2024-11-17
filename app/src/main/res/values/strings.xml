@@ -33,6 +33,16 @@
     <string name="verify">Verify</string>
     <string name="enter_information">Enter Your Information</string>
     <string name="foodrec">Food Recommendation</string>
+    <string name="analyze_diabetes">Analyze Diabetes</string>
+    <string name="physical_health">How many days in the last 30 days have you felt physically unwell?</string>
+    <string name="general_health">How would you rate your general health? \n(1 = excellent, 5 = poor)</string>
+    <string name="mental_health">How many days in the last 30 days have you felt mentally unwell?</string>
+    <string name="blood_press">Do you have high blood pressure?</string>
+    <string name="cholesterol">Do you have high cholesterol?</string>
+    <string name="stroke">Have you ever been diagnosed with a stroke?</string>
+    <string name="heart_disease">Have you ever been diagnosed with heart disease or experienced a heart attack?</string>
+    <string name="walk_climb">Do you experience any difficulty walking or climbing stairs?</string>
+    <string name="submit">Submit</string>
 
     <string-array name="gender_options">
         <item>Select Gender</item>

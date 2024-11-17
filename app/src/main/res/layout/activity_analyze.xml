@@ -1,10 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".view.AnalyzeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F5F5F5"
+        android:padding="20dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/analyze_diabetes"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_button" />
+
+        <TextView
+            android:id="@+id/general_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/general_health"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slide_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="10dp"
+            android:valueFrom="1.0"
+            android:valueTo="5.0"
+            android:stepSize="1.0"
+            app:trackHeight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/general_health"
+            style="@style/MySliderStyle"/>
+
+        <LinearLayout
+            android:id="@+id/physical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slide_name">
+
+            <TextView
+                android:id="@+id/physical_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/physical_health"
+                android:textColor="#000000" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slide_physical"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="10dp"
+                android:valueFrom="0.0"
+                android:valueTo="30.0"
+                android:stepSize="1.0"
+                app:trackHeight="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/general_health"
+                style="@style/MySliderStyle"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mental_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/mental_health"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/physical" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slide_mental"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="10dp"
+            android:valueFrom="0.0"
+            android:valueTo="30.0"
+            android:stepSize="1.0"
+            app:trackHeight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mental_health"
+            style="@style/MySliderStyle"/>
+
+        <LinearLayout
+            android:id="@+id/blood_press"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slide_mental">
+
+            <TextView
+                android:id="@+id/tv_blood_press"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/blood_press"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/spinner_blood"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/dropdown_bg"
+                android:paddingHorizontal="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cholesterol"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/blood_press">
+
+            <TextView
+                android:id="@+id/tv_cholesterol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/cholesterol"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/spinner_cholesterol"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/dropdown_bg"
+                android:paddingHorizontal="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/stroke"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cholesterol">
+
+            <TextView
+                android:id="@+id/tv_stroke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/stroke"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/spinner_stroke"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/dropdown_bg"
+                android:paddingHorizontal="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/heart_attack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stroke">
+
+            <TextView
+                android:id="@+id/tv_heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/heart_disease"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/spinner_heart"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/dropdown_bg"
+                android:paddingHorizontal="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/walking"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heart_attack">
+
+            <TextView
+                android:id="@+id/tv_walking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/walk_climb"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/spinner_walking"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/dropdown_bg"
+                android:paddingHorizontal="10dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save_changes"
+            style="@style/customButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/accent"
+            android:layout_marginTop="40dp"
+            android:text="@string/submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/walking" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
