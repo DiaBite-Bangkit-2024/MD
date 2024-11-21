@@ -33,6 +33,15 @@
     <string name="verify">Verify</string>
     <string name="enter_information">Enter Your Information</string>
     <string name="foodrec">Food Recommendation</string>
+    <string name="popup_result">Category: Non Diabetic</string>
+    <string name="pie_percent">33%</string>
+    <string name="title">Title</string>
+    <string name="registration_successful">Registration Successful</string>
+    <string name="registration_failed">Registration Failed</string>
+    <string name="fill_all">Please fill all the fields</string>
+    <string name="otp_invalid">Invalid OTP</string>
+    <string name="otp_sent">OTP sent to %1$s. Please check your inbox.</string>
+    <string name="tvotp">We’ve sent a code to\n %1$s</string>
     <string name="analyze_diabetes">Analyze Diabetes</string>
     <string name="physical_health">How many days in the last 30 days have you felt physically unwell?</string>
     <string name="general_health">How would you rate your general health? \n(1 = excellent, 5 = poor)</string>

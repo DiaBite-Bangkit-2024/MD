@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -13,8 +15,11 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        multiDexEnabled = true
+
+        buildConfigField("String", "BASE_URL", "\"https://serpapi.com/\"")
+        buildConfigField("String", "NEWS_API_KEY", "\"8366636bee785a14e736e3439b83ce9b2f24de5da7506821fa8fed4ac9abcb58\"")
     }
 
     buildTypes {
@@ -35,6 +40,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -56,6 +62,21 @@ dependencies {
 
     implementation (libs.androidx.viewpager2)
     implementation(libs.lottie)
+    implementation(libs.glide)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.auth.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.work.runtime.ktx)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    implementation("com.github.1902shubh:SendMail:1.0.0")
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

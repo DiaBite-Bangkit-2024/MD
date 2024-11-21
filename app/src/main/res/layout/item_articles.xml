@@ -30,6 +30,7 @@
             card_view:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -40,35 +41,16 @@
         <TextView
             android:id="@+id/tv_item_name"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/img_item_mediaCover"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="10dp"
             android:justificationMode="inter_word"
-            android:textSize="17sp"
+            android:text="@string/title"
             android:textStyle="bold"
-            android:text="Title"
+            card_view:layout_constraintBottom_toBottomOf="@+id/img_item_mediaCover"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_mediaCover"
             card_view:layout_constraintTop_toTopOf="@+id/img_item_mediaCover" />
 
-        <TextView
-            android:id="@+id/tv_item_description"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="5dp"
-            android:ellipsize="end"
-            android:justificationMode="inter_word"
-            android:maxLines="3"
-            android:textSize="14sp"
-            android:text="Description"
-            card_view:layout_constraintBottom_toBottomOf="@+id/img_item_mediaCover"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_item_name"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
-            card_view:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
