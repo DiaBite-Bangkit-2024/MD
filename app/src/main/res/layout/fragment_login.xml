@@ -54,7 +54,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="12dp"
                 android:paddingBottom="12dp">
@@ -140,8 +140,8 @@
 
                     <Button
                         android:id="@+id/loginButton"
-                        android:layout_width="match_parent"
                         style="@style/customButton"
+                        android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:shadowColor="@color/text"
                         android:text="@string/login" />

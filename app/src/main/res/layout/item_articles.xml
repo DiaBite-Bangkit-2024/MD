@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginStart="8dp"
+    android:layout_marginStart="2dp"
     android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="2dp"
     android:layout_marginBottom="5dp"
     card_view:cardCornerRadius="20dp"
+    card_view:cardElevation="4dp"
     style="@style/CardView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,13 +23,14 @@
             android:id="@+id/img_item_mediaCover"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="8dp"
-            card_view:cardCornerRadius="20dp"
+            android:layout_margin="3dp"
+            card_view:cardCornerRadius="10dp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -39,33 +41,16 @@
         <TextView
             android:id="@+id/tv_item_name"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@id/img_item_mediaCover"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="10dp"
             android:justificationMode="inter_word"
-            android:textSize="15sp"
+            android:text="@string/title"
             android:textStyle="bold"
+            card_view:layout_constraintBottom_toBottomOf="@+id/img_item_mediaCover"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_item_mediaCover"
             card_view:layout_constraintTop_toTopOf="@+id/img_item_mediaCover" />
 
-        <TextView
-            android:id="@+id/tv_item_description"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="5dp"
-            android:ellipsize="end"
-            android:justificationMode="inter_word"
-            android:maxLines="3"
-            android:textSize="12sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/img_item_mediaCover"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_item_name"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
-            card_view:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

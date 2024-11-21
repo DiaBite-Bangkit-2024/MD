@@ -23,6 +23,7 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         if (savedInstanceState == null) {
             loadFragment(LoginFragment())
@@ -31,6 +32,7 @@ class AuthActivity : AppCompatActivity() {
 
     fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             .replace(R.id.nav_host_fragment_activity_auth, fragment)
             .commit()
     }

@@ -21,4 +21,42 @@
     <string name="signup_google">Sign up with Google</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="articles">Articles</string>
+    <string name="settings">Settings</string>
+    <string name="back">Back</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="history">History</string>
+    <string name="legend1"><![CDATA[<40%: Non diabetic]]></string>
+    <string name="legend2">40% - 70% : Pre diabetic</string>
+    <string name="legend3"><![CDATA[>70% : Diabetic]]></string>
+    <string name="resend">&lt;u>Resend Code&lt;/u></string>
+    <string name="verify">Verify</string>
+    <string name="enter_information">Enter Your Information</string>
+    <string name="foodrec">Food Recommendation</string>
+    <string name="popup_result">Category: Non Diabetic</string>
+    <string name="pie_percent">33%</string>
+    <string name="title">Title</string>
+    <string name="registration_successful">Registration Successful</string>
+    <string name="registration_failed">Registration Failed</string>
+    <string name="fill_all">Please fill all the fields</string>
+    <string name="otp_invalid">Invalid OTP</string>
+    <string name="otp_sent">OTP sent to %1$s. Please check your inbox.</string>
+    <string name="tvotp">We’ve sent a code to\n %1$s</string>
+    <string name="analyze_diabetes">Analyze Diabetes</string>
+    <string name="physical_health">How many days in the last 30 days have you felt physically unwell?</string>
+    <string name="general_health">How would you rate your general health? \n(1 = excellent, 5 = poor)</string>
+    <string name="mental_health">How many days in the last 30 days have you felt mentally unwell?</string>
+    <string name="blood_press">Do you have high blood pressure?</string>
+    <string name="cholesterol">Do you have high cholesterol?</string>
+    <string name="stroke">Have you ever been diagnosed with a stroke?</string>
+    <string name="heart_disease">Have you ever been diagnosed with heart disease or experienced a heart attack?</string>
+    <string name="walk_climb">Do you experience any difficulty walking or climbing stairs?</string>
+    <string name="submit">Submit</string>
+
+    <string-array name="gender_options">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 </resources>
