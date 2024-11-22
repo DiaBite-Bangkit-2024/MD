@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="We’ve sent a code to\n%1$s"
+                android:text="@string/tvotp"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -74,6 +74,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/otp1"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginRight="15dp"
@@ -85,6 +86,7 @@
                     android:textSize="20sp" />
 
                 <EditText
+                    android:id="@+id/otp2"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginRight="15dp"
@@ -96,6 +98,7 @@
                     android:textSize="20sp" />
 
                 <EditText
+                    android:id="@+id/otp3"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginRight="15dp"
@@ -107,6 +110,7 @@
                     android:textSize="20sp" />
 
                 <EditText
+                    android:id="@+id/otp4"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:background="@drawable/edittext"
@@ -124,6 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:gravity="center_horizontal"
+                android:background="?attr/selectableItemBackground"
                 android:textSize="13sp" />
 
             <TextView
@@ -140,7 +145,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/verifBtn"
         style="@style/customButton"
         android:layout_width="match_parent"
         android:layout_height="56dp"

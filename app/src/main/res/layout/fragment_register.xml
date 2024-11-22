@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/menu_layout"
                     android:layout_marginBottom="15dp"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:textColorHint="?attr/android:textColorHint"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp">
@@ -111,26 +111,34 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <EditText
-                    android:id="@+id/emailEditText"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailEditTextLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_below="@id/nameEditTextLayout"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/edittext"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:paddingStart="18dp"
-                    android:textSize="16sp"
-                    android:autofillHints="" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nameEditTextLayout"
+                    android:layout_marginBottom="20dp"
+                    android:hint="@string/email"
+                    android:textColorHint="?attr/android:textColorHint"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext"
+                        android:ems="10"
+                        android:inputType="textEmailAddress"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/passwordEditTextLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/emailEditText"
+                    android:layout_below="@+id/emailEditTextLayout"
                     android:layout_marginBottom="20dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColorHint="?attr/android:textColorHint"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
@@ -154,7 +162,7 @@
                     android:gravity="center_vertical">
 
                     <Button
-                        android:id="@+id/loginButton"
+                        android:id="@+id/regisButton"
                         style="@style/customButton"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
@@ -165,7 +173,7 @@
                         android:id="@+id/orDivider"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/loginButton"
+                        android:layout_below="@id/regisButton"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 

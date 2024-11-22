@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:paddingStart="12dp"
     android:paddingEnd="12dp"
-    android:background="#F5F5F5"
     tools:context=".ui.articles.ArticlesFragment" >
 
     <TextView
@@ -23,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvArticle"
+        android:id="@+id/rvArticles"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
