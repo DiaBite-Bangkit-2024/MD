@@ -19,6 +19,7 @@ android {
 //        multiDexEnabled = true
 
         buildConfigField("String", "BASE_URL", "\"https://serpapi.com/\"")
+        buildConfigField("String", "BASE_URL2", "\"http://107.175.0.251:5000/\"")
         buildConfigField("String", "NEWS_API_KEY", "\"8366636bee785a14e736e3439b83ce9b2f24de5da7506821fa8fed4ac9abcb58\"")
     }
 
@@ -67,6 +68,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.androidx.datastore.preferences)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.work.runtime.ktx)

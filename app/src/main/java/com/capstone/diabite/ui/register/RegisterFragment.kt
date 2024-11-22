@@ -14,10 +14,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentRegisterBinding
+import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.ui.login.LoginFragment
+import com.capstone.diabite.ui.login.LoginViewModel
+import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
+import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.auth.OtpActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -30,6 +35,12 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private var otp: String = ""
+    private val loginVM by viewModels<LoginViewModel> {
+        AuthViewModelFactory.getInstance(
+            requireContext()
+        )
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,28 +65,51 @@ class RegisterFragment : Fragment() {
 
             // Handle Register button click
             regisButton.setOnClickListener {
+                val name = nameEditText.text.toString().trim()
                 val email = emailEditText.text.toString().trim()
-                val password = passwordEditText.text.toString().trim()
+                val pass = passwordEditText.text.toString().trim()
 
-                // Validate input fields
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.fill_all),
-                        Toast.LENGTH_LONG
-                    ).show()
-                    //TODO: redirect to login, add timer
-                } else {
-                    otp = generateOtp()
-                    EmailSender.sendOtpToEmail(requireContext(), email, otp)
+                loginVM.login(email, pass).observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is DataResult.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                        }
 
-                    val intent = Intent(context, OtpActivity::class.java).apply {
-                        putExtra("email", email)
-                        putExtra("pass", password)
-                        putExtra("otp", otp)
+                        is DataResult.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            val intent = Intent(requireContext(), OtpActivity::class.java).apply {
+                                putExtra("name", name)
+                                putExtra("email", email)
+                                putExtra("pass", pass)
+                            }
+                            startActivity(intent)
+                        }
+
+                        is DataResult.Error -> {
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+                        }
                     }
-                    startActivity(intent)
                 }
+
+//                if (email.isEmpty() || password.isEmpty()) {
+//                    Toast.makeText(
+//                        context,
+//                        getString(R.string.fill_all),
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                    //TODO: redirect to login, add timer
+//                } else {
+//                    otp = generateOtp()
+//                    EmailSender.sendOtpToEmail(requireContext(), email, otp)
+//
+//                    val intent = Intent(context, OtpActivity::class.java).apply {
+//                        putExtra("email", email)
+//                        putExtra("pass", password)
+//                        putExtra("otp", otp)
+//                    }
+//                    startActivity(intent)
+//                }
             }
         }
     }
@@ -106,7 +140,6 @@ class RegisterFragment : Fragment() {
 //            )
 //        }
 //    }
-
 
 
     private fun highlightTab(isLoginSelected: Boolean) {

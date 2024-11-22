@@ -60,13 +60,13 @@
                                 android:id="@+id/dbGreeting"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Good morning" />
+                                android:text="@string/good_morning" />
 
                             <TextView
                                 android:id="@+id/dbName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Agatha Harkness"
+                                android:text="@string/db_name"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
