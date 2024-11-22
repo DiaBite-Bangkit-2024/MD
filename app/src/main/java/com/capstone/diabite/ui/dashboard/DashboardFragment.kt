@@ -1,11 +1,12 @@
 package com.capstone.diabite.ui.dashboard
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -31,16 +32,31 @@ class DashboardFragment : Fragment() {
     }
 //    private var name: String = ""
 
+//
+//    private lateinit var nameTextView: TextView
+//    private lateinit var ageTextView: TextView
+//    private lateinit var heightTextView: TextView
+//    private lateinit var weightTextView: TextView
+//    private lateinit var bloodPressureTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this)[DashboardViewModel::class.java]
-
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+
+        //
+//        val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+//
+//        nameTextView = view.findViewById(R.id.dbName)
+//        ageTextView = view.findViewById(R.id.vAge)
+//        heightTextView = view.findViewById(R.id.tHeight)
+//        weightTextView = view.findViewById(R.id.tWeight)
+//        bloodPressureTextView = view.findViewById(R.id.tBP)
+//
+//        loadUserData()
+
         return binding.root
     }
 
@@ -89,6 +105,29 @@ class DashboardFragment : Fragment() {
             else -> getString(R.string.good_night)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+//        loadUserData()
+    }
+
+//    private fun loadUserData() {
+//        val sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+//        val name = sharedPreferences.getString("name", "Name")
+//        nameTextView.text = name
+//
+//        val age = sharedPreferences.getInt("age", 0)
+//        ageTextView.text = "$age y.o"
+//
+//        val height = sharedPreferences.getFloat("height", 0f)
+//        heightTextView.text = "$height cm"
+//
+//        val weight = sharedPreferences.getFloat("weight", 0f)
+//        weightTextView.text = "$weight kg"
+//
+//        val bloodPressure = sharedPreferences.getString("blood_pressure", "0/0")
+//        bloodPressureTextView.text = bloodPressure
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

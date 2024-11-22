@@ -1,13 +1,29 @@
 package com.capstone.diabite.ui.settings
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
-class SettingsViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+class SettingsViewModel(private val pref: SettingsPreferences) : ViewModel() {
+    fun getThemeSettings(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
     }
-    val text: LiveData<String> = _text
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            pref.saveThemeSetting(isDarkModeActive)
+        }
+    }
+
+    fun getReminderSettings(): LiveData<Boolean> {
+        return pref.getReminderSetting().asLiveData()
+    }
+
+    fun saveReminderSetting(isEnabled: Boolean) {
+        viewModelScope.launch {
+            pref.saveReminderSetting(isEnabled)
+        }
+    }
 }

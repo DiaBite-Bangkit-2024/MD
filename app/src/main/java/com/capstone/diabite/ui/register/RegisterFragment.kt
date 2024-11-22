@@ -41,7 +41,6 @@ class RegisterFragment : Fragment() {
         )
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,13 +62,16 @@ class RegisterFragment : Fragment() {
                 (activity as? AuthActivity)?.loadFragment(LoginFragment())
             }
 
+            setupEditText()
+            setupAction()
+
             // Handle Register button click
             regisButton.setOnClickListener {
                 val name = nameEditText.text.toString().trim()
                 val email = emailEditText.text.toString().trim()
                 val pass = passwordEditText.text.toString().trim()
 
-                loginVM.login(email, pass).observe(viewLifecycleOwner) { result ->
+                loginVM.register(name, email, pass).observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is DataResult.Loading -> {
                             binding.progressBar.visibility = View.VISIBLE
@@ -118,29 +120,33 @@ class RegisterFragment : Fragment() {
         return (1000..9999).random().toString()
     }
 
-//    fun sendOtpToEmail(email: String) {
-//        val otp = generateOtp() // Replace with your OTP generation logic
-//        val subject = "DiaBite Signup OTP"
-//        val message = "Your OTP is $otp"
-//
-////        GMailSender("diabite.b7@gmail.com", "aahensrvxrkoidtv", email, subject, message).execute()
-//
-//        val sender = GMailSender("diabite.b7@gmail.com", "aahensrvxrkoidtv") // Replace with your app password
-//
-//        CoroutineScope(Dispatchers.Main).launch {
-//            val result = sender.sendEmail(email, subject, message)
-//            result.fold(
-//                onSuccess = {
-//                    Toast.makeText(context, "OTP sent to $email. Check your inbox.", Toast.LENGTH_LONG).show()
-//                },
-//                onFailure = { e ->
-//                    Log.e("GMailSender", "Failed to send OTP", e)
-//                    Toast.makeText(context, "Failed to send OTP: ${e.message}", Toast.LENGTH_LONG).show()
-//                }
-//            )
-//        }
-//    }
+    private fun setupEditText() {
+        binding.nameEditText.isName = true
+        binding.emailEditText.isEmail = true
+        binding.passwordEditText.isPassword = true
+    }
 
+    private fun setupAction() {
+        binding.regisButton.setOnClickListener {
+            val name = binding.nameEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            if (validateInput(name, email, password)) {
+                loginVM.register(name, email, password)
+            }
+        }
+    }
+
+    private fun validateInput(name: String, email: String, password: String): Boolean {
+        binding.nameEditTextLayout.error = if (name.isEmpty()) getString(R.string.name_required) else null
+        binding.emailEditTextLayout.error = if (email.isEmpty()) getString(R.string.email_required) else null
+        binding.passwordEditTextLayout.error = if (password.isEmpty()) getString(R.string.password_required) else null
+
+        return binding.nameEditTextLayout.error == null &&
+                binding.emailEditTextLayout.error == null &&
+                binding.passwordEditTextLayout.error == null
+    }
 
     private fun highlightTab(isLoginSelected: Boolean) {
         binding.tvLogin.setBackgroundResource(

@@ -7,37 +7,44 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
-import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityOtpBinding
+import com.capstone.diabite.db.DataResult
+import com.capstone.diabite.db.pref.UserRepository
+import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.ui.register.EmailSender
-import com.capstone.diabite.ui.register.RegisterFragment
 import com.capstone.diabite.view.InitInfoActivity
-import com.google.firebase.auth.FirebaseAuth
-import kotlin.random.Random
-import kotlin.random.nextInt
+import com.faraflh.storyapp.data.pref.UserPreference
+import com.faraflh.storyapp.data.pref.dataStore
 
 
 class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
+    private val loginVM: LoginViewModel by viewModels {
+        AuthViewModelFactory(
+            UserRepository.getInstance(
+                UserPreference.getInstance(dataStore)
+            )
+        )
+    }
+
     private var email: String = ""
     private var password: String = ""
     private var otp: String = ""
-    private lateinit var auth: FirebaseAuth
+
+    //    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        auth = FirebaseAuth.getInstance()
+
+//        auth = FirebaseAuth.getInstance()
         email = intent.getStringExtra("email").orEmpty()
         password = intent.getStringExtra("pass").orEmpty()
         otp = intent.getStringExtra("otp").orEmpty()
@@ -49,6 +56,7 @@ class OtpActivity : AppCompatActivity() {
 
             animationView.setAnimation(R.raw.otp2)
             animationView.playAnimation()
+
 
             tvOtp.text = String.format(getString(R.string.tvotp, email))
             resend.text = Html.fromHtml(getString(R.string.resend))
@@ -66,76 +74,43 @@ class OtpActivity : AppCompatActivity() {
 
             verifBtn.setOnClickListener {
                 val enteredOtp = "${otp1.text}${otp2.text}${otp3.text}${otp4.text}"
-                if (enteredOtp == otp) {
-                    // Proceed with registration
-                    auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this@OtpActivity) { task ->
-                            if (task.isSuccessful) {
-                                Toast.makeText(
-                                    this@OtpActivity,
-                                    getString(R.string.registration_successful),
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                val intent = Intent(this@OtpActivity, InitInfoActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Toast.makeText(
-                                    this@OtpActivity,
-                                    getString(R.string.registration_failed),
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
+                loginVM.verifyOtp(email, enteredOtp).observe(this@OtpActivity) { result ->
+                    when (result) {
+                        is DataResult.Loading -> {}
+                        is DataResult.Success -> {
+                            val intent = Intent(this@OtpActivity, InitInfoActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
                         }
-                } else {
-                    Toast.makeText(
-                        this@OtpActivity,
-                        getString(R.string.otp_invalid),
-                        Toast.LENGTH_LONG
-                    ).show()
+                        is DataResult.Error -> {
+                            Toast.makeText(this@OtpActivity, result.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
-//                val dialog = Dialog(this@OtpActivity)
-//                val dialogView = layoutInflater.inflate(R.layout.popup_dialog, null)
-//
-//                // Wrap the dialog's content in a FrameLayout to apply margins
-//                val marginLayout = FrameLayout(this@OtpActivity)
-//                val params = FrameLayout.LayoutParams(
-//                    ViewGroup.LayoutParams.MATCH_PARENT,
-//                    ViewGroup.LayoutParams.WRAP_CONTENT
-//                )
-//                params.setMargins(20, 0, 20, 0) // Set desired margins (left, top, right, bottom)
-//                dialogView.layoutParams = params
-//
-//                marginLayout.addView(dialogView)
-//                dialog.setContentView(marginLayout)
-//                dialog.window?.setLayout(
-//                    ViewGroup.LayoutParams.MATCH_PARENT,
-//                    ViewGroup.LayoutParams.WRAP_CONTENT
-//                )
-//                dialog.setCancelable(false)
-//                dialog.window?.attributes?.windowAnimations = R.style.animation
-//                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//
-//
-//                val okay_text: TextView = dialog.findViewById(R.id.okay_text)
-//                val cancel_text: TextView = dialog.findViewById(R.id.cancel_text)
-//                val close: ImageButton = dialog.findViewById(R.id.close_button)
-//
-//                okay_text.setOnClickListener {
-//                    dialog.dismiss()
-//                }
-//
-//                cancel_text.setOnClickListener {
-//                    dialog.dismiss()
-//                }
-//
-//                close.setOnClickListener {
-//                    dialog.dismiss()
-//                }
-//
-//                dialog.show()
             }
+
+//            verifBtn.setOnClickListener {
+//                val enteredOtp = "${otp1.text}${otp2.text}${otp3.text}${otp4.text}"
+//                if (enteredOtp.isNotEmpty()) {
+//                    lifecycleScope.launch {
+//                        userPreference.saveOtp(enteredOtp)
+////                        val prefEmail = getEmailFromPreferences()
+//                        otpVM.verifyOtp(ApiService.OtpRequest(emailtv, enteredOtp))
+//                    }
+//                } else {
+//                    Toast.makeText(this@OtpActivity, "Please enter OTP", Toast.LENGTH_SHORT).show()
+//                }
+//                otpVM.verifyOtpResult.observe(this) { result ->
+//                    result.onSuccess { otpResult ->
+//                        // Successfully verified OTP
+//                        Toast.makeText(this, "OTP Verified: ${otpResult.otp}", Toast.LENGTH_SHORT).show()
+//                        // Proceed to next activity or flow
+//                    }.onFailure { exception ->
+//                        // OTP verification failed
+//                        Toast.makeText(this, "Verification failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+//                    }
+//                }}
 
             otp1.doOnTextChanged { text, start, before, count ->
                 if (otp1.text.toString().isNotEmpty()) otp2.requestFocus()

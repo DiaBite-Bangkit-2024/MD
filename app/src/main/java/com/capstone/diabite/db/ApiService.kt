@@ -17,8 +17,9 @@ interface ApiService {
     @FormUrlEncoded
     @POST("auth/verify-otp")
     suspend fun verifyOtp(
+        @Field("email") email: String,
         @Field("otp") otp: String
-    ): LoginResponse
+    ): OtpResponse
 
     @FormUrlEncoded
     @POST("auth/register")

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.db.LoginResponse
+import com.capstone.diabite.db.OtpResponse
 import com.capstone.diabite.db.pref.UserModel
 import com.capstone.diabite.db.pref.UserRepository
 import kotlinx.coroutines.launch
@@ -65,10 +66,10 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun verifyOtp(otp: String): LiveData<DataResult<LoginResponse>> = liveData {
+    fun verifyOtp(email: String, otp: String): LiveData<DataResult<OtpResponse>> = liveData {
         emit(DataResult.Loading)
         try {
-            val response = ApiClient.getApiService2().verifyOtp(otp)
+            val response = ApiClient.getApiService2().verifyOtp(email, otp)
             emit(DataResult.Success(response))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()

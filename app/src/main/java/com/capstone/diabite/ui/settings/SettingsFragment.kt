@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.diabite.R
@@ -21,8 +23,6 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val SettingsViewModel =
-            ViewModelProvider(this)[SettingsViewModel::class.java]
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -32,6 +32,39 @@ class SettingsFragment : Fragment() {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
         }
+        val pref = SettingsPreferences.getInstance(requireContext().dataStore)
+        val settingViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref))[SettingsViewModel::class.java]
+
+        // Switch Theme Logic
+        settingViewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                binding.switchDarkTheme.isChecked = true
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                binding.switchDarkTheme.isChecked = false
+            }
+        }
+
+        binding.switchDarkTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            settingViewModel.saveThemeSetting(isChecked)
+        }
+
+//        // Switch Reminder Logic
+//        settingViewModel.getReminderSettings().observe(viewLifecycleOwner) { isReminderEnabled: Boolean ->
+//            binding.switchReminder.isChecked = isReminderEnabled
+//        }
+//
+//        binding.switchReminder.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+//            if (isChecked) {
+//                scheduleDailyReminder()
+//                settingViewModel.saveReminderSetting(true)
+//            } else {
+//                cancelDailyReminder()
+//                settingViewModel.saveReminderSetting(false)
+//            }
+//        }
+
         return root
     }
 
@@ -39,4 +72,19 @@ class SettingsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+//    private fun scheduleDailyReminder() {
+//        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(1, TimeUnit.DAYS)
+//            .build()
+//
+//        WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
+//            "DailyReminder",
+//            ExistingPeriodicWorkPolicy.UPDATE,
+//            workRequest
+//        )
+//    }
+//
+//    private fun cancelDailyReminder() {
+//        WorkManager.getInstance(requireContext()).cancelUniqueWork("DailyReminder")
+//    }
 }

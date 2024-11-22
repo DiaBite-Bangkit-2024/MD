@@ -5,7 +5,6 @@ data class LoginResponse(
 	val message: String,
 	val error: Boolean
 )
-
 data class LoginResult(
 	val name: String,
 	val userId: Int,

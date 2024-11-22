@@ -19,11 +19,14 @@ import com.capstone.diabite.view.InitInfoActivity
 import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
+import com.capstone.diabite.view.auth.CustomEditText
 import com.faraflh.storyapp.data.pref.UserPreference
-import com.faraflh.storyapp.data.pref.dataStore
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+
+//import com.faraflh.storyapp.data.pref.dataStore
+//import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.auth.ktx.auth
+//import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment() {
 
@@ -37,14 +40,14 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = Firebase.auth
+//        auth = Firebase.auth
 
         binding.apply {
 
@@ -56,6 +59,9 @@ class LoginFragment : Fragment() {
                 highlightTab(isLoginSelected = true)
                 (activity as? AuthActivity)?.loadFragment(RegisterFragment())
             }
+
+            setupEditText()
+            setupAction()
 
             loginButton.setOnClickListener {
                 val email = emailEditText.text.toString().trim()
@@ -82,6 +88,30 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setupEditText() {
+        binding.emailEditText.isEmail = true
+        binding.passwordEditText.isPassword = true
+    }
+
+    private fun setupAction() {
+        binding.loginButton.setOnClickListener {
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+
+            if (validateInput(email, password)) {
+                loginVM.login(email, password)
+            }
+        }
+    }
+
+    private fun validateInput(email: String, password: String): Boolean {
+        binding.emailEditTextLayout.error = if (email.isEmpty()) getString(R.string.email_required) else null
+        binding.passwordEditTextLayout.error = if (password.isEmpty()) getString(R.string.password_required) else null
+
+        return binding.emailEditTextLayout.error == null &&
+                binding.passwordEditTextLayout.error == null
     }
 
     private fun highlightTab(isLoginSelected: Boolean) {

@@ -1,0 +1,20 @@
+package com.capstone.diabite.db
+
+import com.google.gson.annotations.SerializedName
+data class OtpResponse(
+
+	@field:SerializedName("otpResult")
+	val otpResult: OtpResult,
+
+	@field:SerializedName("message")
+	val message: String
+)
+
+data class OtpResult(
+
+	@field:SerializedName("email")
+	val email: String,
+
+	@field:SerializedName("otp")
+	val otp: String
+)
