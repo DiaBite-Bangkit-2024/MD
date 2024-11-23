@@ -19,16 +19,8 @@ class UserRepository private constructor(
         userPreference.saveSession(user)
     }
 
-    suspend fun saveOtp(otp: String) {
-        userPreference.saveOtp(otp)
-    }
-
     fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
-    }
-
-    fun getOtp(): Flow<String?> {
-        return userPreference.getOtp()
     }
 
     suspend fun logout() {

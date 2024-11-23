@@ -45,18 +45,6 @@ class UserPreference private constructor(
         }
     }
 
-    suspend fun saveOtp(otp: String) {
-        dataStore.edit { preferences ->
-            preferences[OTP_KEY] = otp
-        }
-    }
-
-    fun getOtp(): Flow<String?> {
-        return dataStore.data.map { preferences ->
-            preferences[OTP_KEY]
-        }
-    }
-
     fun getToken(): Flow<String?> {
         return dataStore.data.map { preferences ->
             preferences[TOKEN_KEY]

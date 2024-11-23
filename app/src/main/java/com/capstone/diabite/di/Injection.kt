@@ -1,6 +1,7 @@
 package com.capstone.diabite.di
 
 import android.content.Context
+import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.pref.UserRepository
 import com.faraflh.storyapp.data.pref.UserPreference
 import com.faraflh.storyapp.data.pref.dataStore

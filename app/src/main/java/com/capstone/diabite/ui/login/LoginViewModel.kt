@@ -21,16 +21,6 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
         return repository.getSession().asLiveData()
     }
 
-    fun getOtp(): LiveData<String?> {
-        return repository.getOtp().asLiveData()
-    }
-
-    fun saveOtp(otp: String) {
-        viewModelScope.launch {
-            repository.saveOtp(otp)
-        }
-    }
-
     fun logout() {
         viewModelScope.launch {
             repository.logout()
