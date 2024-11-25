@@ -19,8 +19,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:contentDescription="@string/back"
-                android:src="@drawable/close" />
+                android:contentDescription="@string/back"/>
+<!--                android:src="@drawable/close" />-->
 
             <TextView
                 android:id="@+id/textview"

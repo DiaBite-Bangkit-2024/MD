@@ -63,6 +63,12 @@
     <string name="email_required">Email is required</string>
     <string name="email_invalid">Enter a valid email address</string>
     <string name="name_required">Name is required</string>
+    <string name="v_height">%1$s cm</string>
+    <string name="v_weight">%1$s kg</string>
+    <string name="v_age">%1$s y.o</string>
+    <string name="v_BP">%1$s / %1$s mmHg</string>
+
+
 
 
     <string-array name="gender_options">

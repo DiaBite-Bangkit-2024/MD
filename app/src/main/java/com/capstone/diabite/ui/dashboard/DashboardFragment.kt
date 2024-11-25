@@ -1,21 +1,17 @@
 package com.capstone.diabite.ui.dashboard
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentDashboardBinding
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.AnalyzeActivity
 import com.capstone.diabite.view.HistoryActivity
-import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.RecomActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import java.util.Calendar
@@ -32,13 +28,6 @@ class DashboardFragment : Fragment() {
     }
 //    private var name: String = ""
 
-//
-//    private lateinit var nameTextView: TextView
-//    private lateinit var ageTextView: TextView
-//    private lateinit var heightTextView: TextView
-//    private lateinit var weightTextView: TextView
-//    private lateinit var bloodPressureTextView: TextView
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,25 +35,11 @@ class DashboardFragment : Fragment() {
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        //
-//        val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
-//
-//        nameTextView = view.findViewById(R.id.dbName)
-//        ageTextView = view.findViewById(R.id.vAge)
-//        heightTextView = view.findViewById(R.id.tHeight)
-//        weightTextView = view.findViewById(R.id.tWeight)
-//        bloodPressureTextView = view.findViewById(R.id.tBP)
-//
-//        loadUserData()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val name = arguments?.getString("name")
-        binding.dbName.text = String.format(getString(R.string.db_name, name))
 
         binding.apply {
             logoutBtn.setOnClickListener {
@@ -106,28 +81,24 @@ class DashboardFragment : Fragment() {
         }
     }
 
+//    @Deprecated("Deprecated in Java")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 1001 && resultCode == Activity.RESULT_OK) {
+//            data?.let {
+//                binding.vHeight.text = it.getStringExtra("vHeight") ?: "-"
+//                binding.vWeight.text = it.getStringExtra("vWeight") ?: "-"
+//                binding.vAge.text = it.getStringExtra("vAge") ?: "-"
+//                binding.vBP.text = it.getStringExtra("vBloodPressure") ?: "-"
+//                binding.dbName.text = it.getStringExtra("dbName") ?: "-"
+//            }
+//        }
+//    }
+
     override fun onResume() {
         super.onResume()
-//        loadUserData()
     }
 
-//    private fun loadUserData() {
-//        val sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-//        val name = sharedPreferences.getString("name", "Name")
-//        nameTextView.text = name
-//
-//        val age = sharedPreferences.getInt("age", 0)
-//        ageTextView.text = "$age y.o"
-//
-//        val height = sharedPreferences.getFloat("height", 0f)
-//        heightTextView.text = "$height cm"
-//
-//        val weight = sharedPreferences.getFloat("weight", 0f)
-//        weightTextView.text = "$weight kg"
-//
-//        val bloodPressure = sharedPreferences.getString("blood_pressure", "0/0")
-//        bloodPressureTextView.text = bloodPressure
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

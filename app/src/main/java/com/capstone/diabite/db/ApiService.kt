@@ -22,6 +22,13 @@ interface ApiService {
     ): OtpResponse
 
     @FormUrlEncoded
+    @POST("auth/resend-otp")
+    suspend fun resendOtp(
+        @Field("email") email: String,
+        @Field("otp") otp: String
+    ): OtpResponse
+
+    @FormUrlEncoded
     @POST("auth/register")
     suspend fun register(
         @Field("name") name: String,
@@ -35,5 +42,16 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
+    @FormUrlEncoded
+    @POST("auth/save-profile")
+    suspend fun saveProfile(
+        @Field("email") email: String,
+        @Field("age") age: Int,
+        @Field("gender") gender: String,
+        @Field("weight") weight: Int,
+        @Field("height") height: Int,
+        @Field("systolic") systolic: Int,
+        @Field("diastolic") diastolic: Int
+    ): UserResponse
 
 }

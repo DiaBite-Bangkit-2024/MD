@@ -1,11 +1,8 @@
 package com.capstone.diabite.view.auth
 
-import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Html
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -21,7 +18,6 @@ import com.capstone.diabite.view.InitInfoActivity
 import com.faraflh.storyapp.data.pref.UserPreference
 import com.faraflh.storyapp.data.pref.dataStore
 
-
 class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
     private val loginVM: LoginViewModel by viewModels {
@@ -35,19 +31,21 @@ class OtpActivity : AppCompatActivity() {
     private var email: String = ""
     private var password: String = ""
     private var otp: String = ""
+    private var name: String = ""
 
-    //    private lateinit var auth: FirebaseAuth
+    private var countDownTimer: CountDownTimer? = null
+    private var timeLeftInMillis: Long = 60000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-
-//        auth = FirebaseAuth.getInstance()
         email = intent.getStringExtra("email").orEmpty()
         password = intent.getStringExtra("pass").orEmpty()
         otp = intent.getStringExtra("otp").orEmpty()
+        name = intent.getStringExtra("name").orEmpty()
 
         binding.apply {
             backButton.setOnClickListener {
@@ -61,15 +59,29 @@ class OtpActivity : AppCompatActivity() {
             tvOtp.text = String.format(getString(R.string.tvotp, email))
             resend.text = Html.fromHtml(getString(R.string.resend))
 
+            startOtpTimer()
+
             resend.setOnClickListener {
-                otp = generateOtp()
-                EmailSender.sendOtpToEmail(this@OtpActivity, email, otp)
-//
-//                Toast.makeText(
-//                    this@OtpActivity,
-//                    getString(R.string.otp_sent, email),
-//                    Toast.LENGTH_LONG
-//                ).show()
+                if (timeLeftInMillis <= 0) {
+                    otp = generateOtp()
+                    loginVM.resendOtp(email, otp).observe(this@OtpActivity) { result ->
+                        when (result) {
+                            is DataResult.Loading -> {}
+                            is DataResult.Success -> {
+                                Toast.makeText(this@OtpActivity, "OTP resent successfully!", Toast.LENGTH_SHORT).show()
+                                EmailSender.sendOtpToEmail(this@OtpActivity, email, otp)
+                                timeLeftInMillis = 60000
+                                startOtpTimer()
+                            }
+                            is DataResult.Error -> {
+                                Toast.makeText(this@OtpActivity, result.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+
+                } else {
+                    Toast.makeText(this@OtpActivity, "Please wait until the timer ends.", Toast.LENGTH_SHORT).show()
+                }
             }
 
             verifBtn.setOnClickListener {
@@ -80,6 +92,8 @@ class OtpActivity : AppCompatActivity() {
                         is DataResult.Success -> {
                             val intent = Intent(this@OtpActivity, InitInfoActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            intent.putExtra("email", email)
+                            intent.putExtra("name", name)
                             startActivity(intent)
                             finish()
                         }
@@ -89,28 +103,6 @@ class OtpActivity : AppCompatActivity() {
                     }
                 }
             }
-
-//            verifBtn.setOnClickListener {
-//                val enteredOtp = "${otp1.text}${otp2.text}${otp3.text}${otp4.text}"
-//                if (enteredOtp.isNotEmpty()) {
-//                    lifecycleScope.launch {
-//                        userPreference.saveOtp(enteredOtp)
-////                        val prefEmail = getEmailFromPreferences()
-//                        otpVM.verifyOtp(ApiService.OtpRequest(emailtv, enteredOtp))
-//                    }
-//                } else {
-//                    Toast.makeText(this@OtpActivity, "Please enter OTP", Toast.LENGTH_SHORT).show()
-//                }
-//                otpVM.verifyOtpResult.observe(this) { result ->
-//                    result.onSuccess { otpResult ->
-//                        // Successfully verified OTP
-//                        Toast.makeText(this, "OTP Verified: ${otpResult.otp}", Toast.LENGTH_SHORT).show()
-//                        // Proceed to next activity or flow
-//                    }.onFailure { exception ->
-//                        // OTP verification failed
-//                        Toast.makeText(this, "Verification failed: ${exception.message}", Toast.LENGTH_SHORT).show()
-//                    }
-//                }}
 
             otp1.doOnTextChanged { text, start, before, count ->
                 if (otp1.text.toString().isNotEmpty()) otp2.requestFocus()
@@ -128,5 +120,32 @@ class OtpActivity : AppCompatActivity() {
 
     private fun generateOtp(): String {
         return (1000..9999).random().toString()
+    }
+
+    private fun startOtpTimer() {
+        countDownTimer?.cancel()
+        binding.resend.isEnabled = false
+        binding.resend.setTextColor(resources.getColor(R.color.gray))
+        countDownTimer = object : CountDownTimer(timeLeftInMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                timeLeftInMillis = millisUntilFinished
+                updateTimerText()
+            }
+
+            override fun onFinish() {
+                timeLeftInMillis = 0
+                updateTimerText()
+                binding.resend.setTextColor(resources.getColor(R.color.black))
+                binding.resend.isEnabled = true
+            }
+        }.start()
+    }
+
+    private fun updateTimerText() {
+        val minutes = (timeLeftInMillis / 1000) / 60
+        val seconds = (timeLeftInMillis / 1000) % 60
+        val timeFormatted = String.format("%02d:%02d", minutes, seconds)
+        binding.timer.text = timeFormatted
+        binding.resend.isEnabled = timeLeftInMillis <= 0
     }
 }

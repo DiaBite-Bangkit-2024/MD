@@ -70,6 +70,41 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
         emit(DataResult.Loading)
         try {
             val response = ApiClient.getApiService2().verifyOtp(email, otp)
+            if (response.message.isNotEmpty()) {
+                if (response.message.isNotEmpty()) {
+                    val token = response.token
+                    val userModel = UserModel(
+                        email = email,
+                        token = token,
+                        isLogin = false
+                    )
+                    repository.saveSession(userModel)
+                    emit(DataResult.Success(response))
+                } else {
+                    emit(DataResult.Error(response.message))
+                }
+            } else {
+                emit(DataResult.Error(response.message))
+            }        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = errorBody?.let {
+                try {
+                    val json = JSONObject(it)
+                    json.getString("message")
+                } catch (ex: Exception) {
+                    "An error occurred"
+                }
+            } ?: "An error occurred"
+            emit(DataResult.Error(errorMessage))
+        } catch (e: Exception) {
+            emit(DataResult.Error(e.message ?: "An unexpected error occurred"))
+        }
+    }
+
+    fun resendOtp(email: String, otp: String): LiveData<DataResult<OtpResponse>> = liveData {
+        emit(DataResult.Loading)
+        try {
+            val response = ApiClient.getApiService2().resendOtp(email, otp)
             emit(DataResult.Success(response))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
@@ -86,7 +121,6 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
             emit(DataResult.Error(e.message ?: "An unexpected error occurred"))
         }
     }
-
 
     fun login(email: String, password: String): LiveData<DataResult<LoginResponse>> = liveData {
         emit(DataResult.Loading)

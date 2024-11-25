@@ -10,7 +10,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityMainBinding
-import com.capstone.diabite.ui.dashboard.DashboardFragment
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
@@ -22,6 +21,13 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<LoginViewModel> {
         AuthViewModelFactory.getInstance(this)
     }
+//
+//    private var name: String = ""
+//    private var age: String = ""
+//    private var height: String = ""
+//    private var weight: String = ""
+//    private var systolic: String = ""
+//    private var diastolic: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_dashboard, R.id.navigation_articles, R.id.navigation_settings
@@ -42,27 +47,21 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, AuthActivity::class.java))
                 finish()
-            } else {
-//                getStories(user.token)
-//                val sharedPreferences = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-//                sharedPreferences.edit().putString("user_token", user.token).apply()
             }
         }
+//
+//        name = intent.getStringExtra("name").orEmpty()
+//        age = intent.getStringExtra("age").orEmpty()
+//        height = intent.getStringExtra("height").orEmpty()
+//        weight = intent.getStringExtra("weight").orEmpty()
+//        systolic = intent.getStringExtra("systolic").orEmpty()
+//        diastolic = intent.getStringExtra("diastolic").orEmpty()
 
-        val name = intent.getStringExtra("name")
-        if (name != null) {
-            val navGraph = navController.navInflater.inflate(R.navigation.mobile_navigation)
-            navGraph.setStartDestination(R.id.navigation_dashboard)
-
-            val dashboardArgs = Bundle().apply {
-                putString("name", name)
-            }
-
-            navController.setGraph(navGraph, dashboardArgs)
-        }
     }
+
 }
