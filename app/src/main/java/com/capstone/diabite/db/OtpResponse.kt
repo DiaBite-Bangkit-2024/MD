@@ -7,7 +7,9 @@ data class OtpResponse(
 	val otpResult: OtpResult,
 
 	@field:SerializedName("message")
-	val message: String
+	val message: String,
+
+	val token: String
 )
 
 data class OtpResult(
@@ -16,5 +18,5 @@ data class OtpResult(
 	val email: String,
 
 	@field:SerializedName("otp")
-	val otp: String
+	val otp: String,
 )

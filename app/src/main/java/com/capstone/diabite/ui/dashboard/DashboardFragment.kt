@@ -1,5 +1,6 @@
 package com.capstone.diabite.ui.dashboard
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.capstone.diabite.ui.articles.ArticlesViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.AnalyzeActivity
 import com.capstone.diabite.view.HistoryActivity
+import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.RecomActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.chatbot.ChatbotActivity
@@ -75,9 +77,6 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val name = arguments?.getString("name")
-        binding.dbName.text = String.format(getString(R.string.db_name, name))
 
         binding.apply {
             logoutBtn.setOnClickListener {
@@ -146,7 +145,7 @@ class DashboardFragment : Fragment() {
         viewModel.fetchNews(query)
     }
 
-    private fun getGreetingMessage(): String {
+    fun getGreetingMessage(): String {
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         return when (currentHour) {
             in 5..11 -> getString(R.string.good_morning)

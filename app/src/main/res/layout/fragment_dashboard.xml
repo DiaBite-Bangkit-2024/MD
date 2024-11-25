@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:backgroundTint="@color/card55"
+                android:backgroundTint="?attr/cardForegroundColor"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="4dp"
                 app:contentPaddingBottom="14dp"
@@ -125,7 +125,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="162 cm"
+                                android:text="-"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -139,7 +139,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="56 kg"
+                                android:text="-"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -165,7 +165,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:layout_marginBottom="10dp"
-                                android:text="35 y.o"
+                                android:text="-"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -179,7 +179,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="120/85 mmHg"
+                                android:text="-"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -194,7 +194,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:backgroundTint="@color/card55"
+                android:backgroundTint="?attr/cardForegroundColor"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp"
                 app:contentPadding="14dp">
@@ -246,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:backgroundTint="@color/card55"
+                android:backgroundTint="?attr/cardForegroundColor"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp"
                 app:contentPadding="14dp">

@@ -63,18 +63,12 @@
     <string name="email_required">Email is required</string>
     <string name="email_invalid">Enter a valid email address</string>
     <string name="name_required">Name is required</string>
-    <string name="age">Age</string>
-    <string name="gender">Gender</string>
-    <string name="height">Height</string>
-    <string name="cm">cm</string>
-    <string name="weight">Weight</string>
-    <string name="kg">kg</string>
-    <string name="systolic">systolic</string>
-    <string name="spacer">/</string>
-    <string name="diastolic">diastolic</string>
-    <string name="mmhg">mmHg</string>
-    <string name="gemini">Gemini</string>
-    <string name="ask_me_anything">Ask me anything...</string>
+    <string name="v_height">%1$s cm</string>
+    <string name="v_weight">%1$s kg</string>
+    <string name="v_age">%1$s y.o</string>
+    <string name="v_BP">%1$s / %1$s mmHg</string>
+
+
 
 
     <string-array name="gender_options">

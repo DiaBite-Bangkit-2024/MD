@@ -1,5 +1,7 @@
 package com.capstone.diabite.view.auth
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +14,7 @@ import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityAuthBinding
 import com.capstone.diabite.ui.login.LoginFragment
 import com.capstone.diabite.ui.register.RegisterFragment
+import com.capstone.diabite.view.MainActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -25,8 +28,14 @@ class AuthActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        if (savedInstanceState == null) {
-            loadFragment(LoginFragment())
+        if (isUserLoggedIn(this)) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            if (savedInstanceState == null) {
+                loadFragment(LoginFragment())
+            }
         }
     }
 
@@ -35,5 +44,10 @@ class AuthActivity : AppCompatActivity() {
             .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             .replace(R.id.nav_host_fragment_activity_auth, fragment)
             .commit()
+    }
+
+    private fun isUserLoggedIn(context: Context): Boolean {
+        val sharedPref = context.getSharedPreferences("USER_PREF", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("IS_LOGGED_IN", false)
     }
 }

@@ -34,7 +34,6 @@ class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
-    private var otp: String = ""
     private val loginVM by viewModels<LoginViewModel> {
         AuthViewModelFactory.getInstance(
             requireContext()
@@ -93,25 +92,6 @@ class RegisterFragment : Fragment() {
                         }
                     }
                 }
-
-//                if (email.isEmpty() || password.isEmpty()) {
-//                    Toast.makeText(
-//                        context,
-//                        getString(R.string.fill_all),
-//                        Toast.LENGTH_LONG
-//                    ).show()
-//                    //TODO: redirect to login, add timer
-//                } else {
-//                    otp = generateOtp()
-//                    EmailSender.sendOtpToEmail(requireContext(), email, otp)
-//
-//                    val intent = Intent(context, OtpActivity::class.java).apply {
-//                        putExtra("email", email)
-//                        putExtra("pass", password)
-//                        putExtra("otp", otp)
-//                    }
-//                    startActivity(intent)
-//                }
             }
         }
     }
