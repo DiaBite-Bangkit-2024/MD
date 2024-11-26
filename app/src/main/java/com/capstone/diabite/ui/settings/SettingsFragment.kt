@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentSettingsBinding
+import com.capstone.diabite.ui.settings.profile.ProfileActivity
 
 class SettingsFragment : Fragment() {
 

@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.capstone.diabite.db.pref.UserModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -15,34 +16,11 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 class UserPreference private constructor(
     private val dataStore: DataStore<Preferences>
 ) {
-
-    val authToken: Flow<String?> = dataStore.data.map { preferences ->
-        preferences[TOKEN_KEY]
-    }
-
-    suspend fun saveAuthToken(token: String) {
-        dataStore.edit { preferences ->
-            preferences[TOKEN_KEY] = token
-        }
-    }
-
     suspend fun saveSession(user: UserModel) {
         dataStore.edit { preferences ->
             preferences[EMAIL_KEY] = user.email
             preferences[TOKEN_KEY] = user.token
             preferences[IS_LOGIN_KEY] = true
-        }
-    }
-
-    suspend fun saveOtp(otp: String) {
-        dataStore.edit { preferences ->
-            preferences[OTP_KEY] = otp
-        }
-    }
-
-    fun getOtp(): Flow<String?> {
-        return dataStore.data.map { preferences ->
-            preferences[OTP_KEY]
         }
     }
 

@@ -17,12 +17,26 @@ import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.ui.dashboard.DashboardViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.auth.AuthViewModelFactory
+import com.capstone.diabite.db.DataResult
+import com.capstone.diabite.db.UpdateProfileRequest
+import com.capstone.diabite.db.pref.UserRepository
+import com.capstone.diabite.ui.login.LoginViewModel
+import com.capstone.diabite.view.auth.AuthViewModelFactory
+import com.capstone.diabite.db.pref.UserPreference
+import com.capstone.diabite.db.pref.dataStore
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private val profileVM: DashboardViewModel by viewModels()
     private val loginVM by viewModels<LoginViewModel> {
         AuthViewModelFactory.getInstance(this)
+    }
+    private val loginVM: LoginViewModel by viewModels {
+        AuthViewModelFactory(
+            UserRepository.getInstance(
+                UserPreference.getInstance(dataStore)
+            )
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +61,18 @@ class ProfileActivity : AppCompatActivity() {
 
 
         binding.btnSaveChanges.setOnClickListener {
-            saveUserData()
+            val updateRequest = UpdateProfileRequest(
+                name = binding.etName.text.toString(),
+                newEmail = binding.etEmail.text.toString(),
+                password = binding.etPassword.text.toString(),
+                age = binding.etAge.text.toString().toInt(),
+                gender = binding.spinnerGender.selectedItem.toString(),
+                height = binding.etHeight.text.toString().toInt(),
+                weight = binding.etWeight.text.toString().toInt(),
+                systolic = binding.etSystolic.text.toString().toInt(),
+                diastolic = binding.etDiastolic.text.toString().toInt()
+            )
+            loginVM.updateUserProfile(updateRequest)
         }
 
 
@@ -116,53 +141,5 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun loadUserData() {
-        val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-
-        binding.etName.setText(sharedPreferences.getString("name", ""))
-        binding.etEmail.setText(sharedPreferences.getString("email", ""))
-        binding.etAge.setText(sharedPreferences.getInt("age", 0).toString())
-        binding.etHeight.setText(sharedPreferences.getFloat("height", 0f).toString())
-        binding.etWeight.setText(sharedPreferences.getFloat("weight", 0f).toString())
-
-        val bloodPressure = sharedPreferences.getString("blood_pressure", "0/0") ?: "0/0"
-        val parts = bloodPressure.split("/")
-        if (parts.size == 2) {
-            binding.etSystolic.setText(parts[0])
-            binding.etDiastolic.setText(parts[1])
-        }
-
-        val gender = sharedPreferences.getString("gender", "")
-        val genderPosition = resources.getStringArray(R.array.gender_options).indexOf(gender)
-        if (genderPosition >= 0) {
-            binding.spinnerGender.setSelection(genderPosition)
-        }
-    }
-
-    private fun saveUserData() {
-        val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-
-        editor.putString("name", binding.etName.text.toString())
-        editor.putString("email", binding.etEmail.text.toString())
-        editor.putInt("age", binding.etAge.text.toString().toIntOrNull() ?: 0)
-        editor.putFloat("height", binding.etHeight.text.toString().toFloatOrNull() ?: 0f)
-        editor.putFloat("weight", binding.etWeight.text.toString().toFloatOrNull() ?: 0f)
-        editor.putString(
-            "blood_pressure",
-            "${binding.etSystolic.text}/${binding.etDiastolic.text}"
-        )
-        editor.putString(
-            "gender",
-            binding.spinnerGender.selectedItem?.toString() ?: ""
-        )
-
-        editor.apply()
-
-        Toast.makeText(this, "Changes saved!", Toast.LENGTH_SHORT).show()
-
-        finish()
     }
 }
