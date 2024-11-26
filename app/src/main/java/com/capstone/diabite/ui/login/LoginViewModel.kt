@@ -1,6 +1,7 @@
 package com.capstone.diabite.ui.login
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
@@ -9,6 +10,8 @@ import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.db.LoginResponse
 import com.capstone.diabite.db.OtpResponse
+import com.capstone.diabite.db.ProfileResponse
+import com.capstone.diabite.db.UpdateProfileRequest
 import com.capstone.diabite.db.pref.UserModel
 import com.capstone.diabite.db.pref.UserRepository
 import kotlinx.coroutines.launch
@@ -17,18 +20,35 @@ import retrofit2.HttpException
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
+    private val _userProfile = MutableLiveData<DataResult<ProfileResponse>>()
+    val userProfile: LiveData<DataResult<ProfileResponse>> get() = _userProfile
+
+    fun fetchUserProfile() {
+        _userProfile.postValue(DataResult.Loading)
+        viewModelScope.launch {
+            try {
+                val response = repository.getUserProfile()
+                _userProfile.postValue(DataResult.Success(response))
+            } catch (e: Exception) {
+                _userProfile.postValue(DataResult.Error(e.message ?: "Error fetching profile"))
+            }
+        }
+    }
+
+    fun updateUserProfile(updateProfileRequest: UpdateProfileRequest) {
+        _userProfile.value = DataResult.Loading
+        viewModelScope.launch {
+            try {
+                val response = repository.editUserProfile(updateProfileRequest)
+                _userProfile.value = DataResult.Success(response)
+            } catch (e: Exception) {
+                _userProfile.value = DataResult.Error(e.message ?: "Error updating profile")
+            }
+        }
+    }
+
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
-    }
-
-    fun getOtp(): LiveData<String?> {
-        return repository.getOtp().asLiveData()
-    }
-
-    fun saveOtp(otp: String) {
-        viewModelScope.launch {
-            repository.saveOtp(otp)
-        }
     }
 
     fun logout() {

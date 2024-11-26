@@ -160,7 +160,6 @@
                     android:id="@+id/et_age"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:inputType="number"
                     android:background="@drawable/bg_edittext"
                     android:paddingHorizontal="10dp" />
             </LinearLayout>
@@ -226,7 +225,6 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:inputType="number"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="10dp" />
 
@@ -266,7 +264,6 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:inputType="number"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="10dp" />
 
@@ -306,7 +303,6 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:inputType="number"
                 android:background="@drawable/bg_edittext"
                 android:hint="systolic"
                 android:paddingHorizontal="10dp" />
@@ -325,7 +321,6 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:inputType="number"
                 android:background="@drawable/bg_edittext"
                 android:hint="diastolic"
                 android:paddingHorizontal="10dp" />

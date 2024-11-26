@@ -20,3 +20,4 @@ data class OtpResult(
 	@field:SerializedName("otp")
 	val otp: String,
 )
+

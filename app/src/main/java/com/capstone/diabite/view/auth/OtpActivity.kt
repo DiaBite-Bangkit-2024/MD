@@ -15,8 +15,8 @@ import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.ui.register.EmailSender
 import com.capstone.diabite.view.InitInfoActivity
-import com.faraflh.storyapp.data.pref.UserPreference
-import com.faraflh.storyapp.data.pref.dataStore
+import com.capstone.diabite.db.pref.UserPreference
+import com.capstone.diabite.db.pref.dataStore
 
 class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
@@ -35,6 +35,10 @@ class OtpActivity : AppCompatActivity() {
 
     private var countDownTimer: CountDownTimer? = null
     private var timeLeftInMillis: Long = 60000
+
+    private val otpInputs by lazy {
+        listOf(binding.otp1, binding.otp2, binding.otp3, binding.otp4)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,16 +108,76 @@ class OtpActivity : AppCompatActivity() {
                 }
             }
 
-            otp1.doOnTextChanged { text, start, before, count ->
-                if (otp1.text.toString().isNotEmpty()) otp2.requestFocus()
-            }
+            setupOtpInputNavigation()
 
-            otp2.doOnTextChanged { text, start, before, count ->
-                if (otp2.text.toString().isNotEmpty()) otp3.requestFocus()
-            }
+//            binding.otp1.apply {
+//                doOnTextChanged { text, _, _, _ ->
+//                    if (!text.isNullOrEmpty()) binding.otp2.requestFocus()
+//                }
+//                setOnKeyListener { _, keyCode, event ->
+//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
+//                        false
+//                    } else {
+//                        false
+//                    }
+//                }
+//            }
+//
+//            binding.otp2.apply {
+//                doOnTextChanged { text, _, _, _ ->
+//                    if (!text.isNullOrEmpty()) binding.otp3.requestFocus()
+//                }
+//                setOnKeyListener { _, keyCode, event ->
+//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
+//                        binding.otp1.requestFocus()
+//                        false
+//                    } else {
+//                        false
+//                    }
+//                }
+//            }
+//
+//            binding.otp3.apply {
+//                doOnTextChanged { text, _, _, _ ->
+//                    if (!text.isNullOrEmpty()) binding.otp4.requestFocus()
+//                }
+//                setOnKeyListener { _, keyCode, event ->
+//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
+//                        binding.otp2.requestFocus()
+//                        false
+//                    } else {
+//                        false
+//                    }
+//                }
+//            }
+//
+//            binding.otp4.apply {
+//                doOnTextChanged { _, _, _, _ ->
+//                }
+//                setOnKeyListener { _, keyCode, event ->
+//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
+//                        binding.otp3.requestFocus()
+//                        false
+//                    } else {
+//                        false
+//                    }
+//                }
+//            }
+        }
+    }
 
-            otp3.doOnTextChanged { text, start, before, count ->
-                if (otp3.text.toString().isNotEmpty()) otp4.requestFocus()
+    private fun setupOtpInputNavigation() {
+        otpInputs.forEachIndexed { index, editText ->
+            editText.doOnTextChanged { text, _, _, _ ->
+                if (!text.isNullOrEmpty() && index < otpInputs.size - 1) {
+                    otpInputs[index + 1].requestFocus()
+                }
+            }
+            editText.setOnKeyListener { _, keyCode, _ ->
+                if (keyCode == android.view.KeyEvent.KEYCODE_DEL && editText.text.isNullOrEmpty() && index > 0) {
+                    otpInputs[index - 1].requestFocus()
+                }
+                false
             }
         }
     }

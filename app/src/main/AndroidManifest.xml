@@ -31,7 +31,7 @@
             android:name=".view.AnalyzeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.settings.ProfileActivity"
+            android:name=".ui.settings.profile.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".view.auth.AuthActivity"

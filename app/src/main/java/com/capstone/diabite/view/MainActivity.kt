@@ -21,13 +21,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<LoginViewModel> {
         AuthViewModelFactory.getInstance(this)
     }
-//
-//    private var name: String = ""
-//    private var age: String = ""
-//    private var height: String = ""
-//    private var weight: String = ""
-//    private var systolic: String = ""
-//    private var diastolic: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,14 +47,6 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
-//
-//        name = intent.getStringExtra("name").orEmpty()
-//        age = intent.getStringExtra("age").orEmpty()
-//        height = intent.getStringExtra("height").orEmpty()
-//        weight = intent.getStringExtra("weight").orEmpty()
-//        systolic = intent.getStringExtra("systolic").orEmpty()
-//        diastolic = intent.getStringExtra("diastolic").orEmpty()
-
     }
 
 }

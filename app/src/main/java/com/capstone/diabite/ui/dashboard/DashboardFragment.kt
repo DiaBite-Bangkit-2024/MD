@@ -26,7 +26,6 @@ class DashboardFragment : Fragment() {
             requireContext()
         )
     }
-//    private var name: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,20 +79,6 @@ class DashboardFragment : Fragment() {
             else -> getString(R.string.good_night)
         }
     }
-
-//    @Deprecated("Deprecated in Java")
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == 1001 && resultCode == Activity.RESULT_OK) {
-//            data?.let {
-//                binding.vHeight.text = it.getStringExtra("vHeight") ?: "-"
-//                binding.vWeight.text = it.getStringExtra("vWeight") ?: "-"
-//                binding.vAge.text = it.getStringExtra("vAge") ?: "-"
-//                binding.vBP.text = it.getStringExtra("vBloodPressure") ?: "-"
-//                binding.dbName.text = it.getStringExtra("dbName") ?: "-"
-//            }
-//        }
-//    }
 
     override fun onResume() {
         super.onResume()

@@ -42,6 +42,7 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
+
     @FormUrlEncoded
     @POST("auth/save-profile")
     suspend fun saveProfile(
@@ -53,5 +54,16 @@ interface ApiService {
         @Field("systolic") systolic: Int,
         @Field("diastolic") diastolic: Int
     ): UserResponse
+
+    @GET("auth/user-profile")
+    suspend fun userProfile(
+        @Header("Authorization") token: String
+    ): ProfileResponse
+
+    @PATCH("auth/edit-profile")
+    suspend fun editUserProfile(
+        @Header("Authorization") token: String,
+        @Body updateProfileRequest: UpdateProfileRequest
+    ): ProfileResponse
 
 }

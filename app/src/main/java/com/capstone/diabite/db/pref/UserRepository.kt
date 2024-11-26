@@ -1,34 +1,36 @@
 package com.capstone.diabite.db.pref
 
-import com.faraflh.storyapp.data.pref.UserPreference
+import com.capstone.diabite.db.ApiClient
+import com.capstone.diabite.db.ApiService
+import com.capstone.diabite.db.ProfileResponse
+import com.capstone.diabite.db.UpdateProfileRequest
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 
 class UserRepository private constructor(
     private val userPreference: UserPreference
 ) {
 
-    suspend fun saveAuthToken(token: String) {
-        userPreference.saveAuthToken(token)
+    private val apiService: ApiService = ApiClient.getApiService2()
+
+    suspend fun getUserProfile(): ProfileResponse {
+        val token = userPreference.getToken().firstOrNull()
+        if (token.isNullOrEmpty()) throw Exception("Token is missing")
+        return apiService.userProfile("Bearer $token")
     }
 
-    fun getAuthToken(): Flow<String?> {
-        return userPreference.authToken
+    suspend fun editUserProfile(updateProfileRequest: UpdateProfileRequest): ProfileResponse {
+        val token = userPreference.getToken().firstOrNull()
+        if (token.isNullOrEmpty()) throw Exception("Token is missing")
+        return apiService.editUserProfile("Bearer $token", updateProfileRequest)
     }
 
     suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }
 
-    suspend fun saveOtp(otp: String) {
-        userPreference.saveOtp(otp)
-    }
-
     fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
-    }
-
-    fun getOtp(): Flow<String?> {
-        return userPreference.getOtp()
     }
 
     suspend fun logout() {

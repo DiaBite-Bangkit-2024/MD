@@ -1,6 +1,5 @@
 package com.capstone.diabite.ui.login
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,21 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentLoginBinding
 import com.capstone.diabite.db.DataResult
-import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.ui.register.RegisterFragment
-import com.capstone.diabite.view.InitInfoActivity
 import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
-import com.capstone.diabite.view.auth.CustomEditText
-import com.faraflh.storyapp.data.pref.UserPreference
 import com.google.firebase.auth.FirebaseAuth
 
-//import com.faraflh.storyapp.data.pref.dataStore
+//import com.capstone.diabite.db.pref.getDataStore
 //import com.google.firebase.auth.FirebaseAuth
 //import com.google.firebase.auth.ktx.auth
 //import com.google.firebase.ktx.Firebase
