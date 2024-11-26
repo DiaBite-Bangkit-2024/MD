@@ -21,6 +21,7 @@ android {
         buildConfigField("String", "BASE_URL", "\"https://serpapi.com/\"")
         buildConfigField("String", "BASE_URL2", "\"http://107.175.0.251:5000/\"")
         buildConfigField("String", "NEWS_API_KEY", "\"8366636bee785a14e736e3439b83ce9b2f24de5da7506821fa8fed4ac9abcb58\"")
+        buildConfigField("String", "GEMINI_API_KEY", "\"AIzaSyAe7bWtEGEOkeWhGBPeXeE1oe5YSrJktIY\"")
     }
 
     buildTypes {
@@ -80,6 +81,8 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     implementation("com.github.1902shubh:SendMail:1.0.0")
+    implementation(libs.generativeai)
+    implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 
 
     testImplementation(libs.junit)

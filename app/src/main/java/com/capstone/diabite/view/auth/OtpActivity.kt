@@ -18,6 +18,7 @@ import com.capstone.diabite.view.InitInfoActivity
 import com.capstone.diabite.db.pref.UserPreference
 import com.capstone.diabite.db.pref.dataStore
 
+
 class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
     private val loginVM: LoginViewModel by viewModels {
@@ -28,10 +29,10 @@ class OtpActivity : AppCompatActivity() {
         )
     }
 
+    private var name: String = ""
     private var email: String = ""
     private var password: String = ""
     private var otp: String = ""
-    private var name: String = ""
 
     private var countDownTimer: CountDownTimer? = null
     private var timeLeftInMillis: Long = 60000
@@ -46,10 +47,10 @@ class OtpActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        name = intent.getStringExtra("name").orEmpty()
         email = intent.getStringExtra("email").orEmpty()
         password = intent.getStringExtra("pass").orEmpty()
         otp = intent.getStringExtra("otp").orEmpty()
-        name = intent.getStringExtra("name").orEmpty()
 
         binding.apply {
             backButton.setOnClickListener {
@@ -109,60 +110,6 @@ class OtpActivity : AppCompatActivity() {
             }
 
             setupOtpInputNavigation()
-
-//            binding.otp1.apply {
-//                doOnTextChanged { text, _, _, _ ->
-//                    if (!text.isNullOrEmpty()) binding.otp2.requestFocus()
-//                }
-//                setOnKeyListener { _, keyCode, event ->
-//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
-//                        false
-//                    } else {
-//                        false
-//                    }
-//                }
-//            }
-//
-//            binding.otp2.apply {
-//                doOnTextChanged { text, _, _, _ ->
-//                    if (!text.isNullOrEmpty()) binding.otp3.requestFocus()
-//                }
-//                setOnKeyListener { _, keyCode, event ->
-//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
-//                        binding.otp1.requestFocus()
-//                        false
-//                    } else {
-//                        false
-//                    }
-//                }
-//            }
-//
-//            binding.otp3.apply {
-//                doOnTextChanged { text, _, _, _ ->
-//                    if (!text.isNullOrEmpty()) binding.otp4.requestFocus()
-//                }
-//                setOnKeyListener { _, keyCode, event ->
-//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
-//                        binding.otp2.requestFocus()
-//                        false
-//                    } else {
-//                        false
-//                    }
-//                }
-//            }
-//
-//            binding.otp4.apply {
-//                doOnTextChanged { _, _, _, _ ->
-//                }
-//                setOnKeyListener { _, keyCode, event ->
-//                    if (keyCode == android.view.KeyEvent.KEYCODE_DEL && text.isNullOrEmpty()) {
-//                        binding.otp3.requestFocus()
-//                        false
-//                    } else {
-//                        false
-//                    }
-//                }
-//            }
         }
     }
 

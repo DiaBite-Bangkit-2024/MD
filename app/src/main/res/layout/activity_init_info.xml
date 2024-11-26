@@ -8,7 +8,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F5F5F5"
         android:padding="20dp">
 
         <ImageButton
@@ -28,9 +27,9 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/enter_information"
-            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="?attr/android:textColorSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/back_button" />
@@ -40,8 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Age"
-            android:textColor="#000000"
+            android:text="@string/age"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
@@ -55,7 +53,8 @@
             android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/age_label" />
+            app:layout_constraintTop_toBottomOf="@id/age_label"
+            android:inputType="number" />
 
         <LinearLayout
             android:id="@+id/gender"
@@ -73,8 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Gender"
-                android:textColor="#000000" />
+                android:text="@string/gender" />
 
             <Spinner
                 android:id="@+id/spinner_gender"
@@ -90,8 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="Height"
-            android:textColor="#000000"
+            android:text="@string/height"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gender" />
 
@@ -112,13 +109,14 @@
                 android:maxLines="1"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:paddingHorizontal="10dp" />
+                android:paddingHorizontal="10dp"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="cm"
+                android:text="@string/cm"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/et_height" />
 
@@ -130,8 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="Weight"
-            android:textColor="#000000"
+            android:text="@string/weight"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/height" />
 
@@ -152,13 +149,14 @@
                 android:maxLines="1"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:paddingHorizontal="10dp" />
+                android:paddingHorizontal="10dp"
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="kg"
+                android:text="@string/kg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/et_weight" />
 
@@ -170,7 +168,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Blood Pressure Level"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weight" />
 
@@ -190,15 +187,16 @@
                 android:maxLines="1"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:hint="systolic"
-                android:paddingHorizontal="10dp" />
+                android:hint="@string/systolic"
+                android:paddingHorizontal="10dp"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical"
-                android:text="/"
+                android:text="@string/spacer"
                 android:textStyle="bold" />
 
             <EditText
@@ -209,15 +207,16 @@
                 android:maxLines="1"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:hint="diastolic"
-                android:paddingHorizontal="10dp" />
+                android:hint="@string/diastolic"
+                android:paddingHorizontal="10dp"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:gravity="center_vertical"
-                android:text="mmHg" />
+                android:text="@string/mmhg" />
         </LinearLayout>
 
         <Button
@@ -225,8 +224,7 @@
             style="@style/customButton"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:backgroundTint="@color/accent"
-            android:text="Submit"
+            android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

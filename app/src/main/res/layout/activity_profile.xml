@@ -9,7 +9,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F5F5F5"
         android:padding="16dp">
 
         <ImageButton
@@ -28,7 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/personal_information"
-            android:textColor="@color/black"
+            android:textColor="?attr/android:textColorSecondary"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +70,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Name"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/avaLayout" />
 
@@ -92,7 +90,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Email Address"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_name" />
 
@@ -113,7 +110,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Password"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_email" />
 
@@ -153,13 +149,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Age"
-                    android:textColor="#000000" />
+                    android:text="Age" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_age"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:inputType="number"
+                    android:text="10"
                     android:background="@drawable/bg_edittext"
                     android:paddingHorizontal="10dp" />
             </LinearLayout>
@@ -176,8 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Gender"
-                    android:textColor="#000000" />
+                    android:text="Gender"/>
 
                 <Spinner
                     android:id="@+id/spinner_gender"
@@ -212,8 +208,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Height"
-                    android:textColor="#000000" />
+                    android:text="Height" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -251,8 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Weight"
-                    android:textColor="#000000" />
+                    android:text="Weight" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -285,7 +279,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Blood Pressure Level"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/height_weight" />
 
@@ -339,7 +332,6 @@
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
-            android:backgroundTint="@color/accent"
             android:text="Save changes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
