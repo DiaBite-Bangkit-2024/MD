@@ -8,7 +8,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F5F5F5"
         android:padding="20dp">
 
         <ImageButton
@@ -28,9 +27,9 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/enter_information"
-            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="?attr/android:textColorSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/back_button" />
@@ -41,7 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/age"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
@@ -73,8 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/gender"
-                android:textColor="#000000" />
+                android:text="@string/gender" />
 
             <Spinner
                 android:id="@+id/spinner_gender"
@@ -91,7 +88,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/height"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gender" />
 
@@ -131,7 +127,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/weight"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/height" />
 
@@ -170,7 +165,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Blood Pressure Level"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weight" />
 
@@ -225,7 +219,6 @@
             style="@style/customButton"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:backgroundTint="@color/accent"
             android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

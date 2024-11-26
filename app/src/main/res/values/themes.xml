@@ -14,17 +14,39 @@
         <item name="cardBackgroundColor">@color/card</item>
         <item name="cardForegroundColor">@color/card55</item>
         <item name="android:textColor">@color/text</item>
+        <item name="android:textColorSecondary">@color/black</item>
         <item name="android:fontFamily">@font/poppins</item>
         <item name="buttonStyle">@style/customButton</item>
         <item name="android:textColorHint">#9C9C9C</item>
+        <item name="colorSurfaceContainer">@color/tertiary</item>
+        <item name="colorOnTertiary">@color/black</item>
+        <item name="indicatorColor">#F1F8FF</item>
+        <item name="colorTertiaryContainer">@color/white</item>
+
     </style>
 
     <style name="customButton" parent="Widget.Material3.Button.ElevatedButton">
-        <item name="backgroundTint">@color/accent</item>
+        <item name="android:backgroundTint">@color/accent</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">16sp</item>
 <!--        <item name="android:insetTop">0dp</item>-->
 <!--        <item name="iconGravity">textStart</item>-->
+    </style>
+
+    ca
+
+    <style name="Widget.MaterialComponents.Button.IconOnly" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">12dp</item>
+        <item name="android:minHeight">12dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="backgroundTint">@color/background</item>
     </style>
 
     <style name="card_rounded">

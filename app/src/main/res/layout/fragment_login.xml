@@ -88,7 +88,7 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="Register"
-                        android:textColor="@color/text" />
+                        android:textColor="?attr/android:textColorSecondary" />
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -107,6 +107,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext"
+                        android:textColor="@color/black"
                         android:ems="10"
                         android:inputType="textEmailAddress"
                         tools:ignore="SpeakableTextPresentCheck" />
@@ -121,13 +122,15 @@
                     android:textColorHint="?attr/android:textColorHint"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
-                    app:endIconMode="password_toggle">
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="?attr/android:textColorHint">
 
                     <com.capstone.diabite.view.auth.CustomEditText
                         android:id="@+id/passwordEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext"
+                        android:textColor="@color/black"
                         android:ems="10"
                         android:inputType="textPassword"
                         tools:ignore="SpeakableTextPresentCheck" />
@@ -168,7 +171,7 @@
                             android:layout_width="0dp"
                             android:layout_height="1dp"
                             android:layout_weight="1"
-                            android:background="@color/black" />
+                            android:background="?attr/colorOnTertiary" />
 
                         <TextView
                             android:id="@+id/or"
@@ -187,7 +190,7 @@
                             android:layout_marginTop="14dp"
                             android:layout_marginBottom="14dp"
                             android:layout_weight="1"
-                            android:background="@color/black" />
+                            android:background="?attr/colorOnTertiary" />
 
                     </LinearLayout>
 
@@ -199,8 +202,8 @@
                         android:layout_height="56dp"
                         android:layout_below="@id/orDivider"
                         android:backgroundTint="#f3f3f3"
-                        android:shadowColor="@color/text"
                         android:text="@string/login_google"
+                        android:textColor="@color/black"
                         app:icon="@drawable/google_svg"
                         app:iconGravity="textStart"
                         app:iconTint="@null" />

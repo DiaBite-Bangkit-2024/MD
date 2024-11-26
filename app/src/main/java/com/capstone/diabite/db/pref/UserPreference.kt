@@ -1,4 +1,4 @@
-package com.faraflh.storyapp.data.pref
+package com.capstone.diabite.db.pref
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -7,7 +7,6 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.capstone.diabite.db.pref.UserModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -32,6 +31,18 @@ class UserPreference private constructor(
             preferences[EMAIL_KEY] = user.email
             preferences[TOKEN_KEY] = user.token
             preferences[IS_LOGIN_KEY] = true
+        }
+    }
+
+    suspend fun saveOtp(otp: String) {
+        dataStore.edit { preferences ->
+            preferences[OTP_KEY] = otp
+        }
+    }
+
+    fun getOtp(): Flow<String?> {
+        return dataStore.data.map { preferences ->
+            preferences[OTP_KEY]
         }
     }
 

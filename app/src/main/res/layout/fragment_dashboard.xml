@@ -79,7 +79,7 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/round_logout_24" />
+                            android:src="@drawable/round_logout_24"/>
 
                     </RelativeLayout>
 
@@ -212,8 +212,7 @@
                         android:layout_weight="1"
                         android:drawableTop="@drawable/magicwand_40"
                         android:text="Analyze"
-                        android:textAllCaps="false"
-                        android:textColor="@color/text" />
+                        android:textAllCaps="false" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnRec"
@@ -223,8 +222,7 @@
                         android:layout_weight="1"
                         android:drawableTop="@drawable/food"
                         android:text="Food Recom"
-                        android:textAllCaps="false"
-                        android:textColor="@color/text" />
+                        android:textAllCaps="false"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnHistory"
@@ -234,8 +232,7 @@
                         android:layout_weight="1"
                         android:drawableTop="@drawable/refresh"
                         android:text="History"
-                        android:textAllCaps="false"
-                        android:textColor="@color/text" />
+                        android:textAllCaps="false" />
 
                 </LinearLayout>
 

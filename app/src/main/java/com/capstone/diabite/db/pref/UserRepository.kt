@@ -1,6 +1,5 @@
 package com.capstone.diabite.db.pref
 
-import com.faraflh.storyapp.data.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
 
 class UserRepository private constructor(
@@ -13,6 +12,14 @@ class UserRepository private constructor(
 
     fun getAuthToken(): Flow<String?> {
         return userPreference.authToken
+    }
+
+    suspend fun saveOtp(otp: String) {
+        userPreference.saveOtp(otp)
+    }
+
+    fun getOtp(): Flow<String?> {
+        return userPreference.getOtp()
     }
 
     suspend fun saveSession(user: UserModel) {

@@ -1,10 +1,6 @@
 package com.capstone.diabite.view.auth
 
-import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Html
@@ -19,8 +15,9 @@ import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.ui.register.EmailSender
 import com.capstone.diabite.view.InitInfoActivity
-import com.faraflh.storyapp.data.pref.UserPreference
-import com.faraflh.storyapp.data.pref.dataStore
+import com.capstone.diabite.db.pref.UserPreference
+import com.capstone.diabite.db.pref.dataStore
+
 
 class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
@@ -32,10 +29,10 @@ class OtpActivity : AppCompatActivity() {
         )
     }
 
+    private var name: String = ""
     private var email: String = ""
     private var password: String = ""
     private var otp: String = ""
-    private var name: String = ""
 
     private var countDownTimer: CountDownTimer? = null
     private var timeLeftInMillis: Long = 60000
@@ -48,10 +45,10 @@ class OtpActivity : AppCompatActivity() {
 
 
 //        auth = FirebaseAuth.getInstance()
+        name = intent.getStringExtra("name").orEmpty()
         email = intent.getStringExtra("email").orEmpty()
         password = intent.getStringExtra("pass").orEmpty()
         otp = intent.getStringExtra("otp").orEmpty()
-        name = intent.getStringExtra("name").orEmpty()
 
         binding.apply {
             backButton.setOnClickListener {

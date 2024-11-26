@@ -2,9 +2,12 @@ package com.capstone.diabite.view.chatbot
 
 import com.capstone.diabite.db.ChatbotResponse
 import android.os.Bundle
+import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.capstone.diabite.BuildConfig
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityChatbotBinding
@@ -49,7 +52,29 @@ class ChatbotActivity : AppCompatActivity() {
                         responseData.add(ChatbotResponse(0, prompt))
                         adapter.notifyDataSetChanged()
                         handlePrompt(prompt)
+                        recyclerViewId.smoothScrollToPosition(responseData.size - 1)
                     }
+                }
+            }
+
+            recyclerViewId.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    val contentHeight = recyclerView.computeVerticalScrollRange()
+                    val recyclerViewHeight = recyclerView.height
+
+                    btnBottom.visibility = if (contentHeight > recyclerViewHeight) {
+                        View.VISIBLE
+                    } else {
+                        View.GONE
+                    }
+                }
+            })
+
+            // Scroll to the bottom on button click
+            btnBottom.setOnClickListener {
+                val itemCount = recyclerViewId.adapter?.itemCount ?: 0
+                if (itemCount > 0) {
+                    recyclerViewId.smoothScrollToPosition(itemCount - 1)
                 }
             }
         }

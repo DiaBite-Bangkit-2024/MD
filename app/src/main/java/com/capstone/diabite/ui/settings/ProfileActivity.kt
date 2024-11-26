@@ -2,24 +2,39 @@ package com.capstone.diabite.ui.settings
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityProfileBinding
+import com.capstone.diabite.db.DataResult
+import com.capstone.diabite.ui.dashboard.DashboardViewModel
+import com.capstone.diabite.ui.login.LoginViewModel
+import com.capstone.diabite.view.auth.AuthViewModelFactory
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
+    private val profileVM: DashboardViewModel by viewModels()
+    private val loginVM by viewModels<LoginViewModel> {
+        AuthViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-
+        loginVM.getSession().observe(this) { user ->
+            if (user.isLogin) {
+                profileVM.fetchUserProfile(user.token)
+            }
+        }
         binding.backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -27,29 +42,14 @@ class ProfileActivity : AppCompatActivity() {
         binding.editIcon.setOnClickListener {
 
         }
-
-
-//        binding.backButton.setOnTouchListener { v, event ->
-//            when (event.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    v.scaleX = 0.9f
-//                    v.scaleY = 0.9f
-//                }
-//                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-//                    v.scaleX = 1f
-//                    v.scaleY = 1f
-//                }
-//            }
-//            false
-//        }
-
         setupGenderSpinner()
+        setupUserProf()
+
 
         binding.btnSaveChanges.setOnClickListener {
             saveUserData()
         }
 
-        loadUserData()
 
     }
 
@@ -78,6 +78,42 @@ class ProfileActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+    }
+
+    private fun setupUserProf() {
+        profileVM.userProfile.observe(this) { result ->
+            when (result) {
+                is DataResult.Loading -> {
+                    // Show a loading indicator if needed
+                }
+
+                is DataResult.Success -> {
+                    val data = result.data.profile
+                    Log.d("ProfileActivity", "Fetched profile data: $data")
+                    binding.apply {
+                        etName.setText("${data.name}")
+                        etEmail.setText("${data.email}")
+                        etAge.setText("${data.age}")
+                        etHeight.setText(data.height.toString())
+                        spinnerGender.setSelection(
+                            if (data.gender == "male") 1 else 2
+                        )
+                        etWeight.setText("${data.weight}")
+                        etSystolic.setText("${data.systolic}")
+                        etDiastolic.setText("${data.diastolic}")
+                    }
+                }
+
+
+                is DataResult.Error -> {
+                    Toast.makeText(
+                        this,
+                        "Failed to fetch profile: ${result.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
