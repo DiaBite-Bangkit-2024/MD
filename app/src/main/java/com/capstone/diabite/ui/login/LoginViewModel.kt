@@ -23,18 +23,6 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     private val _userProfile = MutableLiveData<DataResult<ProfileResponse>>()
     val userProfile: LiveData<DataResult<ProfileResponse>> get() = _userProfile
 
-    fun fetchUserProfile() {
-        _userProfile.postValue(DataResult.Loading)
-        viewModelScope.launch {
-            try {
-                val response = repository.getUserProfile()
-                _userProfile.postValue(DataResult.Success(response))
-            } catch (e: Exception) {
-                _userProfile.postValue(DataResult.Error(e.message ?: "Error fetching profile"))
-            }
-        }
-    }
-
     fun updateUserProfile(updateProfileRequest: UpdateProfileRequest) {
         _userProfile.value = DataResult.Loading
         viewModelScope.launch {

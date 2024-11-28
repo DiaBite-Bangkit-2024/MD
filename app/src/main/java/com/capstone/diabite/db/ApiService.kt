@@ -1,6 +1,8 @@
 package com.capstone.diabite.db
 
 import com.capstone.diabite.BuildConfig
+import com.capstone.diabite.db.prediction.AnalyzeResponse
+import com.capstone.diabite.db.prediction.PredictionRequest
 import com.capstone.diabite.db.prediction.PredictionResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -66,6 +68,12 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body updateProfileRequest: UpdateProfileRequest
     ): ProfileResponse
+
+    @POST("predict")
+    suspend fun postPrediction(
+        @Header("Authorization") token: String,
+        @Body request: PredictionRequest
+    ): AnalyzeResponse
 
     @GET("predict")
     suspend fun getPrediction(): PredictionResponse

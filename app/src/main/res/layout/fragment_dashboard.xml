@@ -67,7 +67,6 @@
                                 android:id="@+id/dbName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/db_name"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
                         </LinearLayout>

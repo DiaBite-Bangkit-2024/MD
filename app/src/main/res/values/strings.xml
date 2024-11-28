@@ -85,7 +85,6 @@
 
 
     <string-array name="gender_options">
-        <item>Select Gender</item>
         <item>Male</item>
         <item>Female</item>
         <item>Other</item>

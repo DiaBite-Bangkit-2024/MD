@@ -4,7 +4,6 @@ import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.ApiService
 import com.capstone.diabite.db.ProfileResponse
 import com.capstone.diabite.db.UpdateProfileRequest
-import com.faraflh.storyapp.data.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 
@@ -13,12 +12,6 @@ class UserRepository private constructor(
 ) {
 
     private val apiService: ApiService = ApiClient.getApiService2()
-
-    suspend fun getUserProfile(): ProfileResponse {
-        val token = userPreference.getToken().firstOrNull()
-        if (token.isNullOrEmpty()) throw Exception("Token is missing")
-        return apiService.getProfile("Bearer $token")
-    }
 
     suspend fun editUserProfile(updateProfileRequest: UpdateProfileRequest): ProfileResponse {
         val token = userPreference.getToken().firstOrNull()

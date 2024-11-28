@@ -2,11 +2,12 @@ package com.capstone.diabite.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentLoginBinding
@@ -15,18 +16,21 @@ import com.capstone.diabite.ui.register.RegisterFragment
 import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
-import com.google.firebase.auth.FirebaseAuth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 
-//import com.capstone.diabite.db.pref.getDataStore
-//import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.auth.ktx.auth
-//import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment() {
 
+    private var gso: GoogleSignInOptions? = null
+    private var gsc: GoogleSignInClient? = null
+
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var auth: FirebaseAuth
     private val loginVM by viewModels<LoginViewModel> { AuthViewModelFactory.getInstance(requireContext()) }
 
     override fun onCreateView(
@@ -41,12 +45,14 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        auth = Firebase.auth
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        gsc = GoogleSignIn.getClient(requireContext(), gso!!)
 
         binding.apply {
 
             tvLogin.setOnClickListener {
-                // Already in LoginFragment, no action needed
             }
 
             tvRegister.setOnClickListener {
@@ -81,6 +87,41 @@ class LoginFragment : Fragment() {
                     }
                 }
             }
+
+            googleLoginButton.setOnClickListener {
+                signInWithGoogle()
+            }
+        }
+    }
+
+    private fun signInWithGoogle() {
+        val signInIntent = gsc?.signInIntent
+        if (signInIntent != null) {
+            startActivityForResult(signInIntent, 1000)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1000) {
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                handleSignInResult(account)
+            } catch (e: ApiException) {
+                Toast.makeText(context, "Google sign in failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun handleSignInResult(account: GoogleSignInAccount?) {
+        if (account != null) {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("name", account.displayName)
+            intent.putExtra("email", account.email)
+            startActivity(intent)
+            requireActivity().finish()
         }
     }
 

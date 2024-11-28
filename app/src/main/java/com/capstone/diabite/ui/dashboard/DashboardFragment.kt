@@ -48,9 +48,6 @@ class DashboardFragment : Fragment() {
     private lateinit var viewModel: ArticlesViewModel
     private val profileVM: DashboardViewModel by viewModels()
     private val articlesAdapter = ArticlesAdapter()
-    private var name: String = ""
-    private var email: String = ""
-    private var password: String = ""
 
 
     override fun onCreateView(
@@ -155,9 +152,7 @@ class DashboardFragment : Fragment() {
     private fun setupUserProf() {
         profileVM.userProfile.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is DataResult.Loading -> {
-                    // Show a loading indicator if needed
-                }
+                is DataResult.Loading -> {}
 
                 is DataResult.Success -> {
                     val data = result.data.profile

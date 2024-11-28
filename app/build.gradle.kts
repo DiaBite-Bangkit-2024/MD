@@ -84,6 +84,7 @@ dependencies {
     implementation(libs.generativeai)
     implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
