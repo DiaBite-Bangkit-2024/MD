@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityAnalyzeBinding
 import com.capstone.diabite.db.DataResult
+import com.capstone.diabite.db.local.HistoryViewModel
 import com.capstone.diabite.db.prediction.PredictionRequest
 import com.capstone.diabite.db.prediction.PredictionViewModel
 import com.capstone.diabite.db.pref.UserPreference
@@ -27,6 +28,7 @@ class AnalyzeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAnalyzeBinding
     private val profileVM: DashboardViewModel by viewModels()
     private val predictionVM: PredictionViewModel by viewModels()
+    private val historyVM: HistoryViewModel by viewModels()
     private val loginVM: LoginViewModel by viewModels {
         AuthViewModelFactory(
             UserRepository.getInstance(
@@ -147,7 +149,13 @@ class AnalyzeActivity : AppCompatActivity() {
                 Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
             } else {
                 val prediction = (response.prediction * 100).toInt()
-                showResultDialog(prediction)
+                val resultText = when {
+                    prediction >= 70 -> "High Risk of Diabetes"
+                    prediction <= 40 -> "Low Risk of Diabetes"
+                    else -> "Moderate Risk of Diabetes"
+                }
+                historyVM.addHistory(prediction, resultText)
+                showResultDialog(prediction, resultText)
                 Toast.makeText(this, "Analysis completed", Toast.LENGTH_SHORT).show()
             }
         }
@@ -157,7 +165,7 @@ class AnalyzeActivity : AppCompatActivity() {
         }
     }
 
-    private fun showResultDialog(prediction: Int) {
+    private fun showResultDialog(prediction: Int, summary: String) {
         val dialogView = layoutInflater.inflate(R.layout.popup_dialog, null)
         val dialog = android.app.AlertDialog.Builder(this)
             .setView(dialogView)
@@ -169,13 +177,7 @@ class AnalyzeActivity : AppCompatActivity() {
 
         circularProgressView.setProgress(prediction)
         progressText.text = "$prediction%"
-        resultText.text = if (prediction >= 70) {
-            "High Risk of Diabetes"
-        } else if (prediction <= 40){
-            "Low Risk of Diabetes"
-        } else {
-            "Moderate Risk of Diabetes"
-        }
+        resultText.text = summary
 
         dialogView.findViewById<ImageButton>(R.id.close_button).setOnClickListener {
             dialog.dismiss()
@@ -235,29 +237,4 @@ class AnalyzeActivity : AppCompatActivity() {
             0f
         }
     }
-
-
-    private fun showResultDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.popup_dialog, null)
-        val dialog = android.app.AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
-
-        dialogView.findViewById<ImageButton>(R.id.close_button).setOnClickListener {
-            dialog.dismiss() // Tutup dialog
-        }
-
-        dialogView.findViewById<TextView>(R.id.okay_text).setOnClickListener {
-            Toast.makeText(this, "Okay clicked", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-
-        dialogView.findViewById<TextView>(R.id.cancel_text).setOnClickListener {
-            Toast.makeText(this, "Cancel clicked", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
-
 }

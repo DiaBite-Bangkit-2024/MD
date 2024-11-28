@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -27,14 +26,12 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent">
 
-            <!-- Custom Circular Progress View -->
             <com.capstone.diabite.view.CircularProgressView
                 android:id="@+id/circularProgressView"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_margin="3dp"/>
 
-            <!-- Text for percentage -->
             <TextView
                 android:id="@+id/progressText"
                 android:layout_width="wrap_content"
@@ -57,7 +54,7 @@
             android:justificationMode="inter_word"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:text="Title"
+            android:text="Result"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/percentage"
             card_view:layout_constraintTop_toTopOf="@+id/percentage" />

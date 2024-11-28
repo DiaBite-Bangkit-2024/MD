@@ -1,25 +1,19 @@
 package com.capstone.diabite.ui.dashboard
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentDashboardBinding
 import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
-import com.capstone.diabite.db.LoginResult
-import com.capstone.diabite.db.NewsResultsItem
-import com.capstone.diabite.db.ProfileRepository
 import com.capstone.diabite.ui.articles.ArticlesAdapter
 import com.capstone.diabite.ui.articles.ArticlesRepo
 import com.capstone.diabite.ui.articles.ArticlesVMFactory
@@ -27,12 +21,9 @@ import com.capstone.diabite.ui.articles.ArticlesViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.AnalyzeActivity
 import com.capstone.diabite.view.HistoryActivity
-import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.RecomActivity
-import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.chatbot.ChatbotActivity
-import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class DashboardFragment : Fragment() {
