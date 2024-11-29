@@ -13,13 +13,9 @@ import com.capstone.diabite.databinding.ActivityOtpBinding
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.ui.login.LoginViewModel
-import com.capstone.diabite.ui.register.EmailSender
 import com.capstone.diabite.view.InitInfoActivity
 import com.capstone.diabite.db.pref.UserPreference
 import com.capstone.diabite.db.pref.dataStore
-import com.capstone.diabite.db.pref.UserPreference
-import com.capstone.diabite.db.pref.dataStore
-
 class OtpActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOtpBinding
     private val loginVM: LoginViewModel by viewModels {
@@ -71,13 +67,11 @@ class OtpActivity : AppCompatActivity() {
 
             resend.setOnClickListener {
                 if (timeLeftInMillis <= 0) {
-                    otp = generateOtp()
                     loginVM.resendOtp(email, otp).observe(this@OtpActivity) { result ->
                         when (result) {
                             is DataResult.Loading -> {}
                             is DataResult.Success -> {
                                 Toast.makeText(this@OtpActivity, "OTP resent successfully!", Toast.LENGTH_SHORT).show()
-                                EmailSender.sendOtpToEmail(this@OtpActivity, email, otp)
                                 timeLeftInMillis = 60000
                                 startOtpTimer()
                             }
@@ -129,10 +123,6 @@ class OtpActivity : AppCompatActivity() {
                 false
             }
         }
-    }
-
-    private fun generateOtp(): String {
-        return (1000..9999).random().toString()
     }
 
     private fun startOtpTimer() {

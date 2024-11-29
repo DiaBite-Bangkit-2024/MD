@@ -1,7 +1,8 @@
-package com.capstone.diabite.ui.settings
+package com.capstone.diabite.ui.settings.profile
 
-import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -10,14 +11,10 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityProfileBinding
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.ui.dashboard.DashboardViewModel
-import com.capstone.diabite.ui.login.LoginViewModel
-import com.capstone.diabite.view.auth.AuthViewModelFactory
-import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.db.UpdateProfileRequest
 import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.ui.login.LoginViewModel
@@ -28,9 +25,6 @@ import com.capstone.diabite.db.pref.dataStore
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private val profileVM: DashboardViewModel by viewModels()
-    private val loginVM by viewModels<LoginViewModel> {
-        AuthViewModelFactory.getInstance(this)
-    }
     private val loginVM: LoginViewModel by viewModels {
         AuthViewModelFactory(
             UserRepository.getInstance(
@@ -73,9 +67,12 @@ class ProfileActivity : AppCompatActivity() {
                 diastolic = binding.etDiastolic.text.toString().toInt()
             )
             loginVM.updateUserProfile(updateRequest)
+            Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                finish()
+            }, 1000)
         }
-
-
     }
 
     private fun setupGenderSpinner() {
@@ -85,34 +82,12 @@ class ProfileActivity : AppCompatActivity() {
         )
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = genderAdapter
-
-        genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                if (position == 0) {
-                    Toast.makeText(
-                        this@ProfileActivity,
-                        "Please select your gender",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-            }
-        }
     }
 
     private fun setupUserProf() {
         profileVM.userProfile.observe(this) { result ->
             when (result) {
-                is DataResult.Loading -> {
-                    // Show a loading indicator if needed
-                }
+                is DataResult.Loading -> {}
 
                 is DataResult.Success -> {
                     val data = result.data.profile
@@ -123,7 +98,7 @@ class ProfileActivity : AppCompatActivity() {
                         etAge.setText("${data.age}")
                         etHeight.setText(data.height.toString())
                         spinnerGender.setSelection(
-                            if (data.gender == "male") 1 else 2
+                            if (data.gender == "male") 0 else 1
                         )
                         etWeight.setText("${data.weight}")
                         etSystolic.setText("${data.systolic}")

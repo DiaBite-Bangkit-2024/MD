@@ -80,7 +80,6 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 
-    implementation("com.github.1902shubh:SendMail:1.0.0")
     implementation(libs.generativeai)
     implementation ("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
 

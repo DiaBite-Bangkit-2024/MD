@@ -10,7 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F5F5F5"
         android:padding="20dp">
 
         <ImageButton
@@ -30,7 +29,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/analyze_diabetes"
-            android:textColor="@color/black"
+            android:textColor="?attr/android:textColorSecondary"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/general_health"
-            android:textColor="#000000"
+            android:textColor="?attr/android:textColorSecondary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
@@ -79,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/physical_health"
-                android:textColor="#000000" />
+                android:textColor="?attr/android:textColorSecondary" />
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/slide_physical"
@@ -105,7 +104,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/mental_health"
-            android:textColor="#000000"
+            android:textColor="?attr/android:textColorSecondary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/physical" />
 
@@ -141,12 +140,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/blood_press"
-                android:textColor="#000000" />
+                android:textColor="?attr/android:textColorSecondary" />
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner_blood"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                style="@style/spinnerTC"
                 android:background="@drawable/dropdown_bg"
                 android:paddingHorizontal="10dp" />
         </LinearLayout>
@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/cholesterol"
-                android:textColor="#000000" />
+                android:textColor="?attr/android:textColorSecondary" />
 
             <Spinner
                 android:id="@+id/spinner_cholesterol"
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/stroke"
-                android:textColor="#000000" />
+                android:textColor="?attr/android:textColorSecondary" />
 
             <Spinner
                 android:id="@+id/spinner_stroke"
@@ -222,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/heart_disease"
-                android:textColor="#000000" />
+                android:textColor="?attr/android:textColorSecondary" />
 
             <Spinner
                 android:id="@+id/spinner_heart"
@@ -249,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/walk_climb"
-                android:textColor="#000000" />
+                android:textColor="?attr/android:textColorSecondary" />
 
             <Spinner
                 android:id="@+id/spinner_walking"
@@ -264,7 +264,6 @@
             style="@style/customButton"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:backgroundTint="@color/accent"
             android:layout_marginTop="40dp"
             android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"

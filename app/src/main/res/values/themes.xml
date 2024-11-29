@@ -22,7 +22,11 @@
         <item name="colorOnTertiary">@color/black</item>
         <item name="indicatorColor">#F1F8FF</item>
         <item name="colorTertiaryContainer">@color/white</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerTC</item>
+    </style>
 
+    <style name="spinnerTC" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="customButton" parent="Widget.Material3.Button.ElevatedButton">

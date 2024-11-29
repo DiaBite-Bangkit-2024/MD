@@ -4,4 +4,6 @@ class ProfileRepository(private val apiService: ApiService) {
 //    suspend fun getProfile(token: String): UserResponse {
 //        return apiService.getProfile("Bearer $token")
 //    }
+
+    suspend fun getPrediction() = apiService.getPrediction()
 }

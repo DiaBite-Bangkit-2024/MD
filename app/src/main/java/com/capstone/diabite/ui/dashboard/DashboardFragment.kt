@@ -40,6 +40,7 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
 
     private val binding get() = _binding!!
+
     private val loginVM by viewModels<LoginViewModel> {
         AuthViewModelFactory.getInstance(
             requireContext()
@@ -72,6 +73,7 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         loginVM.getSession().observe(viewLifecycleOwner) { user ->
             if (user.isLogin) {

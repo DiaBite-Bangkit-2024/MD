@@ -79,7 +79,7 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/round_logout_24"/>
+                            android:src="@drawable/round_logout_24" />
 
                     </RelativeLayout>
 
@@ -190,54 +190,93 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:backgroundTint="?attr/cardForegroundColor"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="4dp"
-                app:contentPadding="14dp">
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginVertical="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAnalyze"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/sparkles"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="8dp"
+                    android:text="@string/analyze"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="@id/btnAnalyze"
+                    app:layout_constraintStart_toStartOf="@id/btnAnalyze"
+                    app:layout_constraintTop_toBottomOf="@id/btnAnalyze" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnAnalyze"
-                        style="@style/Widget.AppCompat.ActionButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/magicwand_40"
-                        android:text="Analyze"
-                        android:textAllCaps="false" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRec"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/foodrec"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnRec"
-                        style="@style/Widget.AppCompat.ActionButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/food"
-                        android:text="Food Recom"
-                        android:textAllCaps="false"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/food_recom"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="@id/btnRec"
+                    app:layout_constraintStart_toStartOf="@id/btnRec"
+                    app:layout_constraintTop_toBottomOf="@id/btnRec" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnHistory"
-                        style="@style/Widget.AppCompat.ActionButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/refresh"
-                        android:text="History"
-                        android:textAllCaps="false" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHistory"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/history"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/history"
+                    android:textAllCaps="false"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/btnHistory"
+                    app:layout_constraintStart_toStartOf="@id/btnHistory"
+                    app:layout_constraintTop_toBottomOf="@id/btnHistory" />
 
-
-            </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -383,10 +422,10 @@
         android:layout_margin="14dp"
         android:elevation="5dp"
         android:src="@drawable/customer_service"
-        app:tint="@color/text"
         app:backgroundTint="@color/accent"
         app:layout_constraintBottom_toBottomOf="@id/svDashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:pressedTranslationZ="12dp"
-        app:shapeAppearanceOverlay="@style/fab_3_rounded" />
+        app:shapeAppearanceOverlay="@style/fab_3_rounded"
+        app:tint="@color/text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

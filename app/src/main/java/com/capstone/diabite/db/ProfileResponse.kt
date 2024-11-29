@@ -22,8 +22,8 @@ data class Profile(
 	@field:SerializedName("gender")
 	val gender: String,
 
-    @field:SerializedName("password")
-    val password: String,
+	@field:SerializedName("password")
+	val password: String,
 
 	@field:SerializedName("name")
 	val name: String,
@@ -42,13 +42,13 @@ data class Profile(
 )
 
 data class UpdateProfileRequest(
-    val name: String,
-    val email: String,
-    val password: String,
-    val age: Int,
-    val gender: String,
-    val height: Int,
-    val weight: Int,
-    val systolic: Int,
-    val diastolic: Int
+	val name: String,
+	val newEmail: String,
+	val password: String,
+	val age: Int,
+	val gender: String,
+	val height: Int,
+	val weight: Int,
+	val systolic: Int,
+	val diastolic: Int
 )

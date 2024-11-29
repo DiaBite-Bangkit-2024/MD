@@ -1,7 +1,9 @@
 package com.capstone.diabite.db
 
 import com.capstone.diabite.BuildConfig
-import retrofit2.Call
+import com.capstone.diabite.db.prediction.AnalyzeResponse
+import com.capstone.diabite.db.prediction.PredictionRequest
+import com.capstone.diabite.db.prediction.PredictionResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -55,16 +57,22 @@ interface ApiService {
         @Field("diastolic") diastolic: Int
     ): UserResponse
 
+    @GET("auth/user-profile")
+    suspend fun getProfile(
+        @Header("Authorization") token: String
+    ): ProfileResponse
+
     @PATCH("auth/edit-profile")
     suspend fun editUserProfile(
         @Header("Authorization") token: String,
         @Body updateProfileRequest: UpdateProfileRequest
     ): ProfileResponse
 
-    @GET("auth/user-profile")
-    suspend fun getProfile(
-        @Header("Authorization") token: String
-    ): ProfileResponse
+    @POST("predict")
+    suspend fun postPrediction(
+        @Header("Authorization") token: String,
+        @Body request: PredictionRequest
+    ): AnalyzeResponse
 
     @GET("predict")
     suspend fun getPrediction(): PredictionResponse

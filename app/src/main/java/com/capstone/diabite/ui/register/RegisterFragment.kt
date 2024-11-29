@@ -96,10 +96,6 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun generateOtp(): String {
-        return (1000..9999).random().toString()
-    }
-
     private fun setupEditText() {
         binding.nameEditText.isName = true
         binding.emailEditText.isEmail = true

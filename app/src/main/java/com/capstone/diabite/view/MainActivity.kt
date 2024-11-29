@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
-                startActivity(Intent(this, AuthActivity::class.java))
+                startActivity(Intent(this, OnBoardingActivity::class.java))
                 finish()
             }
         }
