@@ -1,6 +1,5 @@
 package com.capstone.diabite.ui.dashboard
 
-import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,11 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.diabite.db.ApiClient
-import com.capstone.diabite.db.ApiService
 import com.capstone.diabite.db.DataResult
-import com.capstone.diabite.db.ProfileRepository
-import com.capstone.diabite.db.ProfileResponse
-import com.capstone.diabite.db.UserResponse
+import com.capstone.diabite.db.responses.ProfileResponse
 import com.capstone.diabite.db.prediction.PredictionResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

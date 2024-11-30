@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -15,7 +13,7 @@ import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityProfileBinding
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.ui.dashboard.DashboardViewModel
-import com.capstone.diabite.db.UpdateProfileRequest
+import com.capstone.diabite.db.responses.UpdateProfileRequest
 import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.auth.AuthViewModelFactory

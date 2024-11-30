@@ -1,64 +1,64 @@
-package com.capstone.diabite.db
+package com.capstone.diabite.db.responses
 
 import com.google.gson.annotations.SerializedName
 
 data class NewsResponse(
 
-	@field:SerializedName("news_results")
+    @field:SerializedName("news_results")
 	val newsResults: List<NewsResultsItem>,
 
-	@field:SerializedName("menu_links")
+    @field:SerializedName("menu_links")
 	val menuLinks: List<MenuLinksItem>,
 
-	@field:SerializedName("search_metadata")
+    @field:SerializedName("search_metadata")
 	val searchMetadata: SearchMetadata,
 
-	@field:SerializedName("search_parameters")
+    @field:SerializedName("search_parameters")
 	val searchParameters: SearchParameters
 )
 
 data class NewsResultsItem(
 
-	@field:SerializedName("date")
+    @field:SerializedName("date")
 	val date: String,
 
-	@field:SerializedName("thumbnail")
+    @field:SerializedName("thumbnail")
 	val thumbnail: String,
 
-	@field:SerializedName("link")
+    @field:SerializedName("link")
 	val link: String,
 
-	@field:SerializedName("position")
+    @field:SerializedName("position")
 	val position: Int,
 
-	@field:SerializedName("source")
+    @field:SerializedName("source")
 	val source: Source,
 
-	@field:SerializedName("title")
+    @field:SerializedName("title")
 	val title: String,
 
-	@field:SerializedName("stories")
+    @field:SerializedName("stories")
 	val stories: List<StoriesItem>
 )
 
 data class StoriesItem(
 
-	@field:SerializedName("date")
+    @field:SerializedName("date")
 	val date: String,
 
-	@field:SerializedName("thumbnail")
+    @field:SerializedName("thumbnail")
 	val thumbnail: String,
 
-	@field:SerializedName("link")
+    @field:SerializedName("link")
 	val link: String,
 
-	@field:SerializedName("position")
+    @field:SerializedName("position")
 	val position: Int,
 
-	@field:SerializedName("source")
+    @field:SerializedName("source")
 	val source: Source,
 
-	@field:SerializedName("title")
+    @field:SerializedName("title")
 	val title: String
 )
 

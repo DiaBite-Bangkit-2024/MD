@@ -13,6 +13,10 @@ class CustomEditText(context: Context, attrs: AttributeSet) :
     var isPassword: Boolean = false
     var isEmail: Boolean = false
     var isName: Boolean = false
+    var isOtp: Boolean = false
+    var isConfirm: Boolean = false
+    var passwordReference: CustomEditText? = null
+
 
     init {
         addTextChangedListener(object : TextWatcher {
@@ -28,6 +32,14 @@ class CustomEditText(context: Context, attrs: AttributeSet) :
                             else null
                     }
 
+                    isConfirm -> {
+                        parentLayout?.error = when {
+                            text.isNullOrEmpty() -> context.getString(R.string.confirm_required)
+                            passwordReference?.text.toString() != text.toString() -> context.getString(R.string.passwords_do_not_match)
+                            else -> null
+                        }
+                    }
+
                     isEmail -> {
                         parentLayout?.error =
                             if (text.isNullOrEmpty()) context.getString(R.string.email_required)
@@ -38,6 +50,11 @@ class CustomEditText(context: Context, attrs: AttributeSet) :
                     isName -> {
                         parentLayout?.error =
                             if (s.toString().isEmpty()) context.getString(R.string.name_required) else null
+                    }
+
+                    isOtp -> {
+                        parentLayout?.error =
+                            if (s.toString().isEmpty()) context.getString(R.string.otp_required) else null
                     }
                 }
             }

@@ -2,8 +2,8 @@ package com.capstone.diabite.db.pref
 
 import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.ApiService
-import com.capstone.diabite.db.ProfileResponse
-import com.capstone.diabite.db.UpdateProfileRequest
+import com.capstone.diabite.db.responses.ProfileResponse
+import com.capstone.diabite.db.responses.UpdateProfileRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 

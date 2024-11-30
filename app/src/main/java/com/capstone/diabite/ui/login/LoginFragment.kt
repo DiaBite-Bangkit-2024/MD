@@ -15,6 +15,7 @@ import com.capstone.diabite.ui.register.RegisterFragment
 import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
+import com.capstone.diabite.view.auth.ForgetActivity
 import com.google.firebase.auth.FirebaseAuth
 
 //import com.capstone.diabite.db.pref.getDataStore
@@ -57,17 +58,17 @@ class LoginFragment : Fragment() {
             setupEditText()
             setupAction()
 
+
             loginButton.setOnClickListener {
                 val email = emailEditText.text.toString().trim()
                 val pass = passwordEditText.text.toString().trim()
-
                 loginVM.login(email, pass).observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is DataResult.Loading -> {
-                            binding.progressBar.visibility = View.VISIBLE
+                            progressBar.visibility = View.VISIBLE
                         }
                         is DataResult.Success -> {
-                            binding.progressBar.visibility = View.GONE
+                            progressBar.visibility = View.GONE
                             val intent = Intent(requireContext(), MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             intent.putExtra("name", result.data.loginResult.name)
@@ -75,8 +76,29 @@ class LoginFragment : Fragment() {
                             requireActivity().finish()
                         }
                         is DataResult.Error -> {
-                            binding.progressBar.visibility = View.GONE
+                            progressBar.visibility = View.GONE
                             Toast.makeText(context, result.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
+            forgetpw.setOnClickListener{
+                val email = emailEditText.text.toString().trim()
+                loginVM.forgotPass(email).observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is DataResult.Loading -> {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                        is DataResult.Success -> {
+                            progressBar.visibility = View.GONE
+                            val intent = Intent(requireContext(), ForgetActivity::class.java)
+                            intent.putExtra("email", email)
+                            startActivity(intent)
+                        }
+                        is DataResult.Error -> {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(context, "Invalid Email", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

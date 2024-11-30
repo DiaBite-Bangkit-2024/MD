@@ -1,4 +1,4 @@
-package com.capstone.diabite.db
+package com.capstone.diabite.db.responses
 
 data class ChatbotResponse(
     val isUser: Int,

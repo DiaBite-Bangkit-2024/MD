@@ -39,14 +39,13 @@
 
     ca
 
-    <style name="Widget.MaterialComponents.Button.IconOnly" parent="">
+    <style name="Widget.MaterialComponents.Button.IconOnly">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
         <item name="iconPadding">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingHorizontal">12dp</item>
         <item name="android:minWidth">12dp</item>
         <item name="android:minHeight">12dp</item>
         <item name="iconGravity">textStart</item>

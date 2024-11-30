@@ -4,6 +4,17 @@ import com.capstone.diabite.BuildConfig
 import com.capstone.diabite.db.prediction.AnalyzeResponse
 import com.capstone.diabite.db.prediction.PredictionRequest
 import com.capstone.diabite.db.prediction.PredictionResponse
+import com.capstone.diabite.db.responses.LoginResponse
+import com.capstone.diabite.db.responses.NewsResponse
+import com.capstone.diabite.db.responses.OtpResponse
+import com.capstone.diabite.db.responses.ProfileResponse
+import com.capstone.diabite.db.responses.QuizRequest
+import com.capstone.diabite.db.responses.QuizResponse
+import com.capstone.diabite.db.responses.ResetPasswordRequest
+import com.capstone.diabite.db.responses.ResetPasswordResponse
+import com.capstone.diabite.db.responses.UpdateProfileRequest
+import com.capstone.diabite.db.responses.UserResponse
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -15,6 +26,13 @@ interface ApiService {
         @Query("hl") language: String = "en",
         @Query("api_key") apiKey: String = BuildConfig.NEWS_API_KEY
     ): Response<NewsResponse>
+
+    @POST("fromText/trueFalse")
+    suspend fun generateTrivia(
+        @Body quizRequest: QuizRequest,
+        @Header("x-rapidapi-key") apiKey: String,
+        @Header("x-rapidapi-host") apiHost: String
+    ): QuizResponse
 
     @FormUrlEncoded
     @POST("auth/verify-otp")
@@ -44,6 +62,15 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
+
+    @FormUrlEncoded
+    @POST("auth/forget-pw")
+    suspend fun forgotPass(
+        @Field("email") email: String
+    ): LoginResponse
+
+    @POST("auth/reset-pw")
+    suspend fun resetPassword(@Body request: ResetPasswordRequest): ResetPasswordResponse
 
     @FormUrlEncoded
     @POST("auth/save-profile")

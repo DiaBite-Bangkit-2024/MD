@@ -1,20 +1,14 @@
 package com.capstone.diabite.ui.articles
 
-import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
-import com.capstone.diabite.db.NewsResponse
-import com.capstone.diabite.db.NewsResultsItem
+import com.capstone.diabite.db.responses.NewsResultsItem
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
 

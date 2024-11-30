@@ -33,7 +33,6 @@ import kotlinx.coroutines.launch
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private lateinit var auth: FirebaseAuth
     private val loginVM by viewModels<LoginViewModel> {
         AuthViewModelFactory.getInstance(
             requireContext()
@@ -50,10 +49,6 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Initialize FirebaseAuth
-        auth = FirebaseAuth.getInstance()
-
         binding.apply {
             // Switch to Login tab
             tvLogin.setOnClickListener {

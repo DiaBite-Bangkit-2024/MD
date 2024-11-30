@@ -67,10 +67,28 @@
                                 android:id="@+id/dbName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/db_name"
+                                android:text="@string/name"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/streak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="14dp"
+                            android:layout_toEndOf="@id/tvContainer1"
+                            android:backgroundTint="?attr/android:colorBackground"
+                            android:clickable="false"
+                            android:gravity="bottom"
+                            android:minWidth="12dp"
+                            android:text="0"
+                            android:textColor="?attr/android:textColorSecondary"
+                            app:cornerRadius="26dp"
+                            app:icon="@drawable/flame"
+                            app:iconPadding="4dp"
+                            app:iconTint="@null" />
 
                         <ImageButton
                             android:id="@+id/logoutBtn"
@@ -193,15 +211,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="32dp"
-                android:layout_marginVertical="10dp">
+                android:layout_marginVertical="10dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingHorizontal="12dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAnalyze"
                     style="@style/Widget.MaterialComponents.Button.IconOnly"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:backgroundTint="?attr/cardForegroundColor"
@@ -210,6 +228,7 @@
                     app:iconPadding="0dp"
                     app:iconTint="@null"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnRec"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -225,9 +244,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRec"
                     style="@style/Widget.MaterialComponents.Button.IconOnly"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:backgroundTint="?attr/cardForegroundColor"
@@ -235,8 +253,8 @@
                     app:icon="@drawable/foodrec"
                     app:iconPadding="0dp"
                     app:iconTint="@null"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnHistory"
+                    app:layout_constraintStart_toEndOf="@id/btnAnalyze"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -252,9 +270,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnHistory"
                     style="@style/Widget.MaterialComponents.Button.IconOnly"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:backgroundTint="?attr/cardForegroundColor"
@@ -262,7 +279,8 @@
                     app:icon="@drawable/history"
                     app:iconPadding="0dp"
                     app:iconTint="@null"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnQuiz"
+                    app:layout_constraintStart_toEndOf="@id/btnRec"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -275,6 +293,33 @@
                     app:layout_constraintEnd_toEndOf="@id/btnHistory"
                     app:layout_constraintStart_toStartOf="@id/btnHistory"
                     app:layout_constraintTop_toBottomOf="@id/btnHistory" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnQuiz"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/quiz"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnHistory"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/quiz"
+                    android:textAllCaps="false"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/btnQuiz"
+                    app:layout_constraintStart_toStartOf="@id/btnQuiz"
+                    app:layout_constraintTop_toBottomOf="@id/btnQuiz" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

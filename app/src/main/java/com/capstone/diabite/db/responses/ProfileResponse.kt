@@ -1,13 +1,13 @@
-package com.capstone.diabite.db
+package com.capstone.diabite.db.responses
 
 import com.google.gson.annotations.SerializedName
 
 data class ProfileResponse(
 
-	@field:SerializedName("profile")
+    @field:SerializedName("profile")
 	val profile: Profile,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String
 )
 

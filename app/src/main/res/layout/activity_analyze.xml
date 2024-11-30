@@ -36,21 +36,109 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/back_button" />
 
+        <LinearLayout
+            android:id="@+id/age_bmi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Age" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_age"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingHorizontal="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="y.o"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/et_height" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bmi_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="BMI" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/et_bmi"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingHorizontal="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="kg/m2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/et_weight" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/general_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:text="@string/general_health"
             android:textColor="?attr/android:textColorSecondary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@id/age_bmi" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slide_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
             android:paddingHorizontal="10dp"
             android:valueFrom="1.0"
             android:valueTo="5.0"
@@ -77,14 +165,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/physical_health"
-                android:textColor="?attr/android:textColorSecondary" />
+                android:text="@string/physical_health"/>
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/slide_physical"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
                 android:paddingHorizontal="10dp"
                 android:valueFrom="0.0"
                 android:valueTo="30.0"
@@ -104,7 +190,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/mental_health"
-            android:textColor="?attr/android:textColorSecondary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/physical" />
 
@@ -112,7 +197,6 @@
             android:id="@+id/slide_mental"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
             android:paddingHorizontal="10dp"
             android:valueFrom="0.0"
             android:valueTo="30.0"
@@ -139,14 +223,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/blood_press"
-                android:textColor="?attr/android:textColorSecondary" />
+                android:text="@string/blood_press"/>
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner_blood"
+                style="@style/spinnerTC"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                style="@style/spinnerTC"
                 android:background="@drawable/dropdown_bg"
                 android:paddingHorizontal="10dp" />
         </LinearLayout>
@@ -167,8 +250,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/cholesterol"
-                android:textColor="?attr/android:textColorSecondary" />
+                android:text="@string/cholesterol"/>
 
             <Spinner
                 android:id="@+id/spinner_cholesterol"
@@ -194,8 +276,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/stroke"
-                android:textColor="?attr/android:textColorSecondary" />
+                android:text="@string/stroke" />
 
             <Spinner
                 android:id="@+id/spinner_stroke"
@@ -248,8 +329,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/walk_climb"
-                android:textColor="?attr/android:textColorSecondary" />
+                android:text="@string/walk_climb" />
 
             <Spinner
                 android:id="@+id/spinner_walking"
