@@ -24,9 +24,9 @@
     <string name="back">Back</string>
     <string name="personal_information">Personal Information</string>
     <string name="history">History</string>
-    <string name="legend1"><![CDATA[<40%: Non diabetic]]></string>
-    <string name="legend2">40% - 70% : Pre diabetic</string>
-    <string name="legend3"><![CDATA[>70% : Diabetic]]></string>
+    <string name="legend1"><![CDATA[<40%: Low risk]]></string>
+    <string name="legend2">40% - 70% : Moderate risk</string>
+    <string name="legend3"><![CDATA[>70% : High risk]]></string>
     <string name="resend">&lt;u>Resend Code&lt;/u></string>
     <string name="verify">Verify</string>
     <string name="enter_information">Enter Your Information</string>
@@ -91,6 +91,10 @@
     <string name="reset_password">Reset Password</string>
     <string name="confirm_required">Confirm your password</string>
     <string name="quiz">Quiz</string>
+    <string name="True">True</string>
+    <string name="False">False</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
 
 
     <string-array name="gender_options">

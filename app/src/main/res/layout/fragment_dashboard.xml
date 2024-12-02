@@ -211,9 +211,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
                 android:layout_gravity="center_horizontal"
-                android:paddingHorizontal="12dp">
+                android:layout_marginVertical="10dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAnalyze"
@@ -227,8 +226,8 @@
                     app:icon="@drawable/sparkles"
                     app:iconPadding="0dp"
                     app:iconTint="@null"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/btnRec"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -370,51 +369,100 @@
 
                             <com.capstone.diabite.view.CircularProgressView
                                 android:id="@+id/circularProgressView"
-                                android:layout_width="160dp"
-                                android:layout_height="160dp" />
+                                android:layout_width="140dp"
+                                android:layout_height="140dp" />
 
                             <TextView
                                 android:id="@+id/progressText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:text="33%"
+                                android:text="0%"
                                 android:textColor="#69AAF1"
-                                android:textSize="44sp"
+                                android:textSize="34sp"
                                 android:textStyle="bold" />
 
                         </RelativeLayout>
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginStart="10dp"
-                            android:orientation="vertical">
+                            android:layout_marginStart="10dp">
 
                             <TextView
+                                android:id="@+id/low"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
+                                android:layout_marginVertical="5dp"
+                                android:elevation="5dp"
+                                android:paddingHorizontal="8dp"
                                 android:text="@string/legend1"
                                 android:textSize="13sp" />
 
-                            <TextView
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/hlLow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/low"
+                                android:layout_alignTop="@id/low"
+                                android:layout_alignEnd="@id/low"
+                                android:layout_alignBottom="@id/low"
+                                android:visibility="gone"
+                                app:cardBackgroundColor="@color/accent"
+                                app:cardCornerRadius="30dp"
+                                app:contentPadding="20dp" />
+
+                            <TextView
+                                android:id="@+id/moderate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/low"
                                 android:layout_gravity="center_vertical"
-                                android:layout_margin="5dp"
+                                android:layout_marginVertical="5dp"
+                                android:elevation="5dp"
+                                android:paddingHorizontal="8dp"
                                 android:text="@string/legend2"
                                 android:textSize="13sp" />
 
-                            <TextView
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/hlMod"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/moderate"
+                                android:layout_alignTop="@id/moderate"
+                                android:layout_alignEnd="@id/moderate"
+                                android:layout_alignBottom="@id/moderate"
+                                android:visibility="gone"
+                                app:cardBackgroundColor="@color/accent"
+                                app:cardCornerRadius="30dp"
+                                app:contentPadding="20dp" />
+
+                            <TextView
+                                android:id="@+id/high"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/moderate"
                                 android:layout_gravity="center_vertical"
-                                android:layout_margin="5dp"
+                                android:layout_marginVertical="5dp"
+                                android:elevation="5dp"
+                                android:paddingHorizontal="8dp"
                                 android:text="@string/legend3"
                                 android:textSize="13sp" />
-                        </LinearLayout>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/hlHigh"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/high"
+                                android:layout_alignTop="@id/high"
+                                android:layout_alignEnd="@id/high"
+                                android:layout_alignBottom="@id/high"
+                                android:visibility="gone"
+                                app:cardBackgroundColor="@color/accent"
+                                app:cardCornerRadius="30dp"
+                                app:contentPadding="20dp" />
+                        </RelativeLayout>
 
                     </LinearLayout>
 

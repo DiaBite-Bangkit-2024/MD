@@ -1,6 +1,7 @@
 package com.capstone.diabite.ui.dashboard
 
 import android.content.ContentValues.TAG
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,6 +26,7 @@ class DashboardViewModel : ViewModel() {
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
+
 
     fun fetchUserProfile(token: String) {
         viewModelScope.launch {

@@ -46,10 +46,6 @@ class LoginFragment : Fragment() {
 
         binding.apply {
 
-            tvLogin.setOnClickListener {
-                // Already in LoginFragment, no action needed
-            }
-
             tvRegister.setOnClickListener {
                 highlightTab(isLoginSelected = true)
                 (activity as? AuthActivity)?.loadFragment(RegisterFragment())

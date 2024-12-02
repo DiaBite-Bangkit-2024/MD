@@ -19,10 +19,13 @@ class PredictionViewModel : ViewModel() {
     val response: LiveData<AnalyzeResponse> = _response
 
     private val _quizData = MutableLiveData<QuizResponse>()
-    private val quizData: LiveData<QuizResponse> = _quizData
+    val quizData: LiveData<QuizResponse> = _quizData
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
     fun postAnalyzeData(token: String, request: PredictionRequest) {
         viewModelScope.launch {
@@ -57,12 +60,15 @@ class PredictionViewModel : ViewModel() {
     }
 
     fun fetchTrivia() {
+        _isLoading.value = true
         viewModelScope.launch {
             try {
                 val response = repository.generateTrivia()
                 _quizData.postValue(response)
             } catch (e: Exception) {
                 _errorMessage.postValue(e.message)
+            } finally {
+                _isLoading.postValue(false)
             }
         }
     }

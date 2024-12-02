@@ -1,11 +1,14 @@
 package com.capstone.diabite.ui.dashboard
 
 import android.content.Intent
+import android.graphics.Color.BLACK
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +17,9 @@ import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentDashboardBinding
 import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
+import com.capstone.diabite.db.local.HistoryEntity
+import com.capstone.diabite.db.local.HistoryViewModel
+import com.capstone.diabite.db.prediction.PredictionViewModel
 import com.capstone.diabite.ui.articles.ArticlesAdapter
 import com.capstone.diabite.ui.articles.ArticlesRepo
 import com.capstone.diabite.ui.articles.ArticlesVMFactory
@@ -21,10 +27,11 @@ import com.capstone.diabite.ui.articles.ArticlesViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.AnalyzeActivity
 import com.capstone.diabite.view.HistoryActivity
-import com.capstone.diabite.view.QuizActivity
+import com.capstone.diabite.view.quiz.QuizActivity
 import com.capstone.diabite.view.RecomActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.chatbot.ChatbotActivity
+import com.capstone.diabite.view.quiz.QuizViewModel
 import java.util.Calendar
 
 class DashboardFragment : Fragment() {
@@ -40,10 +47,9 @@ class DashboardFragment : Fragment() {
     }
     private lateinit var viewModel: ArticlesViewModel
     private val profileVM: DashboardViewModel by viewModels()
+    private val quizVM: QuizViewModel by viewModels()
     private val articlesAdapter = ArticlesAdapter()
-    private var name: String = ""
-    private var email: String = ""
-    private var password: String = ""
+    private val historyVM: HistoryViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -80,12 +86,7 @@ class DashboardFragment : Fragment() {
 
             val greetingMessage = getGreetingMessage()
 
-            // Update the TextView
             dbGreeting.text = greetingMessage
-
-            val progress = 20  // Set this value based on your data
-            circularProgressView.setProgress(progress)
-            progressText.text = "$progress%"
 
             btnAnalyze.setOnClickListener {
                 val intent = Intent(context, AnalyzeActivity::class.java)
@@ -110,10 +111,14 @@ class DashboardFragment : Fragment() {
                 startActivity(intent)
             }
 
-//            val sharedViewModel = ViewModelProvider(requireActivity()).get(DashboardViewModel::class.java)
-//            sharedViewModel.name.observe(viewLifecycleOwner) { name ->
-//                dbName.text = getString(R.string.db_name, name)
-//            }
+            quizVM.streakCount.observe(viewLifecycleOwner) { count ->
+                streak.text = count.toString()
+            }
+
+            quizVM.streakActive.observe(viewLifecycleOwner) { isActive ->
+                val iconRes = if (isActive) R.drawable.flame_fill else R.drawable.flame
+                streak.icon = ContextCompat.getDrawable(requireContext(), iconRes)
+            }
         }
     }
 
@@ -154,9 +159,7 @@ class DashboardFragment : Fragment() {
     private fun setupUserProf() {
         profileVM.userProfile.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is DataResult.Loading -> {
-                    // Show a loading indicator if needed
-                }
+                is DataResult.Loading -> {}
 
                 is DataResult.Success -> {
                     val data = result.data.profile
@@ -170,14 +173,50 @@ class DashboardFragment : Fragment() {
                 }
 
                 is DataResult.Error -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Failed to fetch profile: ${result.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(requireContext(), "Failed to fetch profile: ${result.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
+
+//        predictionVM.response.observe(viewLifecycleOwner) { response ->
+//            if (response.error) {
+//                Toast.makeText(context, response.message, Toast.LENGTH_SHORT).show()
+//            } else {
+//                val prediction = (response.prediction * 100).toInt()
+//                binding.apply {
+//                    circularProgressView.setProgress(prediction)
+//                    progressText.text = "$prediction%"
+//                }
+//            }
+//        }
+        historyVM.allHistory.observe(viewLifecycleOwner) { historyList ->
+            val mappedHistoryList = historyList.map {
+                HistoryEntity(it.id, it.prediction, it.summary, it.timestamp)
+            }
+            binding.apply {
+                if (mappedHistoryList.isEmpty()) {
+                    Toast.makeText(context, "No history data available", Toast.LENGTH_SHORT).show()
+                    val progress = 0
+                    circularProgressView.setProgress(progress)
+                    progressText.text = "$progress%"
+                } else {
+                    val latestPrediction = mappedHistoryList.first().prediction
+                    circularProgressView.setProgress(latestPrediction)
+                    progressText.text = "$latestPrediction%"
+                    if (latestPrediction < 40) {
+                        hlLow.visibility = View.VISIBLE
+                        low.setTextColor(BLACK)
+                    } else if (latestPrediction > 70) {
+                        hlHigh.visibility = View.VISIBLE
+                        high.setTextColor(BLACK)
+                    } else {
+                        hlMod.visibility = View.VISIBLE
+                        moderate.setTextColor(BLACK)
+                    }
+                }
+            }
+        }
+
     }
 
     fun getGreetingMessage(): String {

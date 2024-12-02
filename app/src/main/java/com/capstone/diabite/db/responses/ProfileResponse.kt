@@ -38,7 +38,10 @@ data class Profile(
 	val age: Int,
 
 	@field:SerializedName("height")
-	val height: Int
+	val height: Int,
+
+	@field:SerializedName("probability")
+	val probability: Float
 )
 
 data class UpdateProfileRequest(

@@ -42,7 +42,7 @@ class HistoryActivity : AppCompatActivity() {
         })
 
         binding.backButton.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 }
