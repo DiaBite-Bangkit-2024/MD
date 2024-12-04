@@ -14,6 +14,8 @@ import com.capstone.diabite.db.responses.ResetPasswordRequest
 import com.capstone.diabite.db.responses.ResetPasswordResponse
 import com.capstone.diabite.db.responses.UpdateProfileRequest
 import com.capstone.diabite.db.responses.UserResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -89,10 +91,18 @@ interface ApiService {
         @Header("Authorization") token: String
     ): ProfileResponse
 
+    @Multipart
     @PATCH("auth/edit-profile")
     suspend fun editUserProfile(
         @Header("Authorization") token: String,
-        @Body updateProfileRequest: UpdateProfileRequest
+        @Part("name") name: RequestBody,
+        @Part("age") age: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("height") height: RequestBody,
+        @Part("weight") weight: RequestBody,
+        @Part("systolic") systolic: RequestBody,
+        @Part("diastolic") diastolic: RequestBody,
+        @Part avatar: MultipartBody.Part? // Optional if no avatar is provided
     ): ProfileResponse
 
     @POST("predict")

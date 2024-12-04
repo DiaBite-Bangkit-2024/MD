@@ -1,6 +1,9 @@
 package com.capstone.diabite.db.responses
 
+import android.net.Uri
 import com.google.gson.annotations.SerializedName
+import okhttp3.MultipartBody
+import java.io.File
 
 data class ProfileResponse(
 
@@ -22,17 +25,11 @@ data class Profile(
 	@field:SerializedName("gender")
 	val gender: String,
 
-	@field:SerializedName("password")
-	val password: String,
-
 	@field:SerializedName("name")
 	val name: String,
 
 	@field:SerializedName("weight")
 	val weight: Int,
-
-	@field:SerializedName("email")
-	val email: String,
 
 	@field:SerializedName("age")
 	val age: Int,
@@ -41,17 +38,19 @@ data class Profile(
 	val height: Int,
 
 	@field:SerializedName("probability")
-	val probability: Float
+	val probability: Float,
+
+	@field:SerializedName("avatar")
+	val avatar: String?
 )
 
 data class UpdateProfileRequest(
 	val name: String,
-	val newEmail: String,
-	val password: String,
 	val age: Int,
 	val gender: String,
 	val height: Int,
 	val weight: Int,
 	val systolic: Int,
-	val diastolic: Int
+	val diastolic: Int,
+	val avatar: MultipartBody.Part?
 )

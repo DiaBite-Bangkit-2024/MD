@@ -95,7 +95,13 @@
     <string name="False">False</string>
     <string name="next">Next</string>
     <string name="finish">Finish</string>
-
+    <string name="cancel">Cancel</string>
+    <string name="food_suggestion">Food Suggestion</string>
+    <string name="onboarding_title1">DiaBite is here to help you understand your diabetes risk in just a few simple steps.</string>
+    <string name="onboarding_title2">DiaBite ensures you can still enjoy delicious meals without compromising your health.</string>
+    <string name="onboarding_title3">Save your analysis history and learn more about diabetes through educational articles.</string>
+    <string name="start">Start</string>
+    <string name="empty_image_warning">No image selected</string>
 
     <string-array name="gender_options">
         <item>Male</item>

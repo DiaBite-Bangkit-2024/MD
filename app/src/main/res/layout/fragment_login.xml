@@ -11,24 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/hero"
+        android:src="@color/white"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ImageView
         android:id="@+id/titleAnimation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
-        android:text="DiaBite"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:src="@drawable/diabite"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +45,44 @@
         app:shapeAppearanceOverlay="@style/card_rounded"
         app:strokeWidth="0dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/menu_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/tab_layout"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/selected_tab_background"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Login"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Register"
+                android:textColor="?attr/android:textColorSecondary" />
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -56,46 +91,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="12dp"
                 android:paddingBottom="12dp">
-
-                <LinearLayout
-                    android:id="@+id/menu_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
-                    android:background="@drawable/tab_layout"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/tvLogin"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/selected_tab_background"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="Login"
-                        android:textColor="@color/text" />
-
-                    <TextView
-                        android:id="@+id/tvRegister"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="Register"
-                        android:textColor="?attr/android:textColorSecondary" />
-                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emailEditTextLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/menu_layout"
                     android:layout_marginBottom="20dp"
                     android:hint="@string/email"
                     android:textColorHint="?attr/android:textColorHint"
@@ -161,60 +162,11 @@
                         android:shadowColor="@color/text"
                         android:text="@string/login" />
 
-                    <LinearLayout
-                        android:id="@+id/orDivider"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/loginButton"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:id="@+id/divider"
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_weight="1"
-                            android:background="?attr/colorOnTertiary" />
-
-                        <TextView
-                            android:id="@+id/or"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="or" />
-
-                        <View
-                            android:id="@+id/divider2"
-                            android:layout_width="0dp"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="14dp"
-                            android:layout_marginBottom="14dp"
-                            android:layout_weight="1"
-                            android:background="?attr/colorOnTertiary" />
-
-                    </LinearLayout>
-
-
-                    <Button
-                        android:id="@+id/googleLoginButton"
-                        style="@style/customButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_below="@id/orDivider"
-                        android:backgroundTint="#f3f3f3"
-                        android:text="@string/login_google"
-                        android:textColor="@color/black"
-                        app:icon="@drawable/google_svg"
-                        app:iconGravity="textStart"
-                        app:iconTint="@null" />
-
                 </RelativeLayout>
             </RelativeLayout>
 
         </ScrollView>
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

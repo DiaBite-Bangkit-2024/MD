@@ -1,5 +1,8 @@
 package com.capstone.diabite.ui.login
 
+import android.content.Context
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,9 +19,12 @@ import com.capstone.diabite.db.pref.UserModel
 import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.db.responses.ResetPasswordRequest
 import com.capstone.diabite.db.responses.ResetPasswordResponse
+import com.capstone.diabite.di.reduceFileImage
+import com.capstone.diabite.di.uriToFile
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
+import java.io.File
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
@@ -28,17 +34,58 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     private val _resetPassword = MutableLiveData<DataResult<ResetPasswordResponse>>()
     val resetPassword: LiveData<DataResult<ResetPasswordResponse>> = _resetPassword
 
+    private val _currentImageUri = MutableLiveData<Uri?>()
+    val currentImageUri: LiveData<Uri?> get() = _currentImageUri
+
+    private val _currentImageFile = MutableLiveData<File?>()
+    val currentImageFile: LiveData<File?> get() = _currentImageFile
+
+    fun setImageUri(uri: Uri) {
+        _currentImageUri.value = uri
+//        _currentImageFile.value = uriToFile(uri, context).reduceFileImage()
+    }
+
+    fun getImageFileFromUri(context: Context): File? {
+        val uri = _currentImageUri.value ?: return null
+        val contentResolver = context.contentResolver
+        val inputStream = contentResolver.openInputStream(uri) ?: return null
+
+        // Create a temporary file
+        val tempFile = File(context.cacheDir, "avatar_temp.jpg")
+        tempFile.outputStream().use { outputStream ->
+            inputStream.copyTo(outputStream)
+        }
+
+        return tempFile
+    }
+
+    fun uriToFile(uri: Uri, context: Context): File {
+        val contentResolver = context.contentResolver
+        val tempFile = File.createTempFile("temp_image", ".jpg", context.cacheDir)
+        val inputStream = contentResolver.openInputStream(uri)
+        val outputStream = tempFile.outputStream()
+        inputStream?.copyTo(outputStream)
+        inputStream?.close()
+        outputStream.close()
+        return tempFile
+    }
+
     fun updateUserProfile(updateProfileRequest: UpdateProfileRequest) {
         _userProfile.value = DataResult.Loading
         viewModelScope.launch {
             try {
                 val response = repository.editUserProfile(updateProfileRequest)
                 _userProfile.value = DataResult.Success(response)
+                Log.d("UpdateProfile", "Profile updated successfully: ${response.profile}")
             } catch (e: Exception) {
                 _userProfile.value = DataResult.Error(e.message ?: "Error updating profile")
+                Log.e("UpdateProfile", "Error updating profile: ${e.message}")
             }
         }
     }
+
+
+
 
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()

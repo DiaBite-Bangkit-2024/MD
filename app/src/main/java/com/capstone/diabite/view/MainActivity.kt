@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        name = intent.getStringExtra("name").orEmpty()
 
         val sharedViewModel = ViewModelProvider(this)[DashboardViewModel::class.java]
         sharedViewModel.name.value = getExtraStringFromIntent(intent)

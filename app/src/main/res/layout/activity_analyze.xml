@@ -72,6 +72,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="10dp" />
 
@@ -110,6 +111,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="10dp" />
 
@@ -227,7 +229,6 @@
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner_blood"
-                style="@style/spinnerTC"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/dropdown_bg"

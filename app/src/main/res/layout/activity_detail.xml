@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.DetailActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:contentPadding="10dp"
+        android:backgroundTint="@color/white"
+        android:layout_margin="6dp"
+        app:strokeColor="#314278"
+        app:strokeWidth="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Nutrition Facts"
+                android:textColor="#314278"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/foodName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#314278"
+                android:text="Food name"
+                android:textSize="25sp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginVertical="4dp"
+                android:background="#314278"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#314278"
+                    android:text="Amount Per Serving"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/cal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:layout_below="@id/amount"
+                    android:text="Calories"
+                    android:layout_marginTop="-10dp"
+                    android:textColor="#314278"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/calNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="65dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignBottom="@id/cal"
+                    android:text="100"
+                    android:textColor="#314278"
+                    android:textSize="50sp"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginVertical="4dp"
+                android:background="#314278"/>
+
+            <TextView
+                android:id="@+id/fat"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="#314278"
+                android:text="Fat"
+                android:textSize="22sp"
+                android:fontFamily="@font/poppins_extrabold"/>
+
+            <TextView
+                android:id="@+id/satFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="#314278"
+                android:text="Saturated Fat"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/monoFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="#314278"
+                android:text="Monounsaturated Fat"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/polyFat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="#314278"
+                android:text="Polyunsaturated Fat"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/cholesterol"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="#314278"
+                android:text="Cholesterol"
+                android:textSize="22sp"
+                android:fontFamily="@font/poppins_extrabold"/>
+
+            <TextView
+                android:id="@+id/sodium"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="#314278"
+                android:text="Sodium"
+                android:textSize="22sp"
+                android:fontFamily="@font/poppins_extrabold"/>
+
+            <TextView
+                android:id="@+id/carb"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="#314278"
+                android:text="Carbohydrate"
+                android:textSize="22sp"
+                android:fontFamily="@font/poppins_extrabold"/>
+
+            <TextView
+                android:id="@+id/dietFiber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="#314278"
+                android:text="Dietary Fiber"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/sugar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:textColor="#314278"
+                android:text="Sugars"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/protein"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="#314278"
+                android:text="Protein"
+                android:textSize="22sp"
+                android:fontFamily="@font/poppins_extrabold"/>
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginVertical="4dp"
+                android:background="#314278"/>
+        </LinearLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

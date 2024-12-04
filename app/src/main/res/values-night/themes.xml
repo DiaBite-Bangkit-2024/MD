@@ -23,10 +23,11 @@
         <item name="colorOnTertiary">@color/white</item>
         <item name="indicatorColor">@color/dark_card</item>
         <item name="colorTertiaryContainer">@color/dark_card</item>
-        <item name="android:spinnerDropDownItemStyle">@style/spinnerTC</item>
+        <item name="colorSecondaryContainer">#4A4A4A</item>
+        <item name="android:spinnerItemStyle">@style/spinnerTC</item>
     </style>
 
-    <style name="spinnerTC" parent="Widget.AppCompat.DropDownItem.Spinner">
+    <style name="spinnerTC" parent="Widget.AppCompat.TextView.SpinnerItem">
         <item name="android:textColor">@color/black</item>
 <!--        <item name="android:drop">@color/black</item>-->
     </style>

@@ -9,15 +9,25 @@ import android.widget.CompoundButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentSettingsBinding
+import com.capstone.diabite.db.local.HistoryViewModel
+import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.ui.settings.profile.ProfileActivity
+import com.capstone.diabite.view.auth.AuthViewModelFactory
 
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+    private val loginVM by viewModels<LoginViewModel> {
+        AuthViewModelFactory.getInstance(
+            requireContext()
+        )
+    }
+    private val historyVM: HistoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +59,16 @@ class SettingsFragment : Fragment() {
 
         binding.switchDarkTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             settingViewModel.saveThemeSetting(isChecked)
+        }
+
+        binding.logoutBtn.setOnClickListener {
+            loginVM.logout()
+            historyVM.deleteAllHistory()
+        }
+
+        binding.logoutLayout.setOnClickListener {
+            loginVM.logout()
+            historyVM.deleteAllHistory()
         }
 
 //        // Switch Reminder Logic

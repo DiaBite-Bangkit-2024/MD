@@ -6,7 +6,7 @@
         motion:autoTransition="animateToEnd"
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="1000"></Transition>
+        motion:duration="2000"></Transition>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
@@ -34,6 +34,7 @@
             android:layout_height="300dp"
             android:layout_marginStart="42dp"
             android:layout_marginEnd="42dp"
+            android:layout_marginBottom="50dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -90,6 +91,7 @@
             android:id="@+id/logoMenu1"
             android:layout_width="0dp"
             android:layout_height="300dp"
+            android:layout_marginBottom="50dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
@@ -100,6 +102,7 @@
             android:layout_height="300dp"
             android:layout_marginStart="42dp"
             android:layout_marginEnd="42dp"
+            android:layout_marginBottom="50dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -206,6 +209,7 @@
             android:id="@+id/logoMenu2"
             android:layout_width="0dp"
             android:layout_height="300dp"
+            android:layout_marginBottom="50dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
@@ -216,6 +220,7 @@
             android:layout_height="300dp"
             android:layout_marginStart="42dp"
             android:layout_marginEnd="42dp"
+            android:layout_marginBottom="50dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toEndOf="@+id/logoMenu1"
@@ -225,11 +230,12 @@
             android:id="@+id/btnOnBoarding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="42dp"
             android:alpha="1"
             motion:layout_constraintBottom_toTopOf="@+id/menu2"
             motion:layout_constraintEnd_toEndOf="parent"
-            motion:layout_constraintStart_toStartOf="parent" />
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/titleMenu3" />
 
     </ConstraintSet>
     <Transition

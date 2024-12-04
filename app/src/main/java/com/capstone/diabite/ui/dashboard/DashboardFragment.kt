@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentDashboardBinding
 import com.capstone.diabite.db.ApiClient
@@ -80,14 +81,9 @@ class DashboardFragment : Fragment() {
         }
 
         binding.apply {
-            logoutBtn.setOnClickListener {
-                loginVM.logout()
-            }
-
             val greetingMessage = getGreetingMessage()
 
             dbGreeting.text = greetingMessage
-
             btnAnalyze.setOnClickListener {
                 val intent = Intent(context, AnalyzeActivity::class.java)
                 startActivity(intent)
@@ -169,6 +165,10 @@ class DashboardFragment : Fragment() {
                         vHeight.text = getString(R.string.v_height, data.height.toString())
                         vWeight.text = getString(R.string.v_weight, data.weight.toString())
                         vBP.text = "${data.systolic}/${data.diastolic} mmhg"
+                        Glide.with(requireContext())
+                            .load(data.avatar)
+                            .error(R.drawable.sparkles)
+                            .into(profileImage)
                     }
                 }
 
@@ -195,7 +195,6 @@ class DashboardFragment : Fragment() {
             }
             binding.apply {
                 if (mappedHistoryList.isEmpty()) {
-                    Toast.makeText(context, "No history data available", Toast.LENGTH_SHORT).show()
                     val progress = 0
                     circularProgressView.setProgress(progress)
                     progressText.text = "$progress%"
