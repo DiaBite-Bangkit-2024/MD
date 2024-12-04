@@ -10,4 +10,10 @@ interface HistoryDao {
 
     @Query("SELECT * FROM predict_history ORDER BY timestamp DESC")
     fun getAllPredictions(): LiveData<List<HistoryEntity>>
+
+    @Query("SELECT * FROM predict_history ORDER BY timestamp DESC LIMIT 1")
+    fun getLatestPrediction(): HistoryEntity?
+
+    @Query("DELETE FROM predict_history")
+    suspend fun deleteAllHistory()
 }

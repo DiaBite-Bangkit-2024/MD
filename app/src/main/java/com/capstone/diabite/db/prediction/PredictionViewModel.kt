@@ -48,22 +48,4 @@ class PredictionViewModel : ViewModel() {
             }
         }
     }
-
-
-
-//    fun predictDiabetes(data: PredictRequest) = liveData {
-//        emit(DataResult.Loading)
-//        try {
-//            val response = ApiClient.instance.predict(data)
-//            if (response.isSuccessful) {
-//                emit(DataResult.Success(response.body()))
-//            } else {
-//                emit(DataResult.Error("Error: ${response.code()} - ${response.message()}"))
-//            }
-//        } catch (e: HttpException) {
-//            emit(DataResult.Error("HTTP Exception: ${e.message()}"))
-//        } catch (e: Exception) {
-//            emit(DataResult.Error("Unexpected Error: ${e.message}"))
-//        }
-//    }
 }

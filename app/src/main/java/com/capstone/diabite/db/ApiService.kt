@@ -3,8 +3,6 @@ package com.capstone.diabite.db
 import com.capstone.diabite.BuildConfig
 import com.capstone.diabite.db.prediction.AnalyzeResponse
 import com.capstone.diabite.db.prediction.PredictionRequest
-import com.capstone.diabite.db.prediction.PredictionResponse
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -75,7 +73,12 @@ interface ApiService {
         @Body request: PredictionRequest
     ): AnalyzeResponse
 
-    @GET("predict")
-    suspend fun getPrediction(): PredictionResponse
+    @GET("food/tags")
+    suspend fun getTags(): TagsResponse
+
+    @POST("food")
+    suspend fun getFoodRec(
+        @Body request: TagsRequest
+    ): FoodResponse
 
 }

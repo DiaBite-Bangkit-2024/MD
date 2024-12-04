@@ -1,5 +1,7 @@
 package com.capstone.diabite.ui.dashboard
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentDashboardBinding
 import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
+import com.capstone.diabite.db.local.HistoryDatabase
 import com.capstone.diabite.ui.articles.ArticlesAdapter
 import com.capstone.diabite.ui.articles.ArticlesRepo
 import com.capstone.diabite.ui.articles.ArticlesVMFactory
@@ -21,9 +24,14 @@ import com.capstone.diabite.ui.articles.ArticlesViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.AnalyzeActivity
 import com.capstone.diabite.view.HistoryActivity
-import com.capstone.diabite.view.RecomActivity
+import com.capstone.diabite.view.food.RecomActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.chatbot.ChatbotActivity
+import com.capstone.diabite.view.DiabiteAppWidget
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 
 class DashboardFragment : Fragment() {
@@ -64,20 +72,28 @@ class DashboardFragment : Fragment() {
         loginVM.getSession().observe(viewLifecycleOwner) { user ->
             if (user.isLogin) {
                 profileVM.fetchUserProfile(user.token)
+                refreshWidget()
             }
         }
 
         binding.apply {
             logoutBtn.setOnClickListener {
                 loginVM.logout()
+                CoroutineScope(Dispatchers.IO).launch {
+                    val dao = HistoryDatabase.getDatabase(requireContext()).historyDao()
+                    dao.deleteAllHistory()
+
+                    withContext(Dispatchers.Main) {
+                        refreshWidget()
+                    }
+                }
             }
 
             val greetingMessage = getGreetingMessage()
 
-            // Update the TextView
             dbGreeting.text = greetingMessage
 
-            val progress = 20  // Set this value based on your data
+            val progress = 20
             circularProgressView.setProgress(progress)
             progressText.text = "$progress%"
 
@@ -135,7 +151,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun fetchNews() {
-        val query = "diabetes" // Replace with dynamic input if needed
+        val query = "diabetes"
         viewModel.fetchNews(query)
     }
 
@@ -175,6 +191,20 @@ class DashboardFragment : Fragment() {
             in 18..22 -> getString(R.string.good_evening)
             else -> getString(R.string.good_night)
         }
+    }
+
+    private fun refreshWidget() {
+        val appWidgetManager = AppWidgetManager.getInstance(requireContext())
+        val componentName = ComponentName(requireContext(), DiabiteAppWidget::class.java)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(componentName)
+
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.layout.diabite_app_widget)
+
+        val intent = Intent(requireContext(), DiabiteAppWidget::class.java).apply {
+            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds)
+        }
+        requireContext().sendBroadcast(intent)
     }
 
     override fun onDestroyView() {

@@ -1,12 +1,12 @@
 package com.capstone.diabite.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +22,7 @@ import com.capstone.diabite.db.pref.dataStore
 import com.capstone.diabite.ui.dashboard.DashboardViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.auth.AuthViewModelFactory
+import com.capstone.diabite.view.food.RecomActivity
 import kotlinx.coroutines.launch
 
 class AnalyzeActivity : AppCompatActivity() {
@@ -186,11 +187,19 @@ class AnalyzeActivity : AppCompatActivity() {
         dialogView.findViewById<TextView>(R.id.okay_text).setOnClickListener {
             Toast.makeText(this, "Okay clicked", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
+            val intent = Intent(this@AnalyzeActivity, RecomActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
         }
 
         dialogView.findViewById<TextView>(R.id.cancel_text).setOnClickListener {
             Toast.makeText(this, "Cancel clicked", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
+            val intent = Intent(this@AnalyzeActivity, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
         }
 
         dialog.show()
