@@ -53,7 +53,6 @@ class UserPreference private constructor(
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
-        private val OTP_KEY = stringPreferencesKey("otp")
 
         fun getInstance(
             dataStore: DataStore<Preferences>

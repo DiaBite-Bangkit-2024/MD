@@ -111,7 +111,12 @@ interface ApiService {
         @Body request: PredictionRequest
     ): AnalyzeResponse
 
-    @GET("predict")
-    suspend fun getPrediction(): PredictionResponse
+    @GET("food/tags")
+    suspend fun getTags(): TagsResponse
+
+    @POST("food")
+    suspend fun getFoodRec(
+        @Body request: TagsRequest
+    ): FoodResponse
 
 }
