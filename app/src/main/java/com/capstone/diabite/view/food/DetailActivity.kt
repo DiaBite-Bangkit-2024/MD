@@ -13,13 +13,17 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        binding.btnClose.setOnClickListener {
+            onBackPressed()
+        }
+
         val foodDetails = intent.getStringArrayListExtra("FOOD_DETAILS") ?: return
 
         binding.apply {
-            tvFoodName.text = foodDetails[0]
-            tvCalories.text = "Calories: ${foodDetails[1]}"
-            tvProtein.text = "Protein: ${foodDetails[2]}"
-            tvFat.text = "Fat: ${foodDetails[3]}"
+            foodName.text = foodDetails[0]
+            calNum.text = foodDetails[1]
+            protein.text = foodDetails[2]
+            fat.text = foodDetails[3]
         }
     }
 

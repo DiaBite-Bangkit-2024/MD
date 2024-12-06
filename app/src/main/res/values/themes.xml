@@ -24,6 +24,7 @@
         <item name="colorTertiaryContainer">@color/white</item>
         <item name="colorSecondaryContainer">#ebebeb</item>
         <item name="android:spinnerDropDownItemStyle">@style/spinnerTC</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="spinnerTC" parent="Widget.AppCompat.Light.DropDownItem.Spinner">

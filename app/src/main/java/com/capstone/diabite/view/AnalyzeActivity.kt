@@ -22,6 +22,7 @@ import com.capstone.diabite.db.pref.dataStore
 import com.capstone.diabite.ui.dashboard.DashboardViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.auth.AuthViewModelFactory
+import com.capstone.diabite.view.food.RecomActivity
 import kotlinx.coroutines.launch
 
 class AnalyzeActivity : AppCompatActivity() {
@@ -168,6 +169,14 @@ class AnalyzeActivity : AppCompatActivity() {
         circularProgressView.setProgress(prediction)
         progressText.text = "$prediction%"
         resultText.text = summary
+
+        dialogView.findViewById<TextView>(R.id.btnFood).setOnClickListener {
+            val intent = Intent(this@AnalyzeActivity, RecomActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            dialog.dismiss()
+            finish()
+        }
 
         dialogView.findViewById<TextView>(R.id.cancel_text).setOnClickListener {
             val intent = Intent(this@AnalyzeActivity, MainActivity::class.java)

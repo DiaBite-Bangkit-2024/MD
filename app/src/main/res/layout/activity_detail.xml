@@ -6,196 +6,815 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".view.DetailActivity">
+    tools:context=".view.food.DetailActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:contentPadding="10dp"
-        android:backgroundTint="@color/white"
         android:layout_margin="6dp"
+        android:backgroundTint="@color/white"
+        app:contentPadding="10dp"
         app:strokeColor="#314278"
         app:strokeWidth="4dp">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Nutrition Facts"
-                android:textColor="#314278"
-                android:textSize="40sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/foodName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#314278"
-                android:text="Food name"
-                android:textSize="25sp" />
+                android:layout_marginHorizontal="4dp"
+                android:orientation="vertical">
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginVertical="4dp"
-                android:background="#314278"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <ImageButton
+                        android:id="@+id/btnClose"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="?attr/selectableItemBackground"
+                        android:contentDescription="@string/arrow"
+                        android:elevation="20dp"
+                        android:src="@drawable/close"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="54dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/nutrition_facts"
+                        android:textColor="#314278"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/amount"
+                    android:id="@+id/foodName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/food_name"
                     android:textColor="#314278"
-                    android:text="Amount Per Serving"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textSize="25sp" />
 
-                <TextView
-                    android:id="@+id/cal"
+                <View
+                    android:id="@+id/divider"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:layout_below="@id/amount"
-                    android:text="Calories"
-                    android:layout_marginTop="-10dp"
-                    android:textColor="#314278"
-                    android:textSize="36sp" />
+                    android:layout_height="10dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="#314278" />
 
-                <TextView
-                    android:id="@+id/calNum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="65dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignBottom="@id/cal"
-                    android:text="100"
-                    android:textColor="#314278"
-                    android:textSize="50sp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:layout_marginVertical="4dp"
-                android:background="#314278"/>
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/amount_per_serving"
+                        android:textColor="#314278"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/fat"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="#314278"
-                android:text="Fat"
-                android:textSize="22sp"
-                android:fontFamily="@font/poppins_extrabold"/>
+                    <TextView
+                        android:id="@+id/cal"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/amount"
+                        android:layout_marginTop="-10dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/calories"
+                        android:textColor="#314278"
+                        android:textSize="36sp" />
 
-            <TextView
-                android:id="@+id/satFat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textColor="#314278"
-                android:text="Saturated Fat"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/calNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dp"
+                        android:layout_alignBottom="@id/cal"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/calNum"
+                        android:textColor="#314278"
+                        android:textSize="50sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/monoFat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textColor="#314278"
-                android:text="Monounsaturated Fat"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="#314278" />
 
-            <TextView
-                android:id="@+id/polyFat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textColor="#314278"
-                android:text="Polyunsaturated Fat"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/cholesterol"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="#314278"
-                android:text="Cholesterol"
-                android:textSize="22sp"
-                android:fontFamily="@font/poppins_extrabold"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/sodium"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="#314278"
-                android:text="Sodium"
-                android:textSize="22sp"
-                android:fontFamily="@font/poppins_extrabold"/>
+                        <TextView
+                            android:id="@+id/fat"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:fontFamily="@font/poppins_extrabold"
+                            android:text="Fat"
+                            android:textColor="#314278"
+                            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/carb"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="#314278"
-                android:text="Carbohydrate"
-                android:textSize="22sp"
-                android:fontFamily="@font/poppins_extrabold"/>
+                        <TextView
+                            android:id="@+id/satFat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="@string/saturated_fat"
+                            android:textColor="#314278"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/dietFiber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textColor="#314278"
-                android:text="Dietary Fiber"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/monoFat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="@string/monounsaturated_fat"
+                            android:textColor="#314278"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/sugar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textColor="#314278"
-                android:text="Sugars"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/polyFat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="@string/polyunsaturated_fat"
+                            android:textColor="#314278"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/protein"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:textColor="#314278"
-                android:text="Protein"
-                android:textSize="22sp"
-                android:fontFamily="@font/poppins_extrabold"/>
+                        <TextView
+                            android:id="@+id/cholesterol"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:fontFamily="@font/poppins_extrabold"
+                            android:text="@string/cholesterol2"
+                            android:textColor="#314278"
+                            android:textSize="18sp" />
 
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginVertical="4dp"
-                android:background="#314278"/>
-        </LinearLayout>
+                        <TextView
+                            android:id="@+id/sodium"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:fontFamily="@font/poppins_extrabold"
+                            android:text="@string/sodium"
+                            android:textColor="#314278"
+                            android:textSize="18sp" />
 
+                        <TextView
+                            android:id="@+id/carb"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:fontFamily="@font/poppins_extrabold"
+                            android:text="@string/carbohydrate"
+                            android:textColor="#314278"
+                            android:textSize="18sp" />
 
+                        <TextView
+                            android:id="@+id/dietFiber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="@string/dietary_fiber"
+                            android:textColor="#314278"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
+                        <TextView
+                            android:id="@+id/sugar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="@string/sugars"
+                            android:textColor="#314278"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/protein"
+                            android:layout_width="match_parent"
+                            android:layout_height="34dp"
+                            android:fontFamily="@font/poppins_extrabold"
+                            android:text="@string/protein"
+                            android:textColor="#314278"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/fatVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/satFatVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/monoFatVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/polyFatVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/cholesterolVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/mg"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/sodiumVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/carbVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/dietFiberVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/sugarVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/proteinVal"
+                            android:layout_width="match_parent"
+                            android:layout_height="34dp"
+                            android:gravity="center_vertical|end"
+                            android:text="@string/gram"
+                            android:textColor="#314278"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="#314278" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/water"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/water"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/calcium"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/calcium"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/copper"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/copper"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/iron"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/iron"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/magnesium"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/magnesium"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/waterVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/calciumVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/copperVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/ironVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/magnesiumVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/manganese"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/manganese"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/phosphorus"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/phosphorus"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/potassium"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/potassium"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/selenium"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/selenium"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/zinc"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/zinc"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/manganeseVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/phosphorusVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/potassiumVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/seleniumVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/zincVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="#314278" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/vitA"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_a"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB1"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_b1"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB11"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_b11"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB12"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_b12"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB2"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_b2"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB3"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_b3"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/itAVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB1Val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB11Val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB12Val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB2Val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB3Val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/vitB5"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_b5"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB6"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_b6"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitC"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_c"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitD"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_d"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitE"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_e"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitK"
+                                android:layout_width="match_parent"
+                                android:layout_height="28dp"
+                                android:text="@string/vitamin_k"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/vitB5Val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitB6Val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitCVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitDVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitEVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/vitKVal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="28dp"
+                                android:text="@string/mg"
+                                android:textAlignment="textEnd"
+                                android:textColor="#314278"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </com.google.android.material.card.MaterialCardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

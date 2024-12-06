@@ -3,7 +3,7 @@ package com.capstone.diabite.db
 import com.capstone.diabite.BuildConfig
 import com.capstone.diabite.db.prediction.AnalyzeResponse
 import com.capstone.diabite.db.prediction.PredictionRequest
-import com.capstone.diabite.db.prediction.PredictionResponse
+import com.capstone.diabite.db.responses.FoodResponse
 import com.capstone.diabite.db.responses.LoginResponse
 import com.capstone.diabite.db.responses.NewsResponse
 import com.capstone.diabite.db.responses.OtpResponse
@@ -12,11 +12,11 @@ import com.capstone.diabite.db.responses.QuizRequest
 import com.capstone.diabite.db.responses.QuizResponse
 import com.capstone.diabite.db.responses.ResetPasswordRequest
 import com.capstone.diabite.db.responses.ResetPasswordResponse
-import com.capstone.diabite.db.responses.UpdateProfileRequest
+import com.capstone.diabite.db.responses.TagsRequest
+import com.capstone.diabite.db.responses.TagsResponse
 import com.capstone.diabite.db.responses.UserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 

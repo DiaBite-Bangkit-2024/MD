@@ -16,7 +16,6 @@ import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.auth.ForgetActivity
-import com.google.firebase.auth.FirebaseAuth
 
 //import com.capstone.diabite.db.pref.getDataStore
 //import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +26,6 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var auth: FirebaseAuth
     private val loginVM by viewModels<LoginViewModel> { AuthViewModelFactory.getInstance(requireContext()) }
 
     override fun onCreateView(

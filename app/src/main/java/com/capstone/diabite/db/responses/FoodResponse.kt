@@ -1,39 +1,37 @@
-package com.capstone.diabite.db
+package com.capstone.diabite.db.responses
 
 import com.google.gson.annotations.SerializedName
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
 data class FoodResponse(
 
-	@field:SerializedName("tagReq")
+    @field:SerializedName("tagReq")
 	val tagReq: TagsRequest,
 
-	@field:SerializedName("resultCount")
+    @field:SerializedName("resultCount")
 	val resultCount: ResultCount,
 
-	@field:SerializedName("columnNames")
+    @field:SerializedName("columnNames")
 	val columnNames: List<String>,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String,
 
-	@field:SerializedName("error")
+    @field:SerializedName("error")
 	val error: Boolean,
 
-	@field:SerializedName("results")
+    @field:SerializedName("results")
 	val results: Results
 )
 
 data class Results(
 
-	@SerializedName("cluster_0")
+    @SerializedName("cluster_0")
 	val cluster0: List<FoodItem>,
 
-	@SerializedName("cluster_1")
+    @SerializedName("cluster_1")
 	val cluster1: List<FoodItem>,
 
-	@SerializedName("cluster_2")
+    @SerializedName("cluster_2")
 	val cluster2: List<FoodItem>
 )
 

@@ -1,8 +1,8 @@
 package com.capstone.diabite.ui.articles
 
 import com.capstone.diabite.db.ApiService
-import com.capstone.diabite.db.FoodResponse
-import com.capstone.diabite.db.TagsRequest
+import com.capstone.diabite.db.responses.FoodResponse
+import com.capstone.diabite.db.responses.TagsRequest
 import com.capstone.diabite.db.responses.NewsResponse
 import retrofit2.Response
 

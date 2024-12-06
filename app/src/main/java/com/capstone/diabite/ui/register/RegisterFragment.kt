@@ -20,16 +20,9 @@ import com.capstone.diabite.databinding.FragmentRegisterBinding
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.ui.login.LoginFragment
 import com.capstone.diabite.ui.login.LoginViewModel
-import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.auth.OtpActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!

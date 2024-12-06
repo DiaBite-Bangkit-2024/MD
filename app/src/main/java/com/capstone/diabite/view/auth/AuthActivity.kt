@@ -28,6 +28,16 @@ class AuthActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+        val isFirstLaunch = sharedPreferences.getBoolean("isFirstLaunch", true)
+
+        if (isFirstLaunch) {
+            // Redirect to OnBoardingActivity
+            val intentOnb = Intent(this, OnBoardingActivity::class.java)
+            startActivity(intentOnb)
+            finish() // Prevent MainActivity from being shown
+        }
+
         if (isUserLoggedIn(this)) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+<!--    <style name="Theme.AritmaPlay.SplashScreen" parent="Theme.SplashScreen">-->
+<!--        &lt;!&ndash; Set the splash screen background, animated icon, and animation-->
+<!--        duration. &ndash;&gt;-->
+<!--        <item name="windowSplashScreenBackground">@color/yellow_300</item>-->
+
+<!--        &lt;!&ndash; Use windowSplashScreenAnimatedIcon to add a drawable or an animated-->
+<!--             drawable. One of these is required. &ndash;&gt;-->
+<!--        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>-->
+<!--        &lt;!&ndash; Required for animated icons. &ndash;&gt;-->
+<!--        <item name="windowSplashScreenAnimationDuration">1000</item>-->
+
+<!--        &lt;!&ndash; Set the theme of the Activity that directly follows your splash-->
+<!--        screen. This is required. &ndash;&gt;-->
+<!--        <item name="postSplashScreenTheme">@style/Theme.AritmaPlay</item>-->
+<!--    </style>-->
+</resources>

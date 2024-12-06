@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.capstone.diabite"
-        minSdk = 27
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -72,8 +72,6 @@ dependencies {
     implementation(libs.glide)
 
     implementation(libs.androidx.room.runtime)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.auth.ktx)
     implementation(libs.androidx.datastore.preferences)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)

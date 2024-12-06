@@ -66,8 +66,6 @@ class CircularProgressView @JvmOverloads constructor(
 
         val centerX = width / 2f
         val centerY = height / 2f
-
-        // Draw background gradient
         backgroundPaint.shader = SweepGradient(
             centerX, centerY,
             intArrayOf(

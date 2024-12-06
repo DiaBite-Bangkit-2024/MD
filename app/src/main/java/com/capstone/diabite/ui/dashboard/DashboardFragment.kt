@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +20,7 @@ import com.capstone.diabite.databinding.FragmentDashboardBinding
 import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.db.local.HistoryEntity
+import com.capstone.diabite.db.local.HistoryViewModel
 import com.capstone.diabite.ui.articles.ArticlesAdapter
 import com.capstone.diabite.ui.articles.ArticlesRepo
 import com.capstone.diabite.ui.articles.ArticlesVMFactory
@@ -32,12 +32,8 @@ import com.capstone.diabite.view.food.RecomActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.chatbot.ChatbotActivity
 import com.capstone.diabite.view.DiabiteAppWidget
-import com.capstone.diabite.view.RecomActivity
 import com.capstone.diabite.view.quiz.QuizActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.capstone.diabite.view.quiz.QuizViewModel
 import java.util.Calendar
 
 class DashboardFragment : Fragment() {
@@ -87,15 +83,9 @@ class DashboardFragment : Fragment() {
         }
 
         binding.apply {
-
             val greetingMessage = getGreetingMessage()
 
             dbGreeting.text = greetingMessage
-
-            val progress = 20  // Set this value based on your data
-            circularProgressView.setProgress(progress)
-            progressText.text = "$progress%"
-
             btnAnalyze.setOnClickListener {
                 val intent = Intent(context, AnalyzeActivity::class.java)
                 startActivity(intent)
@@ -190,17 +180,6 @@ class DashboardFragment : Fragment() {
             }
         }
 
-//        predictionVM.response.observe(viewLifecycleOwner) { response ->
-//            if (response.error) {
-//                Toast.makeText(context, response.message, Toast.LENGTH_SHORT).show()
-//            } else {
-//                val prediction = (response.prediction * 100).toInt()
-//                binding.apply {
-//                    circularProgressView.setProgress(prediction)
-//                    progressText.text = "$prediction%"
-//                }
-//            }
-//        }
         historyVM.allHistory.observe(viewLifecycleOwner) { historyList ->
             val mappedHistoryList = historyList.map {
                 HistoryEntity(it.id, it.prediction, it.summary, it.timestamp)
@@ -209,7 +188,7 @@ class DashboardFragment : Fragment() {
                 if (mappedHistoryList.isEmpty()) {
                     val progress = 0
                     circularProgressView.setProgress(progress)
-                    progressText.text = "$progress%"
+                    progressText.text = "--%"
                 } else {
                     val latestPrediction = mappedHistoryList.first().prediction
                     circularProgressView.setProgress(latestPrediction)

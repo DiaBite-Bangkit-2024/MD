@@ -26,10 +26,10 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
     fun incrementStreak() {
         val lastUpdated = sharedPreferences.getLong("streak_last_updated", 0)
         val currentTime = System.currentTimeMillis()
-        val oneWeekInMillis = 7 * 24 * 60 * 60 * 1000L
+        val oneDayInMillis = 24 * 60 * 60 * 1000L
         val newStreakCount = (_streakCount.value ?: 0) + 1
 
-        if (currentTime - lastUpdated > oneWeekInMillis) {
+        if (currentTime - lastUpdated > oneDayInMillis) {
             _streakActive.value = true
             _streakCount.value = newStreakCount
             sharedPreferences.edit()
@@ -37,7 +37,7 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
                 .putInt("streak_count", newStreakCount)
                 .putBoolean("streak_active", true)
                 .apply()
-        } else if (currentTime - lastUpdated < oneWeekInMillis) {
+        } else if (currentTime - lastUpdated < oneDayInMillis) {
             _streakActive.value = true
             _streakCount.value = _streakCount.value
             sharedPreferences.edit()
@@ -51,17 +51,17 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
     private fun resetStreak() {
         val lastUpdated = sharedPreferences.getLong("streak_last_updated", 0)
         val currentTime = System.currentTimeMillis()
-        val twoWeekInMillis = 14 * 24 * 60 * 60 * 1000L
-        val oneWeekInMillis = 7 * 24 * 60 * 60 * 1000L
+        val oneDayInMillis = 24 * 60 * 60 * 1000L
+        val twoDayInMillis = 2 * 24 * 60 * 60 * 1000L
 
-        if (currentTime - lastUpdated > twoWeekInMillis) {
+        if (currentTime - lastUpdated > twoDayInMillis) {
             _streakCount.value = 0
             _streakActive.value = false
             sharedPreferences.edit()
                 .putInt("streak_count", 0)
                 .putBoolean("streak_active", false)
                 .apply()
-        } else if (currentTime - lastUpdated > oneWeekInMillis) {
+        } else if (currentTime - lastUpdated > oneDayInMillis) {
             _streakActive.value = false
             sharedPreferences.edit()
                 .putBoolean("streak_active", false)
