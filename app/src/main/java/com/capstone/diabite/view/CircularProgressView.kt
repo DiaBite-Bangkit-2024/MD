@@ -1,5 +1,6 @@
 package com.capstone.diabite.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -8,7 +9,6 @@ import android.graphics.RectF
 import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.content.ContextCompat
 
 class CircularProgressView @JvmOverloads constructor(
     context: Context,
@@ -32,29 +32,25 @@ class CircularProgressView @JvmOverloads constructor(
     private val rect = RectF()
 
     init {
-
-        val backgroundGradient = SweepGradient(
+        backgroundPaint.shader = SweepGradient(
             0f, 0f,
             intArrayOf(
-                Color.TRANSPARENT,
                 Color.parseColor("#4D00E5FF"),
                 Color.parseColor("#4DD500F9"),
-                Color.TRANSPARENT
+                Color.parseColor("#4D00E5FF")
             ),
-            floatArrayOf(0f, 0.05f, 0.95f, 1f)
+            floatArrayOf(0f, 0.5f, 1f)
         )
-        backgroundPaint.shader = backgroundGradient
-        val gradient = SweepGradient(
+
+        progressPaint.shader = SweepGradient(
             0f, 0f,
             intArrayOf(
-                Color.TRANSPARENT,  // Start transparent
-                Color.parseColor("#00E5E5"), // Cyan
-                Color.parseColor("#E961FF"), // Purple
-                Color.TRANSPARENT  // End transparent
+                Color.parseColor("#00E5E5"),
+                Color.parseColor("#E961FF"),
+                Color.parseColor("#00E5E5")
             ),
-            floatArrayOf(0f, 0.05f, 0.95f, 1f)
+            floatArrayOf(0f, 0.5f, 1f)
         )
-        progressPaint.shader = gradient
     }
 
     fun setProgress(progress: Int) {
@@ -62,28 +58,39 @@ class CircularProgressView @JvmOverloads constructor(
         invalidate()
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val padding = 20f
         val size = Math.min(width, height).toFloat()
         rect.set(padding, padding, size - padding, size - padding)
 
+        val centerX = width / 2f
+        val centerY = height / 2f
+
+        backgroundPaint.shader = SweepGradient(
+            centerX, centerY,
+            intArrayOf(
+                Color.parseColor("#4D00E5FF"),
+                Color.parseColor("#4DD500F9"),
+                Color.parseColor("#4D00E5FF")
+            ),
+            floatArrayOf(0f, 0.5f, 1f)
+        )
         canvas.drawArc(rect, 0f, 360f, false, backgroundPaint)
 
         canvas.save()
-        canvas.rotate(-90f, width / 2f, height / 2f)
+        canvas.rotate(-90f, centerX, centerY)
 
-        val gradient = SweepGradient(
-            width / 2f, height / 2f,
+        progressPaint.shader = SweepGradient(
+            centerX, centerY,
             intArrayOf(
-                Color.TRANSPARENT,  // Start transparent
-                Color.parseColor("#00E5E5"), // Cyan
-                Color.parseColor("#E961FF"), // Purple
-                Color.TRANSPARENT  // End transparent
+                Color.parseColor("#00E5E5"),
+                Color.parseColor("#E961FF"),
+                Color.parseColor("#00E5E5")
             ),
-            floatArrayOf(0f, 0.05f, 0.95f, 1f)
+            floatArrayOf(0f, 0.5f, 1f)
         )
-        progressPaint.shader = gradient
 
         val sweepAngle = (progress / 100f) * 360f
         canvas.drawArc(rect, 0f, sweepAngle, false, progressPaint)

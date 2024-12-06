@@ -23,6 +23,13 @@
         <item name="colorOnTertiary">@color/white</item>
         <item name="indicatorColor">@color/dark_card</item>
         <item name="colorTertiaryContainer">@color/dark_card</item>
+        <item name="colorSecondaryContainer">#4A4A4A</item>
+        <item name="android:spinnerItemStyle">@style/spinnerTC</item>
+    </style>
+
+    <style name="spinnerTC" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:textColor">@color/black</item>
+<!--        <item name="android:drop">@color/black</item>-->
     </style>
 
     <style name="btnImg" parent="Widget.AppCompat.ImageButton">
@@ -31,6 +38,14 @@
 
     <style name="customButton" parent="Widget.Material3.Button.ElevatedButton">
         <item name="android:backgroundTint">@color/dark_card</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <!--        <item name="android:insetTop">0dp</item>-->
+        <!--        <item name="iconGravity">textStart</item>-->
+    </style>
+
+    <style name="customButton2" parent="Widget.Material3.Button.ElevatedButton">
+        <item name="android:backgroundTint">@color/dark_background</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">16sp</item>
         <!--        <item name="android:insetTop">0dp</item>-->

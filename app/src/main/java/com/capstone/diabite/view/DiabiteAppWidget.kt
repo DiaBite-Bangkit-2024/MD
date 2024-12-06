@@ -53,8 +53,7 @@ class DiabiteAppWidget : AppWidgetProvider() {
                             views.setProgressBar(R.id.circularProgressView, 100, 0, false)
                         }
 
-                        val bitmap =
-                            latestHistory?.let { drawCircularProgress(it.prediction) }
+                        val bitmap = drawCircularProgress(latestHistory?.prediction ?: 0)
                         views.setImageViewBitmap(R.id.circularProgressImage, bitmap)
 
                         val intent = Intent(context, MainActivity::class.java).apply {
@@ -92,7 +91,7 @@ class DiabiteAppWidget : AppWidgetProvider() {
             isAntiAlias = true
             shader = SweepGradient(
                 (size / 2).toFloat(), (size / 2).toFloat(),
-                intArrayOf(Color.parseColor("#4DD500F9"), Color.parseColor("#4D00E5FF")),
+                intArrayOf(Color.parseColor("#4D00E5FF"), Color.parseColor("#4DD500F9"), Color.parseColor("#4D00E5FF")),
                 null
             )
         }
@@ -103,7 +102,7 @@ class DiabiteAppWidget : AppWidgetProvider() {
             isAntiAlias = true
             shader = SweepGradient(
                 (size / 2).toFloat(), (size / 2).toFloat(),
-                intArrayOf(Color.parseColor("#D500F9"), Color.parseColor("#00E5FF")),
+                intArrayOf(Color.parseColor("#00E5E5"), Color.parseColor("#E961FF"), Color.parseColor("#00E5E5")),
                 null
             )
         }

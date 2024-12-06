@@ -1,14 +1,13 @@
 package com.capstone.diabite.view.chatbot
 
 import android.content.Context
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.diabite.R
-import com.capstone.diabite.db.ChatbotResponse
+import com.capstone.diabite.db.responses.ChatbotResponse
 
 class ChatbotAdapter(var context: Context, var list: ArrayList<ChatbotResponse>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

@@ -9,15 +9,29 @@ import android.widget.CompoundButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentSettingsBinding
+import com.capstone.diabite.db.local.HistoryViewModel
+import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.ui.settings.profile.ProfileActivity
+import com.capstone.diabite.view.auth.AuthViewModelFactory
+import java.util.concurrent.TimeUnit
 
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+    private val loginVM by viewModels<LoginViewModel> {
+        AuthViewModelFactory.getInstance(
+            requireContext()
+        )
+    }
+    private val historyVM: HistoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +50,6 @@ class SettingsFragment : Fragment() {
         val pref = SettingsPreferences.getInstance(requireContext().dataStore)
         val settingViewModel = ViewModelProvider(this, SettingsViewModelFactory(pref))[SettingsViewModel::class.java]
 
-        // Switch Theme Logic
         settingViewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -51,22 +64,46 @@ class SettingsFragment : Fragment() {
             settingViewModel.saveThemeSetting(isChecked)
         }
 
-//        // Switch Reminder Logic
-//        settingViewModel.getReminderSettings().observe(viewLifecycleOwner) { isReminderEnabled: Boolean ->
-//            binding.switchReminder.isChecked = isReminderEnabled
-//        }
-//
-//        binding.switchReminder.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-//            if (isChecked) {
-//                scheduleDailyReminder()
-//                settingViewModel.saveReminderSetting(true)
-//            } else {
-//                cancelDailyReminder()
-//                settingViewModel.saveReminderSetting(false)
-//            }
-//        }
+        settingViewModel.getReminderSettings().observe(viewLifecycleOwner) { isReminderEnabled: Boolean ->
+            binding.switchReminder.isChecked = isReminderEnabled
+        }
+
+        binding.switchReminder.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            if (isChecked) {
+                scheduleMonthlyReminder()
+                settingViewModel.saveReminderSetting(true)
+            } else {
+                cancelMonthlyReminder()
+                settingViewModel.saveReminderSetting(false)
+            }
+        }
+
+        binding.logoutBtn.setOnClickListener {
+            loginVM.logout()
+            historyVM.deleteAllHistory()
+        }
+
+        binding.logoutLayout.setOnClickListener {
+            loginVM.logout()
+            historyVM.deleteAllHistory()
+        }
 
         return root
+    }
+
+    private fun scheduleMonthlyReminder() {
+        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(30, TimeUnit.DAYS)
+            .build()
+
+        WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
+            "MonthlyReminder",
+            ExistingPeriodicWorkPolicy.UPDATE,
+            workRequest
+        )
+    }
+
+    private fun cancelMonthlyReminder() {
+        WorkManager.getInstance(requireContext()).cancelUniqueWork("MonthlyReminder")
     }
 
     override fun onDestroyView() {
@@ -74,18 +111,4 @@ class SettingsFragment : Fragment() {
         _binding = null
     }
 
-//    private fun scheduleDailyReminder() {
-//        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(1, TimeUnit.DAYS)
-//            .build()
-//
-//        WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
-//            "DailyReminder",
-//            ExistingPeriodicWorkPolicy.UPDATE,
-//            workRequest
-//        )
-//    }
-//
-//    private fun cancelDailyReminder() {
-//        WorkManager.getInstance(requireContext()).cancelUniqueWork("DailyReminder")
-//    }
 }

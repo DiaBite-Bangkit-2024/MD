@@ -9,6 +9,7 @@
     android:layout_marginEnd="2dp"
     android:layout_marginBottom="5dp"
     card_view:cardCornerRadius="20dp"
+    card_view:cardBackgroundColor="?attr/cardForegroundColor"
     card_view:cardElevation="4dp"
     style="@style/CardView">
 
@@ -26,18 +27,20 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent">
 
+            <!-- Custom Circular Progress View -->
             <com.capstone.diabite.view.CircularProgressView
                 android:id="@+id/circularProgressView"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_margin="3dp"/>
 
+            <!-- Text for percentage -->
             <TextView
                 android:id="@+id/progressText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="33%"
+                android:text="@string/pie_percent"
                 android:textColor="#69AAF1"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -54,7 +57,7 @@
             android:justificationMode="inter_word"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:text="Result"
+            android:text="@string/title"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/percentage"
             card_view:layout_constraintTop_toTopOf="@+id/percentage" />
@@ -69,7 +72,7 @@
             android:justificationMode="inter_word"
             android:maxLines="3"
             android:textSize="14sp"
-            android:text="Description"
+            android:text="@string/description"
             card_view:layout_constraintBottom_toBottomOf="@+id/percentage"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
             card_view:layout_constraintHorizontal_bias="0.0"

@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,12 +17,6 @@
         android:theme="@style/Theme.DiaBite"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".view.food.FoodResultActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.food.DetailActivity"
-            android:exported="false" />
 
         <receiver
             android:name=".view.DiabiteAppWidget"
@@ -34,6 +30,21 @@
                 android:resource="@xml/diabite_app_widget_info" />
         </receiver>
 
+        <activity
+            android:name=".view.food.FoodResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.food.DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.quiz.QuizActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.auth.ForgetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.OnBoardingActivity"
+            android:exported="false" />
         <activity
             android:name=".view.chatbot.ChatbotActivity"
             android:exported="false" />

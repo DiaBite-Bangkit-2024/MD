@@ -10,7 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F5F5F5"
         android:padding="20dp">
 
         <ImageButton
@@ -30,7 +29,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/analyze_diabetes"
-            android:textColor="@color/black"
+            android:textColor="?attr/android:textColorSecondary"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Age" />
+                    android:text="@string/age" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,6 +72,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="10dp" />
 
@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="y.o"
+                        android:text="@string/y_o"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/et_height" />
 
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="BMI" />
+                    android:text="@string/bmi" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,6 +111,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:background="@drawable/bg_edittext"
                         android:paddingHorizontal="10dp" />
 
@@ -118,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="kg/m2"
+                        android:text="@string/kg_m2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/et_weight" />
 
@@ -132,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/general_health"
-            android:textColor="#000000"
+            android:textColor="?attr/android:textColorSecondary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/age_bmi" />
 
@@ -140,7 +141,6 @@
             android:id="@+id/slide_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
             android:paddingHorizontal="10dp"
             android:valueFrom="1.0"
             android:valueTo="5.0"
@@ -167,14 +167,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/physical_health"
-                android:textColor="#000000" />
+                android:text="@string/physical_health"/>
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/slide_physical"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
                 android:paddingHorizontal="10dp"
                 android:valueFrom="0.0"
                 android:valueTo="30.0"
@@ -194,7 +192,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/mental_health"
-            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/physical" />
 
@@ -202,7 +199,6 @@
             android:id="@+id/slide_mental"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
             android:paddingHorizontal="10dp"
             android:valueFrom="0.0"
             android:valueTo="30.0"
@@ -229,10 +225,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/blood_press"
-                android:textColor="#000000" />
+                android:text="@string/blood_press"/>
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner_blood"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -256,8 +251,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/cholesterol"
-                android:textColor="#000000" />
+                android:text="@string/cholesterol"/>
 
             <Spinner
                 android:id="@+id/spinner_cholesterol"
@@ -283,8 +277,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/stroke"
-                android:textColor="#000000" />
+                android:text="@string/stroke" />
 
             <Spinner
                 android:id="@+id/spinner_stroke"
@@ -311,7 +304,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/heart_disease"
-                android:textColor="#000000" />
+                android:textColor="?attr/android:textColorSecondary" />
 
             <Spinner
                 android:id="@+id/spinner_heart"
@@ -337,8 +330,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/walk_climb"
-                android:textColor="#000000" />
+                android:text="@string/walk_climb" />
 
             <Spinner
                 android:id="@+id/spinner_walking"
@@ -353,7 +345,6 @@
             style="@style/customButton"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:backgroundTint="@color/accent"
             android:layout_marginTop="40dp"
             android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,10 +1,10 @@
 package com.capstone.diabite.view
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -80,11 +80,11 @@ class AnalyzeActivity : AppCompatActivity() {
                     val walking = if (binding.spinnerWalking.selectedItem.toString() == "Yes") 1 else 0
 
                     if (age.isNotBlank() && bmi.isNotBlank()) {
-
+                        val bmiValue = bmi.replace(",", ".").toFloat()
                         val ageCategory = convertAgeToCategory(age.toInt())
                         val inputList = listOf(
                             bloodPressure,
-                            bmi.toFloat(),
+                            bmiValue,
                             generalHealth,
                             walking,
                             cholesterol,
@@ -130,18 +130,6 @@ class AnalyzeActivity : AppCompatActivity() {
         }
 
         setupUserProf()
-
-//        binding.slideName.addOnChangeListener { _, value, _ ->
-//            Toast.makeText(this, "General Health: $value", Toast.LENGTH_SHORT).show()
-//        }
-//
-//        binding.slidePhysical.addOnChangeListener { _, value, _ ->
-//            Toast.makeText(this, "Physical Health (days unwell): $value", Toast.LENGTH_SHORT).show()
-//        }
-//
-//        binding.slideMental.addOnChangeListener { _, value, _ ->
-//            Toast.makeText(this, "Mental Health (days unwell): $value", Toast.LENGTH_SHORT).show()
-//        }
     }
 
     private fun observePredictionResponse() {
@@ -168,9 +156,11 @@ class AnalyzeActivity : AppCompatActivity() {
 
     private fun showResultDialog(prediction: Int, summary: String) {
         val dialogView = layoutInflater.inflate(R.layout.popup_dialog, null)
-        val dialog = android.app.AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
+        val dialog = Dialog(this)
+        dialog.setContentView(dialogView)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
 
         val circularProgressView = dialogView.findViewById<CircularProgressView>(R.id.circularProgressView)
         val progressText = dialogView.findViewById<TextView>(R.id.progressText)
@@ -180,30 +170,25 @@ class AnalyzeActivity : AppCompatActivity() {
         progressText.text = "$prediction%"
         resultText.text = summary
 
-        dialogView.findViewById<ImageButton>(R.id.close_button).setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialogView.findViewById<TextView>(R.id.okay_text).setOnClickListener {
-            Toast.makeText(this, "Okay clicked", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
+        dialogView.findViewById<TextView>(R.id.btnFood).setOnClickListener {
             val intent = Intent(this@AnalyzeActivity, RecomActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
+            dialog.dismiss()
             finish()
         }
 
         dialogView.findViewById<TextView>(R.id.cancel_text).setOnClickListener {
-            Toast.makeText(this, "Cancel clicked", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
             val intent = Intent(this@AnalyzeActivity, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
+            dialog.dismiss()
             finish()
         }
 
         dialog.show()
     }
+
 
     private fun setupUserProf() {
         profileVM.userProfile.observe(this) { result ->
@@ -228,11 +213,7 @@ class AnalyzeActivity : AppCompatActivity() {
                 }
 
                 is DataResult.Error -> {
-                    Toast.makeText(
-                        this,
-                        "Failed to fetch profile: ${result.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Failed to fetch profile: ${result.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

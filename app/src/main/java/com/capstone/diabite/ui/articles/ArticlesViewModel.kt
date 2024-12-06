@@ -1,23 +1,18 @@
 package com.capstone.diabite.ui.articles
 
-import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.capstone.diabite.db.ApiClient
 import com.capstone.diabite.db.DataResult
-import com.capstone.diabite.db.NewsResponse
-import com.capstone.diabite.db.NewsResultsItem
-import com.capstone.diabite.db.TagsRequest
+import com.capstone.diabite.db.responses.FoodItem
+import com.capstone.diabite.db.responses.TagsRequest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import com.capstone.diabite.db.responses.NewsResultsItem
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
 
@@ -34,8 +29,8 @@ class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
     private val _tags = MutableStateFlow<List<String>>(emptyList())
     val tags: StateFlow<List<String>> get() = _tags
 
-    private val _foodClusters = MutableLiveData<Map<String, List<String>>>()
-    val foodClusters: LiveData<Map<String, List<String>>> = _foodClusters
+    private val _foodClusters = MutableLiveData<Map<String, List<FoodItem>>>()
+    val foodClusters: LiveData<Map<String, List<FoodItem>>> = _foodClusters
 
 
     fun fetchNews(query: String) {
@@ -69,30 +64,59 @@ class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
                 val response = repository.getFoodRec(tagsRequest)
                 Log.d("API Response", response.toString())
 
-                val cluster0 = response.results.cluster0?.map { it.name } ?: emptyList()
-                val cluster1 = response.results.cluster1?.map { it.name } ?: emptyList()
-                val cluster2 = response.results.cluster2?.map { it.name } ?: emptyList()
-                val allClusters = listOf(cluster0, cluster1, cluster2).flatten()
-
-                Log.d("Cluster 0", cluster0.toString())
-                Log.d("Cluster 1", cluster1.toString())
-                Log.d("Cluster 2", cluster2.toString())
+                fun mapToFoodItem(food: FoodItem): FoodItem {
+                    return FoodItem(
+                        name = food.name,
+                        caloricValue = food.caloricValue,
+                        fat = food.fat,
+                        saturatedFats = food.saturatedFats,
+                        monounsaturatedFats = food.monounsaturatedFats,
+                        polyunsaturatedFats = food.polyunsaturatedFats,
+                        carbohydrates = food.carbohydrates,
+                        sugars = food.sugars,
+                        protein = food.protein,
+                        dietaryFiber = food.dietaryFiber,
+                        cholesterol = food.cholesterol,
+                        sodium = food.sodium,
+                        water = food.water,
+                        vitaminA = food.vitaminA,
+                        vitaminB1 = food.vitaminB1,
+                        vitaminB11 = food.vitaminB11,
+                        vitaminB12 = food.vitaminB12,
+                        vitaminB2 = food.vitaminB2,
+                        vitaminB3 = food.vitaminB3,
+                        vitaminB5 = food.vitaminB5,
+                        vitaminB6 = food.vitaminB6,
+                        vitaminC = food.vitaminC,
+                        vitaminD = food.vitaminD,
+                        vitaminE = food.vitaminE,
+                        vitaminK = food.vitaminK,
+                        calcium = food.calcium,
+                        copper = food.copper,
+                        iron = food.iron,
+                        magnesium = food.magnesium,
+                        manganese = food.manganese,
+                        phosphorus = food.phosphorus,
+                        potassium = food.potassium,
+                        selenium = food.selenium,
+                        zinc = food.zinc,
+                        nutritionDensity = food.nutritionDensity
+                    )
+                }
 
                 val clusters = mapOf(
-                    "cluster_0" to cluster0,
-                    "cluster_1" to cluster1,
-                    "cluster_2" to cluster2
+                    "cluster_0" to (response.results.cluster0?.map { mapToFoodItem(it) } ?: emptyList()),
+                    "cluster_1" to (response.results.cluster1?.map { mapToFoodItem(it) } ?: emptyList()),
+                    "cluster_2" to (response.results.cluster2?.map { mapToFoodItem(it) } ?: emptyList())
                 )
 
                 _foodClusters.postValue(clusters)
 
-                allClusters.forEach { foodItem ->
-                    Log.d("FoodItem", "Food: $foodItem")
-                }
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
                 _foodClusters.postValue(emptyMap())
             }
         }
     }
+
 }

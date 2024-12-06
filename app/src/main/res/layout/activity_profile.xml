@@ -58,7 +58,7 @@
                 android:layout_height="26dp"
                 android:layout_alignEnd="@id/profile_image"
                 android:layout_alignBottom="@id/profile_image"
-                android:contentDescription="Edit Profile"
+                android:contentDescription="@string/edit_profile"
                 android:src="@drawable/edit" />
 
         </RelativeLayout>
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Name"
+            android:text="@string/name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/avaLayout" />
 
@@ -79,51 +79,11 @@
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_edittext"
+            android:textColor="@color/black"
             android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name_label" />
-
-        <TextView
-            android:id="@+id/email_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Email Address"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_name" />
-
-        <EditText
-            android:id="@+id/et_email"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_edittext"
-            android:paddingHorizontal="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/email_label" />
-
-        <TextView
-            android:id="@+id/password_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Password"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_email" />
-
-        <EditText
-            android:id="@+id/et_password"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_edittext"
-            android:inputType="textPassword"
-            android:paddingHorizontal="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/password_label" />
 
         <LinearLayout
             android:id="@+id/age_gender"
@@ -134,7 +94,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_password">
+            app:layout_constraintTop_toBottomOf="@id/et_name">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -149,15 +109,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Age" />
+                    android:text="@string/age" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_age"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:inputType="number"
-                    android:text="10"
                     android:background="@drawable/bg_edittext"
+                    android:textColor="@color/black"
                     android:paddingHorizontal="10dp" />
             </LinearLayout>
 
@@ -173,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Gender"/>
+                    android:text="@string/gender"/>
 
                 <Spinner
                     android:id="@+id/spinner_gender"
@@ -208,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Height" />
+                    android:text="@string/height" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -221,13 +180,14 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_edittext"
+                        android:textColor="@color/black"
                         android:paddingHorizontal="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="cm"
+                        android:text="@string/cm"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/et_height" />
 
@@ -246,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Weight" />
+                    android:text="@string/weight" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -259,13 +219,14 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_edittext"
+                        android:textColor="@color/black"
                         android:paddingHorizontal="10dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="kg"
+                        android:text="@string/kg"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/et_weight" />
 
@@ -278,7 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Blood Pressure Level"
+            android:text="@string/blood_pressure_level"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/height_weight" />
 
@@ -297,7 +258,8 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:hint="systolic"
+                android:textColor="@color/black"
+                android:hint="@string/systolic"
                 android:paddingHorizontal="10dp" />
 
             <TextView
@@ -305,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center_vertical"
-                android:text="/"
+                android:text="@string/or"
                 android:textStyle="bold" />
 
             <EditText
@@ -315,7 +277,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_edittext"
-                android:hint="diastolic"
+                android:textColor="@color/black"
+                android:hint="@string/diastolic"
                 android:paddingHorizontal="10dp" />
 
             <TextView
@@ -323,7 +286,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:gravity="center_vertical"
-                android:text="mmHg" />
+                android:text="@string/mmhg" />
         </LinearLayout>
 
         <Button
@@ -331,8 +294,9 @@
             style="@style/customButton"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:layout_marginTop="24dp"
-            android:text="Save changes"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/save_changes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/blood_pres" />

@@ -3,7 +3,7 @@ package com.capstone.diabite.ui.articles
 import android.content.Intent
 import android.net.Uri
 import com.capstone.diabite.databinding.ItemArticlesBinding
-import com.capstone.diabite.db.NewsResultsItem
+import com.capstone.diabite.db.responses.NewsResultsItem
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil

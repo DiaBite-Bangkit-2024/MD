@@ -20,4 +20,3 @@ data class AnalyzeResponse(
 data class PredictionRequest(
     val input: List<Any>
 )
-

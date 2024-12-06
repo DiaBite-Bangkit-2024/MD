@@ -1,9 +1,9 @@
 package com.capstone.diabite.ui.articles
 
 import com.capstone.diabite.db.ApiService
-import com.capstone.diabite.db.FoodResponse
-import com.capstone.diabite.db.NewsResponse
-import com.capstone.diabite.db.TagsRequest
+import com.capstone.diabite.db.responses.NewsResponse
+import com.capstone.diabite.db.responses.FoodResponse
+import com.capstone.diabite.db.responses.TagsRequest
 import retrofit2.Response
 
 class ArticlesRepo(private val apiService: ApiService) {

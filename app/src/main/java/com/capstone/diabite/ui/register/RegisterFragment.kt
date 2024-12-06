@@ -1,14 +1,7 @@
 package com.capstone.diabite.ui.register
 
-import android.app.Activity
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.TextUtils
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,20 +13,13 @@ import com.capstone.diabite.databinding.FragmentRegisterBinding
 import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.ui.login.LoginFragment
 import com.capstone.diabite.ui.login.LoginViewModel
-import com.capstone.diabite.view.MainActivity
 import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.auth.OtpActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-    private lateinit var auth: FirebaseAuth
     private val loginVM by viewModels<LoginViewModel> {
         AuthViewModelFactory.getInstance(
             requireContext()
@@ -50,10 +36,6 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Initialize FirebaseAuth
-        auth = FirebaseAuth.getInstance()
-
         binding.apply {
             // Switch to Login tab
             tvLogin.setOnClickListener {
@@ -94,10 +76,6 @@ class RegisterFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun generateOtp(): String {
-        return (1000..9999).random().toString()
     }
 
     private fun setupEditText() {

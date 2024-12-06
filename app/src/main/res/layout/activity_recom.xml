@@ -27,7 +27,7 @@
             android:id="@+id/et_search_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search"
+            android:hint="@string/search"
             android:padding="12dp"
             android:layout_marginStart="15dp"
             app:layout_constraintEnd_toEndOf="parent"

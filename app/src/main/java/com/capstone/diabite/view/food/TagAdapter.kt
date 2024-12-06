@@ -1,10 +1,12 @@
 package com.capstone.diabite.view.food
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.diabite.databinding.ItemFoodBinding
 
+@SuppressLint("NotifyDataSetChanged")
 class TagAdapter(private val onItemClickListener: (String) -> Unit) : RecyclerView.Adapter<TagAdapter.TagViewHolder>() {
 
     private var fullList: List<String> = listOf()
@@ -17,10 +19,10 @@ class TagAdapter(private val onItemClickListener: (String) -> Unit) : RecyclerVi
     }
 
     fun filter(query: String) {
-        if (query.isEmpty()) {
-            filteredList = fullList.toMutableList()
+        filteredList = if (query.isEmpty()) {
+            fullList.toMutableList()
         } else {
-            filteredList = fullList.filter { it.contains(query, ignoreCase = true) }.toMutableList()
+            fullList.filter { it.contains(query, ignoreCase = true) }.toMutableList()
         }
         notifyDataSetChanged()
     }

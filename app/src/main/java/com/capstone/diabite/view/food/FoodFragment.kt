@@ -8,12 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.diabite.databinding.FragmentFoodBinding
+import com.capstone.diabite.db.responses.FoodItem
 
 class FoodFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodBinding
-    private val foodList: List<String> by lazy {
-        arguments?.getStringArrayList("data") ?: emptyList()
+    private val foodList: List<FoodItem> by lazy {
+        arguments?.getParcelableArrayList("data") ?: emptyList()
     }
 
     override fun onCreateView(
@@ -29,9 +30,9 @@ class FoodFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.rvFood.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvFood.adapter = FoodAdapter(foodList) { foodName ->
+        binding.rvFood.adapter = FoodAdapter(foodList) { foodItem ->
             startActivity(Intent(requireContext(), DetailActivity::class.java).apply {
-                putExtra(DetailActivity.EXTRA_FOOD_NAME, foodName)
+                putExtra(DetailActivity.FOOD_ID, foodItem)
             })
         }
     }
@@ -45,9 +46,9 @@ class FoodFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(clusterData: List<String>) = FoodFragment().apply {
+        fun newInstance(clusterData: List<FoodItem>) = FoodFragment().apply {
             arguments = Bundle().apply {
-                putStringArrayList("data", ArrayList(clusterData))
+                putParcelableArrayList("data", ArrayList(clusterData))
             }
         }
     }

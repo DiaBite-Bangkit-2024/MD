@@ -1,9 +1,9 @@
 package com.capstone.diabite.view.chatbot
 
-import com.capstone.diabite.db.ChatbotResponse
+import android.annotation.SuppressLint
+import com.capstone.diabite.db.responses.ChatbotResponse
 import android.os.Bundle
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -27,6 +27,8 @@ class ChatbotActivity : AppCompatActivity() {
     private lateinit var adapter: ChatbotAdapter
     private var isResponding = false
     private var currentJob: Job? = null
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatbotBinding.inflate(layoutInflater)
@@ -70,7 +72,6 @@ class ChatbotActivity : AppCompatActivity() {
                 }
             })
 
-            // Scroll to the bottom on button click
             btnBottom.setOnClickListener {
                 val itemCount = recyclerViewId.adapter?.itemCount ?: 0
                 if (itemCount > 0) {

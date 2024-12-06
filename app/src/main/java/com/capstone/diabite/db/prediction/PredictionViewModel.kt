@@ -5,17 +5,27 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.diabite.db.ApiClient
+import com.capstone.diabite.db.QuizRepository
+import com.capstone.diabite.db.responses.QuizResponse
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
 
 class PredictionViewModel : ViewModel() {
 
+    private val repository = QuizRepository()
+
     private val _response = MutableLiveData<AnalyzeResponse>()
     val response: LiveData<AnalyzeResponse> = _response
 
+    private val _quizData = MutableLiveData<QuizResponse>()
+    val quizData: LiveData<QuizResponse> = _quizData
+
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
     fun postAnalyzeData(token: String, request: PredictionRequest) {
         viewModelScope.launch {
@@ -48,4 +58,19 @@ class PredictionViewModel : ViewModel() {
             }
         }
     }
+
+    fun fetchTrivia() {
+        _isLoading.value = true
+        viewModelScope.launch {
+            try {
+                val response = repository.generateTrivia()
+                _quizData.postValue(response)
+            } catch (e: Exception) {
+                _errorMessage.postValue(e.message)
+            } finally {
+                _isLoading.postValue(false)
+            }
+        }
+    }
+
 }

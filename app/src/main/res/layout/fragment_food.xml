@@ -23,7 +23,7 @@
         android:id="@+id/emptyTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No data available"
+        android:text="@string/no_data_available"
         android:gravity="center"
         android:visibility="gone"
         android:textSize="16sp"

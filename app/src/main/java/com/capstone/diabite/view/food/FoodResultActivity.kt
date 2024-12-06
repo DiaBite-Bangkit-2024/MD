@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.diabite.databinding.ActivityFoodResultBinding
 import com.capstone.diabite.db.ApiClient
-import com.capstone.diabite.db.TagsRequest
+import com.capstone.diabite.db.responses.TagsRequest
 import com.capstone.diabite.ui.articles.ArticlesRepo
 import com.capstone.diabite.ui.articles.ArticlesVMFactory
 import com.capstone.diabite.ui.articles.ArticlesViewModel
@@ -18,6 +18,7 @@ class FoodResultActivity : AppCompatActivity() {
     private lateinit var foodVM: ArticlesViewModel
     private lateinit var viewPagerAdapter: ViewPagerAdapter
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFoodResultBinding.inflate(layoutInflater)

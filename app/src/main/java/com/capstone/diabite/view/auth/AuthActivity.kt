@@ -4,19 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityAuthBinding
 import com.capstone.diabite.ui.login.LoginFragment
-import com.capstone.diabite.ui.register.RegisterFragment
 import com.capstone.diabite.view.MainActivity
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 class AuthActivity : AppCompatActivity() {
 

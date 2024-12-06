@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/card"
+    android:backgroundTint="?attr/cardForegroundColor"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:contentPadding="10dp">
@@ -13,26 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/close_button"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:contentDescription="@string/back"/>
-<!--                android:src="@drawable/close" />-->
-
-            <TextView
-                android:id="@+id/textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:paddingTop="20dp"
-                android:text="Diabetes Probability"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:paddingTop="20dp"
+            android:text="@string/diabetes_probability"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
 
         <RelativeLayout
@@ -54,7 +43,7 @@
                 android:layout_centerInParent="true"
                 android:text="@string/pie_percent"
                 android:textColor="#69AAF1"
-                android:textSize="44sp"
+                android:textSize="40sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -77,26 +66,27 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="15dp">
 
-            <TextView
-                android:id="@+id/okay_text"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btnFood"
+                style="@style/customButton2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="100dp"
-                android:text="Okay"
-                android:textColor="#3F51B5"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:paddingVertical="8dp"
+                android:layout_marginHorizontal="30dp"
+                android:text="@string/food_suggestion" />
 
             <TextView
                 android:id="@+id/cancel_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginLeft="100dp"
-                android:layout_toRightOf="@id/okay_text"
-                android:text="Cancel"
-                android:textColor="#FF0000"
-                android:textSize="30sp"
+                android:layout_below="@id/btnFood"
+                android:layout_alignStart="@id/btnFood"
+                android:layout_alignEnd="@id/btnFood"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="@string/cancel"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
