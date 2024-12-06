@@ -13,7 +13,7 @@ This project aims to predict the likelihood of diabetes based on user input and 
 
 ## 📱 Mobile Development
 
-## Screenshots
+### Screenshots
 
 Coming sooon..
 
