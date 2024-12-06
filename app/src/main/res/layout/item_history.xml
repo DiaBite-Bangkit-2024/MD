@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -41,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="33%"
+                android:text="@string/pie_percent"
                 android:textColor="#69AAF1"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -58,7 +57,7 @@
             android:justificationMode="inter_word"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:text="Title"
+            android:text="@string/title"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/percentage"
             card_view:layout_constraintTop_toTopOf="@+id/percentage" />
@@ -73,7 +72,7 @@
             android:justificationMode="inter_word"
             android:maxLines="3"
             android:textSize="14sp"
-            android:text="Description"
+            android:text="@string/description"
             card_view:layout_constraintBottom_toBottomOf="@+id/percentage"
             card_view:layout_constraintEnd_toEndOf="@+id/tv_item_name"
             card_view:layout_constraintHorizontal_bias="0.0"

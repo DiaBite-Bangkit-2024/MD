@@ -1,9 +1,7 @@
 package com.capstone.diabite.db.responses
 
-import android.net.Uri
 import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
-import java.io.File
 
 data class ProfileResponse(
 

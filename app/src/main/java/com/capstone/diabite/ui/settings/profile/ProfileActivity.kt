@@ -55,8 +55,6 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -173,7 +171,7 @@ class ProfileActivity : AppCompatActivity() {
                         if (loginVM.currentImageUri.value == null) {
                             Glide.with(this@ProfileActivity)
                                 .load(data.avatar)
-                                .error(R.drawable.sparkles) // Fallback image
+                                .error(R.drawable.sparkles)
                                 .into(profileImage)
                         }
                     }

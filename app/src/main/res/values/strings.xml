@@ -1,24 +1,15 @@
 <resources>
     <string name="app_name">DiaBite</string>
-    <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="image">image</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="signup">Sign up</string>
-    <string name="title_signup_page">Create an account</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="email" translatable="false">Email</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="message_login_page">Enter your information</string>
-    <string name="title_login_page">Log in to your account</string>
     <string name="name">Name</string>
     <string name="logout">Log out</string>
-    <string name="login_google">Login with Google</string>
-    <string name="signup_google">Sign up with Google</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="articles">Articles</string>
     <string name="settings">Settings</string>
     <string name="back">Back</string>
@@ -32,7 +23,7 @@
     <string name="enter_information">Enter Your Information</string>
     <string name="foodrec">Food Recommendation</string>
     <string name="popup_result">Category: Non Diabetic</string>
-    <string name="pie_percent">33%</string>
+    <string name="pie_percent">--%</string>
     <string name="title">Title</string>
     <string name="registration_successful">Registration Successful</string>
     <string name="registration_failed">Registration Failed</string>
@@ -50,12 +41,10 @@
     <string name="heart_disease">Have you ever been diagnosed with heart disease or experienced a heart attack?</string>
     <string name="walk_climb">Do you experience any difficulty walking or climbing stairs?</string>
     <string name="submit">Submit</string>
-    <string name="db_name">hi %1$s</string>
     <string name="good_morning">Good morning</string>
     <string name="good_afternoon">Good afternoon</string>
     <string name="good_evening">Good evening</string>
     <string name="good_night">Good night</string>
-    <string name="hello">Hello</string>
     <string name="password_required">Password is required</string>
     <string name="otp_required">OTP is required</string>
     <string name="passwords_do_not_match">Passwords do not match</string>
@@ -93,7 +82,6 @@
     <string name="quiz">Quiz</string>
     <string name="True">True</string>
     <string name="False">False</string>
-    <string name="next">Next</string>
     <string name="finish">Finish</string>
     <string name="cancel">Cancel</string>
     <string name="food_suggestion">Food Suggestion</string>
@@ -127,21 +115,40 @@
     <string name="vitamin_c">Vit C</string>
     <string name="vitamin_e">Vit E</string>
     <string name="vitamin_k">Vit K</string>
-    <string name="search">Search</string>
-    <string name="nutrition_facts">Nutrition Facts</string>
+    <string name="chat_with_gemini">Chat with Gemini</string>
     <string name="food_name">Food name</string>
+    <string name="nutrition_facts">Nutrition Facts</string>
     <string name="amount_per_serving">Amount Per Serving</string>
     <string name="calories">Calories</string>
-    <string name="calNum">100</string>
     <string name="saturated_fat">Saturated Fat</string>
+    <string name="fat">Fat</string>
     <string name="monounsaturated_fat">Monounsaturated Fat</string>
     <string name="polyunsaturated_fat">Polyunsaturated Fat</string>
-    <string name="cholesterol2">Cholesterol</string>
-    <string name="dietary_fiber">Dietary Fiber</string>
-    <string name="carbohydrate">Carbohydrate</string>
+    <string name="chol">Cholesterol</string>
     <string name="sodium">Sodium</string>
-    <string name="protein">Protein</string>
+    <string name="carbohydrate">Carbohydrate</string>
+    <string name="dietary_fiber">Dietary Fiber</string>
     <string name="sugars">Sugars</string>
+    <string name="protein">Protein</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="blood_pressure_level">Blood Pressure Level</string>
+    <string name="or">/</string>
+    <string name="save_changes">Save changes</string>
+    <string name="strip">-</string>
+    <string name="y_o">y.o</string>
+    <string name="bmi">BMI</string>
+    <string name="kg_m2">kg/m2</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="time">01:00</string>
+    <string name="search">Search</string>
+    <string name="diabetes_probability">Diabetes Probability</string>
+    <string name="no_data">No data</string>
+    <string name="zero">0</string>
+    <string name="related_articles">Related Articles</string>
+    <string name="no_data_available">No data available</string>
+    <string name="description">Description</string>
+    <string name="result_text">Result</string>
+    <string name="progress_text">%1$d%%</string>
 
     <string-array name="gender_options">
         <item>Male</item>

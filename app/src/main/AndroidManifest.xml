@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -14,17 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiaBite"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31" >
-        <activity
-            android:name=".view.food.FoodResultActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.food.DetailActivity"
-            android:exported="false" />
+        tools:targetApi="31">
 
         <receiver
             android:name=".view.DiabiteAppWidget"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -35,7 +31,10 @@
         </receiver>
 
         <activity
-            android:name=".view.DetailActivity"
+            android:name=".view.food.FoodResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.food.DetailActivity"
             android:exported="false" />
         <activity
             android:name=".view.quiz.QuizActivity"

@@ -19,7 +19,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:paddingTop="20dp"
-            android:text="Diabetes Probability"
+            android:text="@string/diabetes_probability"
             android:textSize="22sp"
             android:textStyle="bold" />
 

@@ -14,7 +14,8 @@
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/app_name"/>
 
     <ImageView
         android:id="@+id/titleAnimation"
@@ -28,7 +29,8 @@
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/app_name"/>
 
 
     <com.google.android.material.card.MaterialCardView
@@ -68,7 +70,7 @@
                 android:background="@drawable/selected_tab_background"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Login"
+                android:text="@string/login"
                 android:textColor="@color/text" />
 
             <TextView
@@ -78,7 +80,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Register"
+                android:text="@string/register"
                 android:textColor="?attr/android:textColorSecondary" />
         </LinearLayout>
 
@@ -118,7 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/emailEditTextLayout"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColorHint="?attr/android:textColorHint"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"

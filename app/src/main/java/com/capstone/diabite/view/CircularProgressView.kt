@@ -1,5 +1,6 @@
 package com.capstone.diabite.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -8,7 +9,6 @@ import android.graphics.RectF
 import android.graphics.SweepGradient
 import android.util.AttributeSet
 import android.view.View
-import androidx.core.content.ContextCompat
 
 class CircularProgressView @JvmOverloads constructor(
     context: Context,
@@ -58,6 +58,7 @@ class CircularProgressView @JvmOverloads constructor(
         invalidate()
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val padding = 20f
@@ -66,6 +67,7 @@ class CircularProgressView @JvmOverloads constructor(
 
         val centerX = width / 2f
         val centerY = height / 2f
+
         backgroundPaint.shader = SweepGradient(
             centerX, centerY,
             intArrayOf(

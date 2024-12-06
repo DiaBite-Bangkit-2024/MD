@@ -51,17 +51,6 @@
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <EditText-->
-<!--            android:id="@+id/et_search_tag"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Search"-->
-<!--            android:padding="12dp"-->
-<!--            android:layout_marginStart="15dp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

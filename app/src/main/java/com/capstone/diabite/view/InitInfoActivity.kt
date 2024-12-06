@@ -77,7 +77,7 @@ class InitInfoActivity : AppCompatActivity() {
                 val response = ApiClient.getApiService2().saveProfile(email, age, gender, weight, height, systolic, diastolic)
 
                 withContext(Dispatchers.Main) {
-                    if (response.error.isNullOrEmpty()) {
+                    if (response.error.isEmpty()) {
                         Log.d("InitInfoActivity", "Profile saved successfully!")
                         Toast.makeText(this@InitInfoActivity, "Profile saved successfully!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@InitInfoActivity, MainActivity::class.java)

@@ -12,7 +12,7 @@
         android:layout_marginBottom="5dp"
         android:gravity="center"
         android:paddingTop="5dp"
-        android:text="Diabetes Probability"
+        android:text="@string/diabetes_probability"
         android:textSize="15sp"
         android:textStyle="bold" />
 
@@ -29,14 +29,15 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/analysis_percentage" />
+            android:src="@drawable/analysis_percentage"
+            android:contentDescription="@string/app_name"/>
 
         <TextView
             android:id="@+id/progressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="--%"
+            android:text="@string/pie_percent"
             android:textColor="#69AAF1"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -49,7 +50,7 @@
         android:layout_below="@id/percentage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="No data"
+        android:text="@string/no_data"
         android:textSize="12sp"
         android:textStyle="bold" />
 

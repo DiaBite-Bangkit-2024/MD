@@ -18,6 +18,7 @@ class FoodResultActivity : AppCompatActivity() {
     private lateinit var foodVM: ArticlesViewModel
     private lateinit var viewPagerAdapter: ViewPagerAdapter
 
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFoodResultBinding.inflate(layoutInflater)

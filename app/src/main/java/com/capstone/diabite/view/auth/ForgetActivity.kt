@@ -3,11 +3,8 @@ package com.capstone.diabite.view.auth
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityForgetBinding
 import com.capstone.diabite.db.DataResult
@@ -15,7 +12,6 @@ import com.capstone.diabite.db.pref.UserPreference
 import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.db.pref.dataStore
 import com.capstone.diabite.ui.login.LoginViewModel
-import com.capstone.diabite.view.InitInfoActivity
 
 class ForgetActivity : AppCompatActivity() {
     private lateinit var binding: ActivityForgetBinding

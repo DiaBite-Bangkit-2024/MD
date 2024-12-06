@@ -1,11 +1,10 @@
 package com.capstone.diabite.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +19,6 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import com.capstone.diabite.R
 
@@ -30,6 +28,7 @@ class HistoryActivity : AppCompatActivity() {
     private lateinit var historyVM: HistoryViewModel
     private lateinit var historyAdapter: HistoryAdapter
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
@@ -42,7 +41,7 @@ class HistoryActivity : AppCompatActivity() {
 
         historyVM = ViewModelProvider(this)[HistoryViewModel::class.java]
 
-        historyVM.allHistory.observe(this, Observer { historyList ->
+        historyVM.allHistory.observe(this) { historyList ->
             if (historyList.isEmpty()) {
                 Toast.makeText(this, "No history data available", Toast.LENGTH_SHORT).show()
             } else {
@@ -50,7 +49,7 @@ class HistoryActivity : AppCompatActivity() {
                 historyAdapter.historyList = historyList
                 historyAdapter.notifyDataSetChanged()
             }
-        })
+        }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
@@ -86,7 +85,7 @@ class HistoryActivity : AppCompatActivity() {
 
                 if (isCanceled) {
                     clearCanvas(c, itemView.right + dX, itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat())
-                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, false)
                     return
                 }
 
@@ -126,7 +125,6 @@ class HistoryActivity : AppCompatActivity() {
                 }
                 historyAdapter.notifyItemRemoved(position)
 
-                // Show feedback
                 Toast.makeText(this@HistoryActivity, "History deleted", Toast.LENGTH_SHORT).show()
             }
         }

@@ -74,7 +74,6 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         loginVM.getSession().observe(viewLifecycleOwner) { user ->
             if (user.isLogin) {
                 profileVM.fetchUserProfile(user.token)
@@ -188,7 +187,7 @@ class DashboardFragment : Fragment() {
                 if (mappedHistoryList.isEmpty()) {
                     val progress = 0
                     circularProgressView.setProgress(progress)
-                    progressText.text = "--%"
+                    progressText.text = "$progress%"
                 } else {
                     val latestPrediction = mappedHistoryList.first().prediction
                     circularProgressView.setProgress(latestPrediction)
@@ -209,7 +208,7 @@ class DashboardFragment : Fragment() {
 
     }
 
-    fun getGreetingMessage(): String {
+    private fun getGreetingMessage(): String {
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         return when (currentHour) {
             in 5..11 -> getString(R.string.good_morning)

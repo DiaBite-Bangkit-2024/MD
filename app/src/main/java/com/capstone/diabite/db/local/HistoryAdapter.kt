@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ItemHistoryBinding
 
 class HistoryAdapter(private val context: Context, var historyList: List<HistoryEntity>) :
@@ -27,10 +28,15 @@ class HistoryAdapter(private val context: Context, var historyList: List<History
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(historyItem: HistoryEntity) {
-            binding.tvItemName.text = "Result"
-            binding.tvItemDescription.text = historyItem.summary
-            binding.circularProgressView.setProgress(historyItem.prediction)
-            binding.progressText.text = "${historyItem.prediction}%"
+            binding.apply {
+                tvItemName.setText(R.string.result_text)
+                tvItemDescription.text = historyItem.summary
+                circularProgressView.setProgress(historyItem.prediction)
+                progressText.text = binding.root.context.getString(
+                    R.string.progress_text, historyItem.prediction
+                )
+            }
+//            binding.progressText.text = "${historyItem.prediction}%"
         }
     }
 }

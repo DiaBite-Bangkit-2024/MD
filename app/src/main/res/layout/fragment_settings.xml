@@ -93,7 +93,7 @@
                     android:textSize="16sp" />
 
                 <Switch
-                    android:id="@+id/switch_monthly_reminder"
+                    android:id="@+id/switch_reminder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -145,7 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Log out"
+                    android:text="@string/logout"
                     android:textColor="#E53935"
                     android:textStyle="bold"
                     android:textSize="16sp" />
