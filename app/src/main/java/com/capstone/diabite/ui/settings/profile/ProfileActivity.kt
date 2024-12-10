@@ -86,12 +86,24 @@ class ProfileActivity : AppCompatActivity() {
 
         loginVM.currentImageUri.observe(this) { uri ->
             if (uri != null) {
-                binding.profileImage.setImageURI(uri)
+                try {
+                    Glide.with(this)
+                        .load(uri)
+                        .fallback(R.drawable.person)
+                        .placeholder(R.drawable.person)
+                        .into(binding.profileImage)
+                } catch (e: Exception) {
+                    Log.e("ProfileActivity", "Error loading image: ${e.message}")
+                    binding.profileImage.setImageResource(R.drawable.person)
+                }
             } else {
-                binding.profileImage.setImageResource(R.drawable.sparkles)
+                Glide.with(this)
+                    .load((profileVM.userProfile.value as? DataResult.Success)?.data?.profile?.avatar)
+                    .fallback(R.drawable.person)
+                    .placeholder(R.drawable.person)
+                    .into(binding.profileImage)
             }
         }
-
         setupUserProf()
     }
 
@@ -109,11 +121,12 @@ class ProfileActivity : AppCompatActivity() {
         launcherIntentGallery.launch(intent)
     }
     private fun saveProfile() {
-        val avatarFile = loginVM.currentImageUri.value
+        val avatarUri = loginVM.currentImageUri.value
         var avatarPart: MultipartBody.Part? = null
-        if (avatarFile != null) {
+
+        if (avatarUri != null) {
             try {
-                val avatarFile = loginVM.uriToFile(avatarFile, this)
+                val avatarFile = loginVM.uriToFile(avatarUri, this)
                 val requestFile = avatarFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
                 avatarPart = MultipartBody.Part.createFormData("avatar", avatarFile.name, requestFile)
             } catch (e: Exception) {
@@ -122,7 +135,6 @@ class ProfileActivity : AppCompatActivity() {
                 return
             }
         }
-
 
         try {
             val updateRequest = UpdateProfileRequest(
@@ -159,7 +171,7 @@ class ProfileActivity : AppCompatActivity() {
                     val data = result.data.profile
                     Log.d("ProfileActivity", "Fetched profile data: $data")
                     binding.apply {
-                        etName.setText("${data.name}")
+                        etName.setText(data.name)
                         etAge.setText("${data.age}")
                         etHeight.setText(data.height.toString())
                         spinnerGender.setSelection(
@@ -168,22 +180,21 @@ class ProfileActivity : AppCompatActivity() {
                         etWeight.setText("${data.weight}")
                         etSystolic.setText("${data.systolic}")
                         etDiastolic.setText("${data.diastolic}")
-                        if (loginVM.currentImageUri.value == null) {
+                        if (loginVM.currentImageUri.value == null && !data.avatar.isNullOrEmpty()) {
+                            // Load the avatar from the server
                             Glide.with(this@ProfileActivity)
                                 .load(data.avatar)
-                                .error(R.drawable.sparkles)
+                                .fallback(R.drawable.person)
+                                .placeholder(R.drawable.person)
                                 .into(profileImage)
+                        } else if (loginVM.currentImageUri.value == null) {
+                            // Fallback to placeholder if no image is set
+                            profileImage.setImageResource(R.drawable.person)
                         }
                     }
                 }
-
-
                 is DataResult.Error -> {
-                    Toast.makeText(
-                        this,
-                        "Failed to fetch profile: ${result.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Failed to fetch profile: ${result.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

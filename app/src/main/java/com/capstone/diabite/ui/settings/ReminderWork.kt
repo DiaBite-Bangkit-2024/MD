@@ -31,7 +31,7 @@ class ReminderWorker(context: Context, params: WorkerParameters) : Worker(contex
             channelName = "Monthly Reminder",
             title = "Reminder!",
             text = "It's time to analyze your data this month!",
-            smallIcon = R.drawable.diabite,
+            smallIcon = R.drawable.diabite_iconfix,
             pendingIntent = pendingIntent,
             notificationId = 1
         )

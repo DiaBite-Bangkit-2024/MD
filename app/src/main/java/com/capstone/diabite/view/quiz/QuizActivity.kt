@@ -24,13 +24,6 @@ class QuizActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         predictionVM.quizData.observe(this) {
-//            triviaList = listOf(
-//                TriviaItem(question = it.trivia[0].question, answer = it.trivia[0].answer),
-//                TriviaItem(question = it.trivia[1].question, answer = it.trivia[1].answer),
-//                TriviaItem(question = it.trivia[2].question, answer = it.trivia[2].answer),
-//                TriviaItem(question = it.trivia[3].question, answer = it.trivia[3].answer),
-//                TriviaItem(question = it.trivia[4].question, answer = it.trivia[4].answer)
-//            )
             binding.apply {
                 backButton.setOnClickListener {
                     onBackPressedDispatcher.onBackPressed()
@@ -93,7 +86,15 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.tvQuiz.visibility = if (isLoading) View.GONE else View.VISIBLE
+        binding.apply {
+            progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            tvQuiz.visibility = if (isLoading) View.GONE else View.VISIBLE
+            cardOtp.visibility = if (isLoading) View.GONE else View.VISIBLE
+            btnNext.visibility = if (isLoading) View.GONE else View.VISIBLE
+            quizTitle.visibility = if (isLoading) View.GONE else View.VISIBLE
+            btnFalse.visibility = if (isLoading) View.GONE else View.VISIBLE
+            btnTrue.visibility = if (isLoading) View.GONE else View.VISIBLE
+        }
+
     }
 }

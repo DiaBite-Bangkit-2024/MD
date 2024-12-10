@@ -2,10 +2,12 @@ package com.capstone.diabite.view.food
 
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.diabite.databinding.ActivityFoodResultBinding
 import com.capstone.diabite.db.ApiClient
+import com.capstone.diabite.db.DataResult
 import com.capstone.diabite.db.responses.TagsRequest
 import com.capstone.diabite.ui.articles.ArticlesRepo
 import com.capstone.diabite.ui.articles.ArticlesVMFactory
@@ -37,19 +39,27 @@ class FoodResultActivity : AppCompatActivity() {
         val request = TagsRequest(tags = listOf(tag))
         foodVM.fetchFoodByTag(request)
 
-        foodVM.foodClusters.observe(this) { clusters ->
-            if (clusters.isNotEmpty()) {
-                if (!::viewPagerAdapter.isInitialized) {
-                    viewPagerAdapter = ViewPagerAdapter(this).apply {
-                        updateClusters(clusters)
-                        binding.viewPager.adapter = this
-                        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-                            tab.text = getPageTitle(position)
-                        }.attach()
-                    }
-                } else {
-                    viewPagerAdapter.updateClusters(clusters)
+        foodVM.foodClusters.observe(this) { result ->
+            when (result) {
+                is DataResult.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
+                is DataResult.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    val clusters = result.data
+                    if (!::viewPagerAdapter.isInitialized) {
+                        viewPagerAdapter = ViewPagerAdapter(this).apply {
+                            updateClusters(clusters)
+                            binding.viewPager.adapter = this
+                            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+                                tab.text = getPageTitle(position)
+                            }.attach()
+                        }
+                    } else {
+                        viewPagerAdapter.updateClusters(clusters)
+                    }
+                }
+                is DataResult.Error -> binding.progressBar.visibility = View.GONE
             }
         }
 

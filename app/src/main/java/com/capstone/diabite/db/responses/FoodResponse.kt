@@ -28,13 +28,13 @@ data class FoodResponse(
 data class Results(
 
     @SerializedName("cluster_0")
-    val cluster0: List<FoodItem>,
+    val cluster0: List<FoodItem>?,
 
     @SerializedName("cluster_1")
-    val cluster1: List<FoodItem>,
+    val cluster1: List<FoodItem>?,
 
     @SerializedName("cluster_2")
-    val cluster2: List<FoodItem>
+    val cluster2: List<FoodItem>?
 )
 
 data class ResultCount(

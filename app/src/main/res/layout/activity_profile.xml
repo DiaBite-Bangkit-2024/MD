@@ -47,9 +47,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/user"
-                tools:src="@tools:sample/avatars" />
+                android:layout_height="150dp"/>
 
             <ImageButton
                 android:id="@+id/edit_icon"

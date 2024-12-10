@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -20,7 +19,7 @@
 
         <receiver
             android:name=".view.DiabiteAppWidget"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -38,6 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".view.quiz.QuizActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.auth.ForgetActivity"
@@ -73,6 +73,9 @@
             android:name=".view.MainActivity"
             android:exported="false"
             android:screenOrientation="sensor"/>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".view.SplashActivity"
             android:exported="true"

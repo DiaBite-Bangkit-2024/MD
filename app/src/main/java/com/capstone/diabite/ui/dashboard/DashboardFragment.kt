@@ -168,7 +168,6 @@ class DashboardFragment : Fragment() {
                         vBP.text = "${data.systolic}/${data.diastolic} mmhg"
                         Glide.with(requireContext())
                             .load(data.avatar)
-                            .error(R.drawable.sparkles)
                             .into(profileImage)
                     }
                 }
@@ -187,7 +186,7 @@ class DashboardFragment : Fragment() {
                 if (mappedHistoryList.isEmpty()) {
                     val progress = 0
                     circularProgressView.setProgress(progress)
-                    progressText.text = "$progress%"
+                    progressText.text = getString(R.string.pie_percent)
                 } else {
                     val latestPrediction = mappedHistoryList.first().prediction
                     circularProgressView.setProgress(latestPrediction)

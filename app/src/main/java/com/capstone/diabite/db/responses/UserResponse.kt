@@ -11,7 +11,7 @@ data class UserResponse(
     val message: String,
 
     @field:SerializedName("error")
-    val error: String
+    val error: Boolean
 )
 
 data class Data(

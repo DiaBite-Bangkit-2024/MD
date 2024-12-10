@@ -42,7 +42,11 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val personalInfoTextView: ImageView = binding.root.findViewById(R.id.iv_personal)
+        binding.logoutLayout.setOnClickListener {
+            loginVM.logout()
+            historyVM.deleteAllHistory()
+        }
+
         binding.personalLayout.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
@@ -72,24 +76,32 @@ class SettingsFragment : Fragment() {
             if (isChecked) {
                 scheduleMonthlyReminder()
                 settingViewModel.saveReminderSetting(true)
+
+                NotificationUtil.showNotification(
+                    context = requireContext(),
+                    channelId = "MonthlyReminderChannel",
+                    channelName = "Monthly Reminder",
+                    title = "Reminder Enabled",
+                    text = "You have enabled monthly reminders.",
+                    smallIcon = R.drawable.diabite_iconfix,
+                    pendingIntent = null,
+                    notificationId = 2
+                )
             } else {
                 cancelMonthlyReminder()
                 settingViewModel.saveReminderSetting(false)
             }
         }
 
-        binding.logoutBtn.setOnClickListener {
-            loginVM.logout()
-            historyVM.deleteAllHistory()
-        }
 
-        binding.logoutLayout.setOnClickListener {
+        binding.logoutBtn.setOnClickListener {
             loginVM.logout()
             historyVM.deleteAllHistory()
         }
 
         return root
     }
+
 
     private fun scheduleMonthlyReminder() {
         val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(30, TimeUnit.DAYS)

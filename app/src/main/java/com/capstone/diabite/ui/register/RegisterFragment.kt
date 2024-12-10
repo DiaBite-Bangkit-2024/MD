@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentRegisterBinding
 import com.capstone.diabite.db.DataResult
@@ -45,8 +46,6 @@ class RegisterFragment : Fragment() {
 
             setupEditText()
             setupAction()
-
-            // Handle Register button click
             regisButton.setOnClickListener {
                 val name = nameEditText.text.toString().trim()
                 val email = emailEditText.text.toString().trim()

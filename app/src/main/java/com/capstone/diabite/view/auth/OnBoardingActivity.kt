@@ -1,4 +1,4 @@
-package com.capstone.diabite.view
+package com.capstone.diabite.view.auth
 
 import android.content.Intent
 import android.os.Build
@@ -7,7 +7,6 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.diabite.databinding.ActivityOnBoardingBinding
-import com.capstone.diabite.view.auth.AuthActivity
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding

@@ -12,11 +12,13 @@
         android:layout_height="0dp"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
+        android:tintMode="src_atop"
+        app:tint="#94000000"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@color/db_v1_background" />
+        android:src="@drawable/hero"/>
 
     <ImageView
         android:id="@+id/titleAnimation"
@@ -27,7 +29,7 @@
         android:layout_marginEnd="32dp"
         android:contentDescription="@string/app_name"
         android:gravity="center"
-        android:src="@drawable/diabite"
+        android:src="@drawable/diabite_iconfix"
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

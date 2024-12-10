@@ -22,7 +22,7 @@ class ForgetActivity : AppCompatActivity() {
             )
         )
     }
-    private var email: String = ""
+    private var tEmail: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,20 +30,21 @@ class ForgetActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        email = intent.getStringExtra("email").orEmpty()
-
         setupEditText()
         setupAction()
 
+        tEmail = intent.getStringExtra("email").toString()
         binding.apply {
             backButton.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-            tvOtp.text = String.format(getString(R.string.tvotp, email))
+            tvOtp.text = String.format(getString(R.string.tvotp, tEmail))
         }
     }
 
     private fun setupEditText() {
+        tEmail = intent.getStringExtra("email").toString()
         binding.apply {
             emailEditText.isEmail = true
+            emailEditText.setText(tEmail)
             passwordEditText.isPassword = true
             confirmPasswordEditText.isConfirm = true
             otpEditText.isOtp = true
@@ -55,7 +56,7 @@ class ForgetActivity : AppCompatActivity() {
         binding.apply {
             resetBtn.setOnClickListener {
                 val enteredOtp = otpEditText.text.toString().trim()
-                val email = emailEditText.text.toString().trim()
+                val email =  emailEditText.text.toString().trim()
                 val pass = confirmPasswordEditText.text.toString().trim()
 
                 if (validateInput(email, enteredOtp, pass)) {
@@ -69,15 +70,14 @@ class ForgetActivity : AppCompatActivity() {
                             val response = result.data
                             if (!response.error) {
                                 Toast.makeText(this@ForgetActivity, "Password reset successful: ${response.message}", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(this@ForgetActivity, "Password reset failed: ${response.message}", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@ForgetActivity, AuthActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
                                 finish()
+                            } else {
+                                Toast.makeText(this@ForgetActivity, "Password reset failed: ${response.message}", Toast.LENGTH_SHORT).show()
                             }
                         }
-
                         is DataResult.Error -> {
                             Toast.makeText(this@ForgetActivity, "Error: ${result.message}", Toast.LENGTH_SHORT).show()
                         }

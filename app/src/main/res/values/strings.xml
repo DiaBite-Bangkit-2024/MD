@@ -149,6 +149,10 @@
     <string name="description">Description</string>
     <string name="result_text">Result</string>
     <string name="progress_text">%1$d%%</string>
+    <string name="calNum">100</string>
+    <string name="cholesterol2">Cholesterol</string>
+    <string name="serving_size">Serving size</string>
+    <string name="serving_size_val">100g</string>
 
     <string-array name="gender_options">
         <item>Male</item>

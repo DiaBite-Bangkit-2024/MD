@@ -29,24 +29,26 @@ class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
     private val _tags = MutableStateFlow<List<String>>(emptyList())
     val tags: StateFlow<List<String>> get() = _tags
 
-    private val _foodClusters = MutableLiveData<Map<String, List<FoodItem>>>()
-    val foodClusters: LiveData<Map<String, List<FoodItem>>> = _foodClusters
+    private val _foodClusters =  MutableLiveData<DataResult<Map<String, List<FoodItem>>>>()
+    val foodClusters: LiveData<DataResult<Map<String, List<FoodItem>>>> = _foodClusters
 
 
     fun fetchNews(query: String) {
-        viewModelScope.launch {
-            _newsData.value = DataResult.Loading
-            try {
-                val response = repository.getNews(query)
-                if (response.isSuccessful && response.body() != null) {
-                    _newsData.value = DataResult.Success(response.body()!!.newsResults)
-                } else {
-
-                    Log.e(TAG, "Failed to fetch news")
-                    _newsData.value = DataResult.Error("Failed to fetch news: ${response.message()}")
+        // Check if the data is already loaded to avoid re-fetching
+        if (_newsData.value !is DataResult.Success) {
+            viewModelScope.launch {
+                _newsData.value = DataResult.Loading
+                try {
+                    val response = repository.getNews(query)
+                    if (response.isSuccessful && response.body() != null) {
+                        _newsData.value = DataResult.Success(response.body()!!.newsResults)
+                    } else {
+                        Log.e(TAG, "Failed to fetch news")
+                        _newsData.value = DataResult.Error("Failed to fetch news: ${response.message()}")
+                    }
+                } catch (e: Exception) {
+                    _newsData.value = DataResult.Error("Error: ${e.message}")
                 }
-            } catch (e: Exception) {
-                _newsData.value = DataResult.Error("Error: ${e.message}")
             }
         }
     }
@@ -60,6 +62,7 @@ class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
 
     fun fetchFoodByTag(tagsRequest: TagsRequest) {
         viewModelScope.launch {
+            _foodClusters.value = DataResult.Loading
             try {
                 val response = repository.getFoodRec(tagsRequest)
                 Log.d("API Response", response.toString())
@@ -104,17 +107,21 @@ class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
                     )
                 }
 
-                val clusters = mapOf(
-                    "cluster_0" to (response.results.cluster0?.map { mapToFoodItem(it) } ?: emptyList()),
-                    "cluster_1" to (response.results.cluster1?.map { mapToFoodItem(it) } ?: emptyList()),
-                    "cluster_2" to (response.results.cluster2?.map { mapToFoodItem(it) } ?: emptyList())
-                )
-
-                _foodClusters.postValue(clusters)
+                if (!response.error) {
+                    val clusters = mapOf(
+                        "cluster_0" to (response.results.cluster0?.map { mapToFoodItem(it) } ?: emptyList()),
+                        "cluster_1" to (response.results.cluster1?.map { mapToFoodItem(it) } ?: emptyList()),
+                        "cluster_2" to (response.results.cluster2?.map { mapToFoodItem(it) } ?: emptyList())
+                    )
+                    _foodClusters.value = DataResult.Success(clusters)
+                } else {
+                    Log.e("API Error", "Failed to fetch food clusters: ${response.message}")
+                    _foodClusters.value = DataResult.Error("Failed to fetch food clusters: ${response.message}")
+                }
 
             } catch (e: Exception) {
                 Log.e("API Error", e.message ?: "Unknown error")
-                _foodClusters.postValue(emptyMap())
+                _foodClusters.value = DataResult.Error("Error: ${e.message ?: "Unknown error"}")
             }
         }
     }
