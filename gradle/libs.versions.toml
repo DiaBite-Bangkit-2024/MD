@@ -24,6 +24,7 @@ fragmentKtx = "1.5.6"
 retrofit = "2.11.0"
 roomCompiler = "2.6.1"
 roomRuntime = "2.6.1"
+ucrop = "2.2.8"
 viewpager2 = "1.1.0"
 datastorePreferences = "1.1.1"
 workRuntimeKtx = "2.9.1"
@@ -62,6 +63,7 @@ androidx-datastore-preferences = { module = "androidx.datastore:datastore-prefer
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
 
 
 [plugins]

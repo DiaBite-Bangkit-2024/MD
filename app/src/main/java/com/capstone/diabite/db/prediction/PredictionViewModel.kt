@@ -15,6 +15,8 @@ class PredictionViewModel : ViewModel() {
 
     private val repository = QuizRepository()
 
+    var dialogState: DialogState? = null
+
     private val _response = MutableLiveData<AnalyzeResponse>()
     val response: LiveData<AnalyzeResponse> = _response
 
@@ -26,6 +28,11 @@ class PredictionViewModel : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    data class DialogState(
+        val prediction: Int,
+        val summary: String
+    )
 
     fun postAnalyzeData(token: String, request: PredictionRequest) {
         viewModelScope.launch {

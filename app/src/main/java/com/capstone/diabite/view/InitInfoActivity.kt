@@ -77,7 +77,7 @@ class InitInfoActivity : AppCompatActivity() {
                 val response = ApiClient.getApiService2().saveProfile(email, age, gender, weight, height, systolic, diastolic)
 
                 withContext(Dispatchers.Main) {
-                    if (response.error.isEmpty()) {
+                    if (!response.error) {
                         Log.d("InitInfoActivity", "Profile saved successfully!")
                         Toast.makeText(this@InitInfoActivity, "Profile saved successfully!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@InitInfoActivity, MainActivity::class.java)
@@ -91,14 +91,16 @@ class InitInfoActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@InitInfoActivity, response.error, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@InitInfoActivity, response.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: Exception) {
+                Log.e("InitInfoActivity", "Error saving profile", e)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@InitInfoActivity, "Failed to save profile: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+
         }
     }
 }

@@ -19,8 +19,6 @@ import com.capstone.diabite.db.pref.UserModel
 import com.capstone.diabite.db.pref.UserRepository
 import com.capstone.diabite.db.responses.ResetPasswordRequest
 import com.capstone.diabite.db.responses.ResetPasswordResponse
-//import com.capstone.diabite.di.reduceFileImage
-//import com.capstone.diabite.di.uriToFile
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
@@ -37,24 +35,8 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     private val _currentImageUri = MutableLiveData<Uri?>()
     val currentImageUri: LiveData<Uri?> get() = _currentImageUri
 
-    private val _currentImageFile = MutableLiveData<File?>()
-    val currentImageFile: LiveData<File?> get() = _currentImageFile
-
     fun setImageUri(uri: Uri) {
         _currentImageUri.value = uri
-//        _currentImageFile.value = uriToFile(uri, context).reduceFileImage()
-    }
-
-
-    fun uriToFile(uri: Uri, context: Context): File {
-        val contentResolver = context.contentResolver
-        val tempFile = File.createTempFile("temp_image", ".jpg", context.cacheDir)
-        val inputStream = contentResolver.openInputStream(uri)
-        val outputStream = tempFile.outputStream()
-        inputStream?.copyTo(outputStream)
-        inputStream?.close()
-        outputStream.close()
-        return tempFile
     }
 
     fun updateUserProfile(updateProfileRequest: UpdateProfileRequest) {

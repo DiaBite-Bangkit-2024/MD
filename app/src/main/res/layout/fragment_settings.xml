@@ -95,7 +95,8 @@
                 <Switch
                     android:id="@+id/switch_reminder"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    style="@style/SwitchStyle"/>
             </LinearLayout>
 
             <View
@@ -122,7 +123,8 @@
                 <Switch
                     android:id="@+id/switch_dark_theme"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    style="@style/SwitchStyle"/>
 
             </LinearLayout>
 
