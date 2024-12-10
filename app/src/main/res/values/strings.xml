@@ -25,6 +25,10 @@
     <string name="popup_result">Category: Non Diabetic</string>
     <string name="pie_percent">--%</string>
     <string name="title">Title</string>
+    <string name="registration_successful">Registration Successful</string>
+    <string name="registration_failed">Registration Failed</string>
+    <string name="fill_all">Please fill all the fields</string>
+    <string name="otp_invalid">Invalid OTP</string>
     <string name="otp_sent">OTP sent to %1$s. Please check your inbox.</string>
     <string name="tvotp">We’ve sent a code to\n %1$s</string>
     <string name="analyze_diabetes">Analyze Diabetes</string>
@@ -81,6 +85,7 @@
     <string name="finish">Finish</string>
     <string name="cancel">Cancel</string>
     <string name="food_suggestion">Food Suggestion</string>
+    <string name="food_suggestion2">Food\nSuggestion</string>
     <string name="onboarding_title1">DiaBite is here to help you understand your diabetes risk in just a few simple steps.</string>
     <string name="onboarding_title2">DiaBite ensures you can still enjoy delicious meals without compromising your health.</string>
     <string name="onboarding_title3">Save your analysis history and learn more about diabetes through educational articles.</string>
@@ -144,6 +149,10 @@
     <string name="description">Description</string>
     <string name="result_text">Result</string>
     <string name="progress_text">%1$d%%</string>
+    <string name="calNum">100</string>
+    <string name="cholesterol2">Cholesterol</string>
+    <string name="serving_size">Serving size</string>
+    <string name="serving_size_val">100g</string>
 
     <string-array name="gender_options">
         <item>Male</item>

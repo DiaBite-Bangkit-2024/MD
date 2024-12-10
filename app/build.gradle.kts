@@ -23,6 +23,7 @@ android {
         buildConfigField("String", "BASE_URL2", "\"http://107.175.0.251:5000/\"")
         buildConfigField("String", "BASE_URL3", "\"https://ai-trivia-questions-generator.p.rapidapi.com/\"")
         buildConfigField("String", "NEWS_API_KEY", "\"8366636bee785a14e736e3439b83ce9b2f24de5da7506821fa8fed4ac9abcb58\"")
+//        buildConfigField("String", "NEWS_API_KEY", "\"767a841009917da572f3be82618340bd06bda6c5d2817b19cebd9510569bb74a\"")
         buildConfigField("String", "QUIZ_API_KEY", "\"8d290ed7a9mshf5392919b361003p111ccajsnd7e8f2eade26\"")
         buildConfigField("String", "GEMINI_API_KEY", "\"AIzaSyAe7bWtEGEOkeWhGBPeXeE1oe5YSrJktIY\"")
     }
@@ -70,10 +71,9 @@ dependencies {
     implementation (libs.androidx.viewpager2)
     implementation(libs.lottie)
     implementation(libs.glide)
+    implementation (libs.ucrop)
 
     implementation(libs.androidx.room.runtime)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.auth.ktx)
     implementation(libs.androidx.datastore.preferences)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)

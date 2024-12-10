@@ -29,9 +29,6 @@ viewpager2 = "1.1.0"
 datastorePreferences = "1.1.1"
 workRuntimeKtx = "2.9.1"
 googleGmsGoogleServices = "4.4.2"
-firebaseAuth = "23.1.0"
-firebaseAuthKtx = "23.1.0"
-mediationTestSuite = "3.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -61,10 +58,7 @@ androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
-firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

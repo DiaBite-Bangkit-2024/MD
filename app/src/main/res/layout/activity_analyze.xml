@@ -15,8 +15,8 @@
         <ImageButton
             android:id="@+id/back_button"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:contentDescription="@string/back"
             android:src="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="14dp"
             android:gravity="center"
             android:text="@string/analyze_diabetes"
             android:textColor="?attr/android:textColorSecondary"
@@ -72,14 +72,16 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:background="@drawable/bg_edittext"
-                        android:paddingHorizontal="10dp" />
+                        android:maxLines="1"
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
+                        android:maxLines="1"
                         android:text="@string/y_o"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/et_height" />
@@ -111,9 +113,9 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:background="@drawable/bg_edittext"
-                        android:paddingHorizontal="10dp" />
+                        android:paddingHorizontal="10dp"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -139,17 +141,17 @@
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slide_name"
+            style="@style/MySliderStyle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:paddingHorizontal="10dp"
+            android:stepSize="1.0"
             android:valueFrom="1.0"
             android:valueTo="5.0"
-            android:stepSize="1.0"
-            app:trackHeight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/general_health"
-            style="@style/MySliderStyle"/>
+            app:trackHeight="10dp" />
 
         <LinearLayout
             android:id="@+id/physical"
@@ -167,21 +169,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/physical_health"/>
+                android:text="@string/physical_health" />
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/slide_physical"
+                style="@style/MySliderStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:paddingHorizontal="10dp"
+                android:stepSize="1.0"
                 android:valueFrom="0.0"
                 android:valueTo="30.0"
-                android:stepSize="1.0"
-                app:trackHeight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/general_health"
-                style="@style/MySliderStyle"/>
+                app:trackHeight="10dp" />
 
         </LinearLayout>
 
@@ -197,17 +199,17 @@
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slide_mental"
+            style="@style/MySliderStyle"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:paddingHorizontal="10dp"
+            android:stepSize="1.0"
             android:valueFrom="0.0"
             android:valueTo="30.0"
-            android:stepSize="1.0"
-            app:trackHeight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mental_health"
-            style="@style/MySliderStyle"/>
+            app:trackHeight="10dp" />
 
         <LinearLayout
             android:id="@+id/blood_press"
@@ -225,7 +227,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/blood_press"/>
+                android:text="@string/blood_press" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner_blood"
@@ -251,7 +253,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/cholesterol"/>
+                android:text="@string/cholesterol" />
 
             <Spinner
                 android:id="@+id/spinner_cholesterol"

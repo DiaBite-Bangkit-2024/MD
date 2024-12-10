@@ -113,7 +113,8 @@
                         android:id="@+id/personalInfoContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
 
                         <LinearLayout
                             android:id="@+id/personal1"
@@ -251,7 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/food_recom"
+                    android:text="Food Tips"
                     android:textAllCaps="false"
                     app:layout_constraintEnd_toEndOf="@id/btnRec"
                     app:layout_constraintStart_toStartOf="@id/btnRec"
@@ -356,7 +357,7 @@
                             <TextView
                                 android:id="@+id/progressText"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="46dp"
                                 android:layout_centerInParent="true"
                                 android:text="@string/pie_percent"
                                 android:textColor="#69AAF1"

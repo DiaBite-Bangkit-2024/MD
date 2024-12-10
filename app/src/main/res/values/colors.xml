@@ -18,4 +18,7 @@
     <color name="dark_accent">#B6C9DB</color>
     <color name="dark_switch">#4C4F5F</color>
     <color name="dark_nav">#1F222B</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color">#ccc</color>
+
 </resources>

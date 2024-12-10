@@ -57,7 +57,11 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val personalInfoTextView: ImageView = binding.root.findViewById(R.id.iv_personal)
+        binding.logoutLayout.setOnClickListener {
+            loginVM.logout()
+            historyVM.deleteAllHistory()
+        }
+
         binding.personalLayout.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
@@ -93,12 +97,8 @@ class SettingsFragment : Fragment() {
             }
         }
 
-        binding.logoutBtn.setOnClickListener {
-            loginVM.logout()
-            historyVM.deleteAllHistory()
-        }
 
-        binding.logoutLayout.setOnClickListener {
+        binding.logoutBtn.setOnClickListener {
             loginVM.logout()
             historyVM.deleteAllHistory()
         }

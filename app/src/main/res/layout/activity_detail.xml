@@ -34,8 +34,8 @@
                     <ImageButton
                         android:id="@+id/btnClose"
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
                         android:background="?attr/selectableItemBackground"
                         android:contentDescription="@string/arrow"
@@ -49,19 +49,43 @@
                         android:fontFamily="@font/poppins_bold"
                         android:text="@string/nutrition_facts"
                         android:textColor="#314278"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        tools:ignore="RelativeOverlap" />
+                        android:textSize="40sp" />
 
                 </RelativeLayout>
 
                 <TextView
                     android:id="@+id/foodName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:text="@string/food_name"
                     android:textColor="#314278"
                     android:textSize="25sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/servingSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/serving_size"
+                        android:textColor="#314278"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/servingSizeVal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:layout_alignParentEnd="true"
+                        android:text="@string/serving_size_val"
+                        android:textColor="#314278"
+                        android:textSize="20sp" />
+
+                </RelativeLayout>
+
 
                 <View
                     android:id="@+id/divider"
@@ -97,10 +121,10 @@
                     <TextView
                         android:id="@+id/calNum"
                         android:layout_width="wrap_content"
-                        android:layout_height="65dp"
+                        android:layout_height="63dp"
                         android:layout_alignBottom="@id/cal"
                         android:layout_alignParentEnd="true"
-                        android:text="100"
+                        android:text="@string/calNum"
                         android:textColor="#314278"
                         android:textSize="50sp"
                         android:textStyle="bold" />
@@ -129,7 +153,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="26dp"
                             android:fontFamily="@font/poppins_extrabold"
-                            android:text="@string/fat"
+                            android:text="Fat"
                             android:textColor="#314278"
                             android:textSize="18sp" />
 
@@ -168,7 +192,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="26dp"
                             android:fontFamily="@font/poppins_extrabold"
-                            android:text="@string/chol"
+                            android:text="@string/cholesterol2"
                             android:textColor="#314278"
                             android:textSize="18sp" />
 
@@ -333,6 +357,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -340,14 +365,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
+                        android:baselineAligned="false"
                         android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            tools:ignore="NestedWeights">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/water"
@@ -455,8 +480,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            tools:ignore="NestedWeights">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/manganese"
@@ -563,6 +587,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -576,8 +601,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            tools:ignore="NestedWeights">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/vitA"
@@ -668,8 +692,7 @@
                                 android:text="@string/mg"
                                 android:textAlignment="textEnd"
                                 android:textColor="#314278"
-                                android:textSize="14sp"
-                                tools:ignore="TooManyViews" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/vitB2Val"
@@ -696,15 +719,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
-                            tools:ignore="NestedWeights">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/vitB5"

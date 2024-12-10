@@ -39,7 +39,6 @@ class FoodFragment : Fragment() {
 
     private fun updateUIState() {
         with(binding) {
-            progressBar.visibility = if (foodList.isEmpty()) View.GONE else View.GONE
             emptyTextView.visibility = if (foodList.isEmpty()) View.VISIBLE else View.GONE
             rvFood.visibility = if (foodList.isEmpty()) View.GONE else View.VISIBLE
         }

@@ -36,6 +36,8 @@ import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.chatbot.ChatbotActivity
 import com.capstone.diabite.view.quiz.QuizViewModel
 import com.capstone.diabite.view.DiabiteAppWidget
+import com.capstone.diabite.view.quiz.QuizActivity
+import com.capstone.diabite.view.quiz.QuizViewModel
 import com.capstone.diabite.view.auth.AuthActivity
 import java.util.Calendar
 
@@ -205,7 +207,7 @@ class DashboardFragment : Fragment() {
                 if (mappedHistoryList.isEmpty()) {
                     val progress = 0
                     circularProgressView.setProgress(progress)
-                    progressText.text = "$progress%"
+                    progressText.text = getString(R.string.pie_percent)
                 } else {
                     val latestPrediction = mappedHistoryList.first().prediction
                     circularProgressView.setProgress(latestPrediction)

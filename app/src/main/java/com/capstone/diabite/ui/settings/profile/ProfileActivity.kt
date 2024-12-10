@@ -1,6 +1,5 @@
 package com.capstone.diabite.ui.settings.profile
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -220,6 +219,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+
     private fun setupUserProf() {
         profileVM.userProfile.observe(this) { result ->
             when (result) {
@@ -251,11 +251,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
 
                 is DataResult.Error -> {
-                    Toast.makeText(
-                        this,
-                        "Failed to fetch profile: ${result.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Failed to fetch profile: ${result.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
