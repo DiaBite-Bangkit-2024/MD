@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "827860675719",
+    "project_id": "diabite-capstone",
+    "storage_bucket": "diabite-capstone.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827860675719:android:16dafb83980885572bdc22",
+        "android_client_info": {
+          "package_name": "com.capstone.diabite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7FEiFiXrQuT5TjPmmyNka0c094kkmzzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

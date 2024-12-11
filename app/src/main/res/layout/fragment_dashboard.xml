@@ -1,23 +1,508 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment" >
+    tools:context=".ui.dashboard.DashboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
+    <ScrollView
+        android:id="@+id/svDashboard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:backgroundTint="?attr/cardForegroundColor"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:contentPaddingBottom="14dp"
+                app:contentPaddingLeft="20dp"
+                app:contentPaddingRight="20dp"
+                app:contentPaddingTop="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/greetingContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profileImage"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/user"
+                            tools:src="@tools:sample/avatars" />
+
+                        <LinearLayout
+                            android:id="@+id/tvContainer1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/profileImage"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/dbGreeting"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/good_morning" />
+
+                            <TextView
+                                android:id="@+id/dbName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/streak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:backgroundTint="?attr/android:colorBackground"
+                            android:clickable="false"
+                            android:layout_marginHorizontal="1dp"
+                            android:gravity="bottom"
+                            android:minWidth="12dp"
+                            android:text="@string/zero"
+                            android:textColor="?attr/android:textColorSecondary"
+                            app:cornerRadius="26dp"
+                            app:icon="@drawable/flame"
+                            app:iconPadding="4dp"
+                            app:iconTint="@null"
+                            tools:ignore="RelativeOverlap" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="?android:attr/listDivider" />
+
+                    <TextView
+                        android:id="@+id/dbPersonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/personal_information"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/personalInfoContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:id="@+id/personal1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tHeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/heightT" />
+
+                            <TextView
+                                android:id="@+id/vHeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/strip"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/weightT" />
+
+                            <TextView
+                                android:id="@+id/vWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/strip"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/personal2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/dbPersonal"
+                            android:layout_toEndOf="@id/personal1"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tAge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ageT" />
+
+                            <TextView
+                                android:id="@+id/vAge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="@string/strip"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tBP"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/blood_pressureT" />
+
+                            <TextView
+                                android:id="@+id/vBP"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@string/strip"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAnalyze"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/sparkles"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toStartOf="@id/btnRec"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/analyze"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="@id/btnAnalyze"
+                    app:layout_constraintStart_toStartOf="@id/btnAnalyze"
+                    app:layout_constraintTop_toBottomOf="@id/btnAnalyze" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRec"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/foodrec"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toStartOf="@id/btnHistory"
+                    app:layout_constraintStart_toEndOf="@id/btnAnalyze"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/food_tips"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="@id/btnRec"
+                    app:layout_constraintStart_toStartOf="@id/btnRec"
+                    app:layout_constraintTop_toBottomOf="@id/btnRec" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHistory"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/history"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toStartOf="@id/btnQuiz"
+                    app:layout_constraintStart_toEndOf="@id/btnRec"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/history"
+                    android:textAllCaps="false"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/btnHistory"
+                    app:layout_constraintStart_toStartOf="@id/btnHistory"
+                    app:layout_constraintTop_toBottomOf="@id/btnHistory" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnQuiz"
+                    style="@style/Widget.MaterialComponents.Button.IconOnly"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="?attr/cardForegroundColor"
+                    app:cornerRadius="26dp"
+                    app:icon="@drawable/quiz"
+                    app:iconPadding="0dp"
+                    app:iconTint="@null"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnHistory"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/quiz"
+                    android:textAllCaps="false"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/btnQuiz"
+                    app:layout_constraintStart_toStartOf="@id/btnQuiz"
+                    app:layout_constraintTop_toBottomOf="@id/btnQuiz" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:backgroundTint="?attr/cardForegroundColor"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:contentPadding="14dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/prob_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/diabetes_probability"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/prob_title"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/percentage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <com.capstone.diabite.view.CircularProgressView
+                                android:id="@+id/circularProgressView"
+                                android:layout_width="140dp"
+                                android:layout_height="140dp" />
+
+                            <TextView
+                                android:id="@+id/progressText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="46dp"
+                                android:layout_centerInParent="true"
+                                android:text="@string/pie_percent"
+                                android:textColor="#69AAF1"
+                                android:textSize="34sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp">
+
+                            <TextView
+                                android:id="@+id/low"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:elevation="5dp"
+                                android:paddingHorizontal="8dp"
+                                android:text="@string/legend1"
+                                android:textSize="13sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/hlLow"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/low"
+                                android:layout_alignTop="@id/low"
+                                android:layout_alignEnd="@id/low"
+                                android:layout_alignBottom="@id/low"
+                                android:visibility="gone"
+                                app:cardBackgroundColor="@color/accent"
+                                app:cardCornerRadius="30dp"
+                                app:contentPadding="20dp" />
+
+                            <TextView
+                                android:id="@+id/moderate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/low"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginVertical="5dp"
+                                android:elevation="5dp"
+                                android:paddingHorizontal="8dp"
+                                android:text="@string/legend2"
+                                android:textSize="13sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/hlMod"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/moderate"
+                                android:layout_alignTop="@id/moderate"
+                                android:layout_alignEnd="@id/moderate"
+                                android:layout_alignBottom="@id/moderate"
+                                android:visibility="gone"
+                                app:cardBackgroundColor="@color/accent"
+                                app:cardCornerRadius="30dp"
+                                app:contentPadding="20dp" />
+
+                            <TextView
+                                android:id="@+id/high"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/moderate"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginVertical="5dp"
+                                android:elevation="5dp"
+                                android:paddingHorizontal="8dp"
+                                android:text="@string/legend3"
+                                android:textSize="13sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/hlHigh"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@id/high"
+                                android:layout_alignTop="@id/high"
+                                android:layout_alignEnd="@id/high"
+                                android:layout_alignBottom="@id/high"
+                                android:visibility="gone"
+                                app:cardBackgroundColor="@color/accent"
+                                app:cardCornerRadius="30dp"
+                                app:contentPadding="20dp" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/related_articles"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="12dp"
+                    tools:listitem="@layout/item_articles" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/rvDashboard"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="50dp"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/gemini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:elevation="5dp"
+        android:src="@drawable/customer_service"
+        app:backgroundTint="@color/accent"
+        app:layout_constraintBottom_toBottomOf="@id/svDashboard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="12dp"
+        app:shapeAppearanceOverlay="@style/fab_3_rounded"
+        app:tint="@color/text"
+        android:contentDescription="@string/app_name"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

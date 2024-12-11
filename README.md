@@ -15,7 +15,7 @@ This project aims to predict the likelihood of diabetes based on user input and 
 
 ### Screenshots
 
-Coming sooon..
+Coming soon..
 
 ## 📚 Libraries Used
 
