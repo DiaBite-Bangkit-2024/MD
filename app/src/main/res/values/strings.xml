@@ -153,6 +153,12 @@
     <string name="cholesterol2">Cholesterol</string>
     <string name="serving_size">Serving size</string>
     <string name="serving_size_val">100g</string>
+    <string name="fat_str">Fat</string>
+    <string name="heightT">🧍🏻 Height</string>
+    <string name="weightT">🏋🏻 Weight</string>
+    <string name="ageT">🎂 Age</string>
+    <string name="blood_pressureT">🩸 Blood Pressure</string>
+    <string name="food_tips">Food Tips</string>
 
     <string-array name="gender_options">
         <item>Male</item>

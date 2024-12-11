@@ -1,6 +1,5 @@
 package com.capstone.diabite.ui.login
 
-import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -22,7 +21,6 @@ import com.capstone.diabite.db.responses.ResetPasswordResponse
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.HttpException
-import java.io.File
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
@@ -203,8 +201,19 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
             } else {
                 emit(DataResult.Error(response.message))
             }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = errorBody?.let {
+                try {
+                    val json = JSONObject(it)
+                    json.getString("message")
+                } catch (ex: Exception) {
+                    "An error occurred"
+                }
+            } ?: "An error occurred"
+            emit(DataResult.Error(errorMessage))
         } catch (e: Exception) {
-            emit(DataResult.Error(e.message ?: "An error has occurred"))
+            emit(DataResult.Error(e.message ?: "An error occurred"))
         }
     }
 }

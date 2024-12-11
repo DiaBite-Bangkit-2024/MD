@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.capstone.diabite.databinding.ActivityHistoryBinding
 import com.capstone.diabite.db.local.HistoryAdapter
 import com.capstone.diabite.db.local.HistoryViewModel
-
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -99,7 +98,7 @@ class HistoryActivity : AppCompatActivity() {
                         itemView.right - iconMargin,
                         (itemView.top + (iconHeight - intrinsicHeight) / 2) + intrinsicHeight
                     )
-                } else { // View is un-swatched
+                } else {
                     background.setBounds(0, 0, 0, 0)
                     deleteIcon.setBounds(0, 0, 0, 0)
                 }

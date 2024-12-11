@@ -100,7 +100,6 @@ class InitInfoActivity : AppCompatActivity() {
                     Toast.makeText(this@InitInfoActivity, "Failed to save profile: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
     }
 }

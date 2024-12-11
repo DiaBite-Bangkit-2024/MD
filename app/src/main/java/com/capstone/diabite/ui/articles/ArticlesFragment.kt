@@ -15,9 +15,6 @@ import com.capstone.diabite.db.DataResult
 class ArticlesFragment : Fragment() {
 
     private var _binding: FragmentArticlesBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var viewModel: ArticlesViewModel
     private val articlesAdapter = ArticlesAdapter()
@@ -68,7 +65,7 @@ class ArticlesFragment : Fragment() {
     }
 
     private fun fetchNews() {
-        val query = "diabetes" // Replace with dynamic input if needed
+        val query = "diabetes"
         viewModel.fetchNews(query)
     }
 

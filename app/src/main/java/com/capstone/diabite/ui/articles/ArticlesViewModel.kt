@@ -34,7 +34,6 @@ class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
 
 
     fun fetchNews(query: String) {
-        // Check if the data is already loaded to avoid re-fetching
         if (_newsData.value !is DataResult.Success) {
             viewModelScope.launch {
                 _newsData.value = DataResult.Loading

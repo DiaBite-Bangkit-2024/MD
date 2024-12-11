@@ -1,7 +1,6 @@
 package com.capstone.diabite.view.chatbot
 
 import android.annotation.SuppressLint
-import com.capstone.diabite.db.responses.ChatbotResponse
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.capstone.diabite.BuildConfig
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityChatbotBinding
+import com.capstone.diabite.db.responses.ChatbotResponse
 import com.google.ai.client.generativeai.GenerativeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -86,9 +86,6 @@ class ChatbotActivity : AppCompatActivity() {
             modelName = "gemini-1.5-flash",
             apiKey = BuildConfig.GEMINI_API_KEY
         )
-//        responseData.add(ChatbotResponse(0, prompt))
-//        adapter.notifyDataSetChanged()
-
         isResponding = true
         updateEndIcon()
 

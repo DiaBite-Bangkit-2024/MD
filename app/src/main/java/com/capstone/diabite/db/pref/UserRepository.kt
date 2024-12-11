@@ -45,7 +45,6 @@ class UserRepository private constructor(
         userPreference.logout()
     }
 
-
     companion object {
         @Volatile
         private var instance: UserRepository? = null

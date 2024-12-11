@@ -36,7 +36,6 @@ class HistoryAdapter(private val context: Context, var historyList: List<History
                     R.string.progress_text, historyItem.prediction
                 )
             }
-//            binding.progressText.text = "${historyItem.prediction}%"
         }
     }
 }

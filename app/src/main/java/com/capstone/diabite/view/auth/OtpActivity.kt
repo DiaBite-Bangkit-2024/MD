@@ -45,7 +45,6 @@ class OtpActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
 
-//        auth = FirebaseAuth.getInstance()
         name = intent.getStringExtra("name").orEmpty()
         email = intent.getStringExtra("email").orEmpty()
         password = intent.getStringExtra("pass").orEmpty()
@@ -138,7 +137,7 @@ class OtpActivity : AppCompatActivity() {
             override fun onFinish() {
                 timeLeftInMillis = 0
                 updateTimerText()
-                binding.resend.setTextColor(resources.getColor(R.color.black))
+                binding.resend.setTextAppearance(R.style.highlight)
                 binding.resend.isEnabled = true
             }
         }.start()

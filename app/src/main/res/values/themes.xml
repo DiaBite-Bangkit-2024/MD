@@ -34,11 +34,9 @@
         <item name="android:backgroundTint">@color/accent</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">16sp</item>
-        <!--        <item name="android:insetTop">0dp</item>-->
-        <!--        <item name="iconGravity">textStart</item>-->
     </style>
 
-    <style name="SwitchStyle" parent="Widget.MaterialComponents.CompoundButton.Switch">
+    <style name="SwitchStyle">
         <item name="android:thumbTint">@color/accent</item>
         <item name="android:trackTint">@color/gray</item>
     </style>
@@ -48,8 +46,6 @@
         <item name="android:backgroundTint">@color/accent</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
-        <!--        <item name="android:insetTop">0dp</item>-->
-        <!--        <item name="iconGravity">textStart</item>-->
     </style>
 
     <style name="Widget.MaterialComponents.Button.IconOnly">

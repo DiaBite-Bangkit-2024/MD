@@ -26,11 +26,6 @@ class TypeWriter : androidx.appcompat.widget.AppCompatTextView {
                     animationCallback?.invoke()
                 }
             }
-
-//            text = mText!!.subSequence(0, index++)
-//            if (index <= mText!!.length) {
-//                handler.postDelayed(this, delay)
-//            }
         }
     }
 

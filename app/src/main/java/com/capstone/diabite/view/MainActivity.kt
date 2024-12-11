@@ -75,12 +75,10 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
         val popupMenu = PopupMenu(this, null)
         popupMenu.inflate(R.menu.bottom_nav_menu)
         val menu = popupMenu.menu
         navView.setupWithNavController(menu, navController)
-//        setupSmoothBottomMenu()
 
         val sharedViewModel = ViewModelProvider(this)[DashboardViewModel::class.java]
         sharedViewModel.name.value = getExtraStringFromIntent(intent)
@@ -98,8 +96,6 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

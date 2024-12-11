@@ -102,7 +102,7 @@ interface ApiService {
         @Part("weight") weight: RequestBody,
         @Part("systolic") systolic: RequestBody,
         @Part("diastolic") diastolic: RequestBody,
-        @Part avatar: MultipartBody.Part? // Optional if no avatar is provided
+        @Part avatar: MultipartBody.Part?
     ): ProfileResponse
 
     @POST("predict")

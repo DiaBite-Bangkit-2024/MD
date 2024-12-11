@@ -20,23 +20,10 @@ class ChatbotAdapter(var context: Context, var list: ArrayList<ChatbotResponse>)
     private inner class GeminiViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         val text : TypeWriter = itemView.findViewById(R.id.tv_gemini_response)
-
-//        fun bind(position: Int){
-//
-//            val data  = list[position]
-//            if(list.size-1 == position){
-//                text.animateText(data.prompt)
-//                text.setCharacterDelay(30)
-//            }else{
-//                text.setText(data.prompt)
-//            }
-//        }
-
         fun bind(position: Int) {
             val data = list[position]
             if (list.size - 1 == position) {
                 text.animateText(data.prompt) {
-                    // Notify completion if this is the active response
                     if (position == list.size - 1) {
                         (context as ChatbotActivity).onResponseAnimationComplete()
                     }

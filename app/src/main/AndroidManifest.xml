@@ -68,7 +68,6 @@
             android:exported="false" />
         <activity
             android:name=".view.auth.AuthActivity"
-            android:screenOrientation="sensor"
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
