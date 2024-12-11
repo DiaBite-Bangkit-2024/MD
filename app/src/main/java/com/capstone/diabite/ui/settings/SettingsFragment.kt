@@ -123,7 +123,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun scheduleMonthlyReminder() {
-        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(30, TimeUnit.DAYS)
+        val workRequest = PeriodicWorkRequestBuilder<ReminderWork>(30, TimeUnit.DAYS)
             .build()
 
         WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(

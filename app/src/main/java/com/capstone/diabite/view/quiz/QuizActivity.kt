@@ -90,11 +90,9 @@ class QuizActivity : AppCompatActivity() {
             progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
             tvQuiz.visibility = if (isLoading) View.GONE else View.VISIBLE
             cardOtp.visibility = if (isLoading) View.GONE else View.VISIBLE
-            btnNext.visibility = if (isLoading) View.GONE else View.VISIBLE
             quizTitle.visibility = if (isLoading) View.GONE else View.VISIBLE
             btnFalse.visibility = if (isLoading) View.GONE else View.VISIBLE
             btnTrue.visibility = if (isLoading) View.GONE else View.VISIBLE
         }
-
     }
 }

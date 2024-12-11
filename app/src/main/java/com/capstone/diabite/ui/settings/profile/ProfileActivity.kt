@@ -1,5 +1,6 @@
 package com.capstone.diabite.ui.settings.profile
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -69,9 +70,11 @@ class ProfileActivity : AppCompatActivity() {
             loginVM.setImageUri(Uri.parse(uriString))
         }
 
-        loginVM.getSession().observe(this) { user ->
-            if (user.isLogin) {
-                profileVM.fetchUserProfile(user.token)
+        if (profileVM.userProfile.value !is DataResult.Success) {
+            loginVM.getSession().observe(this) { user ->
+                if (user.isLogin) {
+                    profileVM.fetchUserProfile(user.token)
+                }
             }
         }
 
@@ -227,14 +230,14 @@ class ProfileActivity : AppCompatActivity() {
 
                 is DataResult.Success -> {
                     val data = result.data.profile
+                    val genderOptions = resources.getStringArray(R.array.gender_options)
+                    val genderIndex = genderOptions.indexOfFirst { it.equals(data.gender, ignoreCase = true) }
                     Log.d("ProfileActivity", "Fetched profile data: $data")
                     binding.apply {
                         etName.setText(data.name)
                         etAge.setText("${data.age}")
                         etHeight.setText(data.height.toString())
-                        spinnerGender.setSelection(
-                            if (data.gender == "male") 0 else 1
-                        )
+                        spinnerGender.setSelection(if (genderIndex != -1) genderIndex else 0)
                         etWeight.setText("${data.weight}")
                         etSystolic.setText("${data.systolic}")
                         etDiastolic.setText("${data.diastolic}")

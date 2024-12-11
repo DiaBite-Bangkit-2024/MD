@@ -3,7 +3,6 @@ package com.capstone.diabite.ui.dashboard
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Color.BLACK
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,19 +25,15 @@ import com.capstone.diabite.ui.articles.ArticlesAdapter
 import com.capstone.diabite.ui.articles.ArticlesRepo
 import com.capstone.diabite.ui.articles.ArticlesVMFactory
 import com.capstone.diabite.ui.articles.ArticlesViewModel
-import com.capstone.diabite.ui.login.LoginFragment
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.AnalyzeActivity
 import com.capstone.diabite.view.HistoryActivity
 import com.capstone.diabite.view.food.RecomActivity
-import com.capstone.diabite.view.quiz.QuizActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.chatbot.ChatbotActivity
-import com.capstone.diabite.view.quiz.QuizViewModel
 import com.capstone.diabite.view.DiabiteAppWidget
 import com.capstone.diabite.view.quiz.QuizActivity
 import com.capstone.diabite.view.quiz.QuizViewModel
-import com.capstone.diabite.view.auth.AuthActivity
 import java.util.Calendar
 
 class DashboardFragment : Fragment() {
@@ -157,6 +152,7 @@ class DashboardFragment : Fragment() {
         viewModel.fetchNews(query)
     }
 
+
     private fun setupUserProf() {
         profileVM.userProfile.observe(viewLifecycleOwner) { result ->
             when (result) {
@@ -172,7 +168,6 @@ class DashboardFragment : Fragment() {
                         vBP.text = "${data.systolic}/${data.diastolic} mmhg"
                         Glide.with(requireContext())
                             .load(data.avatar)
-                            .error(R.drawable.user)
                             .into(profileImage)
                     }
                 }
@@ -182,27 +177,26 @@ class DashboardFragment : Fragment() {
                 }
             }
         }
+    }
 
-        profileVM.tokenExpired.observe(viewLifecycleOwner) { isExpired ->
-            if (isExpired) {
-                Toast.makeText(context, "Session expired. Please login again.", Toast.LENGTH_SHORT).show()
+    override fun onResume() {
+        super.onResume()
+        refreshHistoryData()
+    }
 
-                loginVM.logout()
-//                val intent = Intent(context, LoginFragment::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                startActivity(intent)
-            }
-        }
-
-
+    private fun refreshHistoryData() {
         historyVM.allHistory.observe(viewLifecycleOwner) { historyList ->
             val mappedHistoryList = historyList.map {
                 HistoryEntity(it.id, it.prediction, it.summary, it.timestamp)
             }
             binding.apply {
                 hlLow.visibility = View.GONE
-                hlMod.visibility = View.GONE
                 hlHigh.visibility = View.GONE
+                hlMod.visibility = View.GONE
+
+                low.setTextAppearance(R.style.highlight)
+                high.setTextAppearance(R.style.highlight)
+                moderate.setTextAppearance(R.style.highlight)
 
                 if (mappedHistoryList.isEmpty()) {
                     val progress = 0
@@ -230,6 +224,8 @@ class DashboardFragment : Fragment() {
             }
         }
     }
+
+
 
     private fun getGreetingMessage(): String {
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)

@@ -73,9 +73,7 @@
             android:name=".view.MainActivity"
             android:exported="false"
             android:screenOrientation="sensor"/>
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <activity
             android:name=".view.SplashActivity"
             android:exported="true"

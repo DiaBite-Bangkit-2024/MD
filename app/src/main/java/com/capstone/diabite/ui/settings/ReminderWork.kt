@@ -15,7 +15,7 @@ import androidx.work.WorkerParameters
 import com.capstone.diabite.R
 import com.capstone.diabite.view.MainActivity
 
-class ReminderWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
+class ReminderWork(context: Context, params: WorkerParameters) : Worker(context, params) {
 
     override fun doWork(): Result {
 

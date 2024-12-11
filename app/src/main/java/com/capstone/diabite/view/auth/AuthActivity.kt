@@ -24,10 +24,9 @@ class AuthActivity : AppCompatActivity() {
         val isFirstLaunch = sharedPreferences.getBoolean("isFirstLaunch", true)
 
         if (isFirstLaunch) {
-            // Redirect to OnBoardingActivity
             val intentOnb = Intent(this, OnBoardingActivity::class.java)
             startActivity(intentOnb)
-            finish() // Prevent MainActivity from being shown
+            finish()
         }
 
         if (isUserLoggedIn(this)) {
