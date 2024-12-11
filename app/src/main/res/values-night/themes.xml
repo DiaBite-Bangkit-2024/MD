@@ -40,6 +40,11 @@
         <item name="android:tint">@color/white</item>
     </style>
 
+    <style name="SwitchStyle" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="android:thumbTint">@color/accent</item>
+        <item name="android:trackTint">@color/gray</item>
+    </style>
+
     <style name="customButton" parent="Widget.Material3.Button.ElevatedButton">
         <item name="android:backgroundTint">@color/dark_card</item>
         <item name="android:textColor">@color/white</item>

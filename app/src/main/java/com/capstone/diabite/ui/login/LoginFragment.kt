@@ -18,11 +18,6 @@ import com.capstone.diabite.view.auth.AuthActivity
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.view.auth.ForgetActivity
 
-//import com.capstone.diabite.db.pref.getDataStore
-//import com.google.firebase.auth.FirebaseAuth
-//import com.google.firebase.auth.ktx.auth
-//import com.google.firebase.ktx.Firebase
-
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -40,8 +35,6 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        auth = Firebase.auth
 
         binding.apply {
 

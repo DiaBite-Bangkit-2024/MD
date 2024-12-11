@@ -45,6 +45,10 @@ class AnalyzeActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        predictionVM.dialogState?.let {
+            showDialog(it.prediction, it.summary)
+        }
+
         fun convertAgeToCategory(age: Int): Int {
             return when (age) {
                 in 18..24 -> 1
@@ -155,6 +159,11 @@ class AnalyzeActivity : AppCompatActivity() {
     }
 
     private fun showResultDialog(prediction: Int, summary: String) {
+        predictionVM.dialogState = PredictionViewModel.DialogState(prediction, summary)
+        showDialog(prediction, summary)
+    }
+
+    private fun showDialog(prediction: Int, summary: String) {
         val dialogView = layoutInflater.inflate(R.layout.popup_dialog, null)
         val dialog = Dialog(this)
         dialog.setContentView(dialogView)
@@ -175,7 +184,6 @@ class AnalyzeActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             dialog.dismiss()
-            finish()
         }
 
         dialogView.findViewById<TextView>(R.id.cancel_text).setOnClickListener {
@@ -183,7 +191,6 @@ class AnalyzeActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             dialog.dismiss()
-            finish()
         }
 
         dialog.show()
@@ -228,3 +235,4 @@ class AnalyzeActivity : AppCompatActivity() {
         }
     }
 }
+

@@ -74,9 +74,7 @@
             android:name=".view.MainActivity"
             android:exported="false"
             android:screenOrientation="sensor"/>
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
         <activity
             android:name=".view.SplashActivity"
             android:exported="true">
@@ -86,6 +84,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            tools:ignore="DiscouragedApi" />
     </application>
 
 </manifest>

@@ -38,29 +38,6 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
     fun setImageUri(uri: Uri) {
         _currentImageUri.value = uri
     }
-    fun uriToFile(uri: Uri, context: Context): File {
-        val contentResolver = context.contentResolver
-
-        val mimeType = contentResolver.getType(uri)
-        Log.d("uriToFile", "MIME type of URI: $mimeType")
-
-        if (mimeType == null || !mimeType.startsWith("image/")) {
-            throw IllegalArgumentException("Invalid file type: $mimeType. Please select an image.")
-        }
-
-        val tempFile = File.createTempFile("temp_image", ".jpg", context.cacheDir)
-        val inputStream = contentResolver.openInputStream(uri)
-        val outputStream = tempFile.outputStream()
-
-        inputStream?.copyTo(outputStream)
-        inputStream?.close()
-        outputStream.close()
-
-        Log.d("uriToFile", "URI: $uri -> File: ${tempFile.absolutePath}")
-        return tempFile
-    }
-
-
 
     fun updateUserProfile(updateProfileRequest: UpdateProfileRequest) {
         _userProfile.value = DataResult.Loading
