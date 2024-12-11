@@ -31,6 +31,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="highlight">
+        <item name="textColor">#000</item>
+    </style>
+
     <style name="customButton" parent="Widget.Material3.Button.ElevatedButton">
         <item name="android:backgroundTint">@color/accent</item>
         <item name="android:textColor">@color/text</item>

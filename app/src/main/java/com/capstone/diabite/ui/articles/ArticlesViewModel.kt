@@ -45,7 +45,7 @@ class ArticlesViewModel(private val repository: ArticlesRepo) : ViewModel() {
                     } else {
                         Log.e(TAG, "Failed to fetch news")
                         _newsData.value = DataResult.Error("Failed to fetch news: ${response.message()}")
-                    }
+                    } 
                 } catch (e: Exception) {
                     _newsData.value = DataResult.Error("Error: ${e.message}")
                 }

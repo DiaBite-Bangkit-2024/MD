@@ -1,20 +1,24 @@
 package com.capstone.diabite.ui.settings
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
-import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.capstone.diabite.R
 import com.capstone.diabite.databinding.FragmentSettingsBinding
 import com.capstone.diabite.db.local.HistoryViewModel
 import com.capstone.diabite.ui.login.LoginViewModel
@@ -32,6 +36,15 @@ class SettingsFragment : Fragment() {
         )
     }
     private val historyVM: HistoryViewModel by viewModels()
+
+    private val requestNotificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                scheduleMonthlyReminder()
+            } else {
+                showPermissionDeniedMessage()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,19 +87,8 @@ class SettingsFragment : Fragment() {
 
         binding.switchReminder.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             if (isChecked) {
-                scheduleMonthlyReminder()
+                checkNotificationPermissionAndScheduleReminder()
                 settingViewModel.saveReminderSetting(true)
-
-                NotificationUtil.showNotification(
-                    context = requireContext(),
-                    channelId = "MonthlyReminderChannel",
-                    channelName = "Monthly Reminder",
-                    title = "Reminder Enabled",
-                    text = "You have enabled monthly reminders.",
-                    smallIcon = R.drawable.diabite_iconfix,
-                    pendingIntent = null,
-                    notificationId = 2
-                )
             } else {
                 cancelMonthlyReminder()
                 settingViewModel.saveReminderSetting(false)
@@ -102,9 +104,24 @@ class SettingsFragment : Fragment() {
         return root
     }
 
+    private fun checkNotificationPermissionAndScheduleReminder() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                scheduleMonthlyReminder()
+            } else {
+                requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        } else {
+            scheduleMonthlyReminder()
+        }
+    }
 
     private fun scheduleMonthlyReminder() {
-        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(30, TimeUnit.DAYS)
+        val workRequest = PeriodicWorkRequestBuilder<ReminderWork>(30, TimeUnit.DAYS)
             .build()
 
         WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
@@ -116,6 +133,10 @@ class SettingsFragment : Fragment() {
 
     private fun cancelMonthlyReminder() {
         WorkManager.getInstance(requireContext()).cancelUniqueWork("MonthlyReminder")
+    }
+
+    private fun showPermissionDeniedMessage() {
+        Toast.makeText(context,"Notification permission is required to set reminders.",Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

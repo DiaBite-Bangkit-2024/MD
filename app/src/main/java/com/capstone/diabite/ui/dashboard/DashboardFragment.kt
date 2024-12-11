@@ -177,12 +177,27 @@ class DashboardFragment : Fragment() {
                 }
             }
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        refreshHistoryData()
+    }
+
+    private fun refreshHistoryData() {
         historyVM.allHistory.observe(viewLifecycleOwner) { historyList ->
             val mappedHistoryList = historyList.map {
                 HistoryEntity(it.id, it.prediction, it.summary, it.timestamp)
             }
             binding.apply {
+                hlLow.visibility = View.GONE
+                hlHigh.visibility = View.GONE
+                hlMod.visibility = View.GONE
+
+                low.setTextAppearance(R.style.highlight)
+                high.setTextAppearance(R.style.highlight)
+                moderate.setTextAppearance(R.style.highlight)
+
                 if (mappedHistoryList.isEmpty()) {
                     val progress = 0
                     circularProgressView.setProgress(progress)
@@ -191,21 +206,26 @@ class DashboardFragment : Fragment() {
                     val latestPrediction = mappedHistoryList.first().prediction
                     circularProgressView.setProgress(latestPrediction)
                     progressText.text = "$latestPrediction%"
-                    if (latestPrediction < 40) {
-                        hlLow.visibility = View.VISIBLE
-                        low.setTextColor(BLACK)
-                    } else if (latestPrediction > 70) {
-                        hlHigh.visibility = View.VISIBLE
-                        high.setTextColor(BLACK)
-                    } else {
-                        hlMod.visibility = View.VISIBLE
-                        moderate.setTextColor(BLACK)
+                    when {
+                        latestPrediction < 40 -> {
+                            hlLow.visibility = View.VISIBLE
+                            low.setTextColor(BLACK)
+                        }
+                        latestPrediction > 70 -> {
+                            hlHigh.visibility = View.VISIBLE
+                            high.setTextColor(BLACK)
+                        }
+                        else -> {
+                            hlMod.visibility = View.VISIBLE
+                            moderate.setTextColor(BLACK)
+                        }
                     }
                 }
             }
         }
-
     }
+
+
 
     private fun getGreetingMessage(): String {
         val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)

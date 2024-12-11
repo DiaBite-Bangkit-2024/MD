@@ -1,5 +1,6 @@
 package com.capstone.diabite.ui.settings.profile
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,7 +14,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.capstone.diabite.R
 import com.capstone.diabite.databinding.ActivityProfileBinding
 import com.capstone.diabite.db.DataResult
@@ -24,9 +27,11 @@ import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.auth.AuthViewModelFactory
 import com.capstone.diabite.db.pref.UserPreference
 import com.capstone.diabite.db.pref.dataStore
+import com.yalantis.ucrop.UCrop
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
@@ -43,7 +48,7 @@ class ProfileActivity : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             result.data?.data?.let { uri ->
-                loginVM.setImageUri(uri)
+                startCrop(this, uri)
             } ?: showToast(getString(R.string.empty_image_warning))
         }
     }
@@ -65,9 +70,11 @@ class ProfileActivity : AppCompatActivity() {
             loginVM.setImageUri(Uri.parse(uriString))
         }
 
-        loginVM.getSession().observe(this) { user ->
-            if (user.isLogin) {
-                profileVM.fetchUserProfile(user.token)
+        if (profileVM.userProfile.value !is DataResult.Success) {
+            loginVM.getSession().observe(this) { user ->
+                if (user.isLogin) {
+                    profileVM.fetchUserProfile(user.token)
+                }
             }
         }
 
@@ -86,16 +93,13 @@ class ProfileActivity : AppCompatActivity() {
 
         loginVM.currentImageUri.observe(this) { uri ->
             if (uri != null) {
-                try {
-                    Glide.with(this)
-                        .load(uri)
-                        .fallback(R.drawable.person)
-                        .placeholder(R.drawable.person)
-                        .into(binding.profileImage)
-                } catch (e: Exception) {
-                    Log.e("ProfileActivity", "Error loading image: ${e.message}")
-                    binding.profileImage.setImageResource(R.drawable.person)
-                }
+                Glide.with(this)
+                    .load(uri)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .fallback(R.drawable.person)
+                    .placeholder(R.drawable.person)
+                    .into(binding.profileImage)
             } else {
                 Glide.with(this)
                     .load((profileVM.userProfile.value as? DataResult.Success)?.data?.profile?.avatar)
@@ -106,6 +110,32 @@ class ProfileActivity : AppCompatActivity() {
         }
         setupUserProf()
     }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == Activity.RESULT_OK) {
+            val resultUri: Uri? = UCrop.getOutput(data!!)
+            if (resultUri != null) {
+                loginVM.setImageUri(resultUri)
+
+                Glide.with(this)
+                    .load(resultUri)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .fallback(R.drawable.person)
+                    .placeholder(R.drawable.person)
+                    .into(binding.profileImage)
+            } else {
+                showToast("Failed to retrieve cropped image.")
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val cropError = UCrop.getError(data!!)
+            showToast("Error occurred during cropping: ${cropError?.message}")
+        }
+    }
+
 
     private fun setupGenderSpinner() {
         val genderSpinner: Spinner = findViewById(R.id.spinner_gender)
@@ -120,15 +150,46 @@ class ProfileActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         launcherIntentGallery.launch(intent)
     }
+
+    private fun startCrop(context: Activity, imageUri: Uri) {
+        val fileName = "${System.currentTimeMillis()}_${generateRandomString(10)}.jpg"
+        val newDestinationFile = File(cacheDir, fileName)
+
+        if (!newDestinationFile.exists()) newDestinationFile.createNewFile()
+        val destinationUri = Uri.fromFile(newDestinationFile)
+
+        val options = UCrop.Options().apply {
+            setToolbarColor(ContextCompat.getColor(context, R.color.dark_background))
+            setStatusBarColor(ContextCompat.getColor(context, R.color.dark_background))
+            setActiveControlsWidgetColor(ContextCompat.getColor(context, R.color.dark_accent))
+            setToolbarWidgetColor(ContextCompat.getColor(context, R.color.dark_accent))
+            setCompressionQuality(80)
+        }
+
+        UCrop.of(imageUri, destinationUri)
+            .withOptions(options)
+            .withAspectRatio(1f, 1f)
+            .withMaxResultSize(800, 800)
+            .start(context)
+    }
+
+    private fun generateRandomString(length: Int): String {
+        val chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return (1..length)
+            .map { chars.random() }
+            .joinToString("")
+    }
+
     private fun saveProfile() {
         val avatarUri = loginVM.currentImageUri.value
         var avatarPart: MultipartBody.Part? = null
 
         if (avatarUri != null) {
             try {
-                val avatarFile = loginVM.uriToFile(avatarUri, this)
+                val avatarFile = File(avatarUri.path)
                 val requestFile = avatarFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                avatarPart = MultipartBody.Part.createFormData("avatar", avatarFile.name, requestFile)
+                avatarPart =
+                    MultipartBody.Part.createFormData("avatar", avatarFile.name, requestFile)
             } catch (e: Exception) {
                 showToast("Failed to process avatar: ${e.message}")
                 Log.e("SaveProfile", "Error processing avatar file: ${e.message}")
@@ -169,30 +230,29 @@ class ProfileActivity : AppCompatActivity() {
 
                 is DataResult.Success -> {
                     val data = result.data.profile
+                    val genderOptions = resources.getStringArray(R.array.gender_options)
+                    val genderIndex = genderOptions.indexOfFirst { it.equals(data.gender, ignoreCase = true) }
                     Log.d("ProfileActivity", "Fetched profile data: $data")
                     binding.apply {
                         etName.setText(data.name)
                         etAge.setText("${data.age}")
                         etHeight.setText(data.height.toString())
-                        spinnerGender.setSelection(
-                            if (data.gender == "male") 0 else 1
-                        )
+                        spinnerGender.setSelection(if (genderIndex != -1) genderIndex else 0)
                         etWeight.setText("${data.weight}")
                         etSystolic.setText("${data.systolic}")
                         etDiastolic.setText("${data.diastolic}")
                         if (loginVM.currentImageUri.value == null && !data.avatar.isNullOrEmpty()) {
-                            // Load the avatar from the server
                             Glide.with(this@ProfileActivity)
                                 .load(data.avatar)
                                 .fallback(R.drawable.person)
                                 .placeholder(R.drawable.person)
                                 .into(profileImage)
                         } else if (loginVM.currentImageUri.value == null) {
-                            // Fallback to placeholder if no image is set
                             profileImage.setImageResource(R.drawable.person)
                         }
                     }
                 }
+
                 is DataResult.Error -> {
                     Toast.makeText(this, "Failed to fetch profile: ${result.message}", Toast.LENGTH_SHORT).show()
                 }

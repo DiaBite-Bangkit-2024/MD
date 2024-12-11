@@ -1,19 +1,14 @@
 package com.capstone.diabite.view
 
-import android.R
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
-import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.capstone.diabite.databinding.ActivitySplashBinding
 import com.capstone.diabite.ui.login.LoginViewModel
 import com.capstone.diabite.view.auth.AuthActivity

@@ -80,6 +80,7 @@
                             android:layout_alignParentEnd="true"
                             android:backgroundTint="?attr/android:colorBackground"
                             android:clickable="false"
+                            android:layout_marginHorizontal="1dp"
                             android:gravity="bottom"
                             android:minWidth="12dp"
                             android:text="@string/zero"
